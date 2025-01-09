@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* CSS Document */
+
+:root {
+    --page-background: rgb(209, 228, 221);
+    --text-color-primary: rgb(40, 48, 61);
+    --font-primary: sans-serif;
+    --font-weight-primary: 300;
+    --font-weight-headings: 500;
+    --default-font-size: 17px;
+
+    --name-case: capitalize;
+}
+
+/* temporary ---------------------------------- */
+
+/* header,
+nav,
+main,
+footer {
+    margin: 5px;
+    border: 1px solid rgba(40, 48, 61, 0.3);
+} */
+
+/* end temporary -------------------------------*/
+
+html {
+    font-size: var(--default-font-size);
+}
+
+body {
+    background-color: var(--page-background);
+    color: var(--text-color-primary);
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--font-weight-headings);
+}
+
+#site-name {
+    font-size: 1rem;
+    text-transform: var(--name-case);
+}
