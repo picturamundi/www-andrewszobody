@@ -3,17 +3,18 @@
 
 :root {
     --page-background: rgb(209, 228, 221);
-    --text-color-primary: rgb(40, 48, 61);
+    --text-color-primary: white;
     --font-primary: sans-serif;
     --default-font-size: 17px;
     --font-weight-primary: 300;
     --font-weight-headings: 500;
 
-    --name-case: capitalize;
-    --header-padding: 1rem;
+    --name-case: uppercase;
+    --header-padding: 11vw;
     --header-height: var(--default-font-size);
     --real-header-height: calc(var(--header-height) + (var(--header-padding) * 2));
-    --name-font-size: var(--default-font-size);
+    --name-font-size: 2.7rem;
+    --default-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* temporary ---------------------------------- */
@@ -58,6 +59,8 @@ a {
     border-bottom: 1px solid var(--text-color-primary);
 }
 
+svg {}
+
 svg path {
     stroke: var(--text-color-primary);
 }
@@ -67,24 +70,33 @@ HEADER
 -------------------- */
 
 header {
-    position: sticky;
+    width: calc(100% - (var(--header-padding) * 2));
+    position: fixed;
     padding: var(--header-padding);
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     height: var(--header-height)
 }
 
 #site-name-container {
-    display: flex;
+    width: 100%;
+    position: fixed;
+    margin-top: 33vw;
     align-items: center;
     z-index: 1;
+    display: flex;
+    justify-content: center;
 }
 
 #site-name {
     font-size: var(--name-font-size);
     font-weight: var(--font-weight-headings);
+    font-weight: 100;
     text-transform: var(--name-case);
     vertical-align: middle;
+    text-align: center;
+    width: 70%;
+    text-shadow: var(--default-shadow);
 }
 
 #nav-button {
@@ -96,18 +108,22 @@ header {
 
 #menu-icon,
 #exit-icon {
-    width: 1rem;
+    width: 2rem;
 }
 
 #nav-items {
-    background-color: var(--page-background);
-    width: 100%;
+    width: calc(100vw - (var(--header-padding) * 2));
     position: absolute;
     left: 0;
     padding: var(--header-padding);
-    text-align: left;
     display: flex;
     flex-direction: column;
+    text-align: right;
+}
+
+#nav-items a {
+    text-shadow: var(--default-shadow);
+    font-size: calc(var(--default-font-size) * 2);
 }
 
 #nav-items p {
@@ -129,13 +145,19 @@ HOME PAGE
 -------------------- */
 
 main {
+    position: absolute;
     height: fit-content;
-    margin-top: calc(50vh - 43vw - var(--real-header-height));
+    top: 0rem;
     display: flex;
     flex-direction: column;
+    z-index: -1;
 }
 
 main img.artwork {
     width: 100vw;
     padding: 0px 0px;
+}
+
+img.darken {
+    filter: brightness(0.9);
 }
