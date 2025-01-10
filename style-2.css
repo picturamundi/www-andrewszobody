@@ -113,11 +113,11 @@ header {
 }
 
 .blur {
-    filter: blur(3px);
+    filter: blur(5px);
 }
 
 #site-name.blur {
-    /* font-size: calc(var(--name-font-size) * 1.05); */
+    font-size: calc(var(--name-font-size) * 1.05);
 }
 
 .trans {
