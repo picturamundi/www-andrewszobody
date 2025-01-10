@@ -126,12 +126,11 @@ HOME PAGE
 
 main {
     height: fit-content;
-    margin-top: calc(50vh - 50vw - var(--real-header-height));
+    margin-top: calc(50vh - 43vw - var(--real-header-height));
 }
 
 #centerpiece {
     width: 100vw;
-    height: 100vw;
 }
 
 #centerpiece-spacer {
