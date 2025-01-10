@@ -5,22 +5,28 @@
     --page-background: rgb(209, 228, 221);
     --text-color-primary: rgb(40, 48, 61);
     --font-primary: sans-serif;
+    --default-font-size: 17px;
     --font-weight-primary: 300;
     --font-weight-headings: 500;
-    --default-font-size: 17px;
 
     --name-case: capitalize;
+    --header-padding: 1rem;
+    --header-height: var(--default-font-size);
+    --real-header-height: calc(var(--header-height) + (var(--header-padding) * 2));
+    --name-font-size: var(--default-font-size);
 }
 
 /* temporary ---------------------------------- */
 
-/* header,
+/* 
+header,
 nav,
 main,
 footer {
     margin: 5px;
     border: 1px solid rgba(40, 48, 61, 0.3);
-} */
+}
+ */
 
 /* end temporary -------------------------------*/
 
@@ -29,6 +35,8 @@ html {
 }
 
 body {
+    height: 100vh;
+    margin: 0rem;
     background-color: var(--page-background);
     color: var(--text-color-primary);
     font-family: var(--font-primary);
@@ -44,7 +52,90 @@ h6 {
     font-weight: var(--font-weight-headings);
 }
 
+a {
+    text-decoration: none;
+    color: var(--text-color-primary);
+    border-bottom: 1px solid var(--text-color-primary);
+}
+
+/* --------------------
+HEADER
+-------------------- */
+
+header {
+    position: sticky;
+    padding: var(--header-padding);
+    display: flex;
+    justify-content: space-between;
+    height: var(--header-height)
+}
+
+#site-name-container {
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
 #site-name {
-    font-size: 1rem;
+    font-size: var(--name-font-size);
+    font-weight: var(--font-weight-headings);
     text-transform: var(--name-case);
+    vertical-align: middle;
+}
+
+#nav-button {
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#menu-icon,
+#exit-icon {
+    width: 1rem;
+}
+
+#nav-items {
+    background-color: var(--page-background);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    padding: var(--header-padding);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+#nav-items p {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+
+.hidden,
+#nav-items.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* --------------------
+HOME PAGE
+-------------------- */
+
+main {
+    height: calc(100% - var(--real-header-height));
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#centerpiece {
+    width: 100%;
+}
+
+#centerpiece-spacer {
+    width: 100%;
+    height: var(--real-header-height);
 }

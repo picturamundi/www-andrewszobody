@@ -4,11 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-
     <title>andrew szobody</title>
-
     <link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-64x64.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
@@ -18,21 +14,45 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#ffdf83">
     <meta name="msapplication-TileColor" content="#ffdf83">
     <meta name="theme-color" content="#ffdf83">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
     <header>
-        <div id="site-name">andrew szobody</div>
-        <nav>
+        <div id="site-name-container">
+            <div id="site-name">andrew szobody</div>
+        </div>
+        <div id="nav-button" onclick="toggleMenu()">
+            <div id="menu-icon" class="visible">
+                <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 2H50" stroke="#28303D" stroke-width="4" />
+                    <path d="M0 23H50" stroke="#28303D" stroke-width="4" />
+                    <path d="M0 44H50" stroke="#28303D" stroke-width="4" />
+                </svg>
+            </div>
+            <div id="exit-icon" class="hidden">
+                <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 1.5L48 44.5" stroke="#28303D" stroke-width="4" />
+                    <path d="M48 1.5L2 44.5" stroke="#28303D" stroke-width="4" />
+                </svg>
+            </div>
+        </div>
+        <nav id="nav-items" class="hidden">
+            <p><a href="#recent">Recent</a></p>
+            <p><a href="#less-recent">Less Recent</a></p>
+            <p><a href="#old">Old</a></p>
+            <p><a href="#bio-contact">Bio/Contact</a></p>
         </nav>
     </header>
     <main>
+        <img id="centerpiece" src="artwork/centerpiece.jpeg" alt="">
         <!-- <figure>
             <img src="favicons/android-chrome-192x192.png" alt="Trulli">
             <figcaption>Trulli, Puglia, Italy.</figcaption>
         </figure> -->
+        <div id="centerpiece-spacer"></div>
     </main>
-    <footer></footer>
 </body>
 
 </html>
