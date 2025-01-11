@@ -23,18 +23,3 @@ function toggleMenu() {
         hamburger.classList.add('visible');
     }
 }
-
-function toggleFocus() {
-    var blur = document.getElementById('blur');
-    var button = document.getElementById('nav-button');
-    var name = document.getElementById('site-name');
-    if (blur.className == 'visible trans') {
-        blur.classList.remove('trans');
-        button.classList.remove('blur');
-        name.classList.remove('blur');
-    } else {
-        blur.classList.add('trans');
-        button.classList.add('blur');
-        name.classList.add('blur');
-    }
-}

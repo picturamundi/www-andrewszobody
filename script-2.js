@@ -12,7 +12,9 @@ function toggleMenu() {
         items.classList.add('visible');
         cross.classList.add('visible');
         hamburger.classList.add('hidden');
+        name.classList.add('hidden');
         hamburger.classList.remove('visible');
+        name.classList.remove('visible');
     } else {
         // collapse
         items.classList.remove('visible');
@@ -20,7 +22,9 @@ function toggleMenu() {
         items.classList.add('hidden');
         cross.classList.add('hidden');
         hamburger.classList.remove('hidden');
+        name.classList.remove('hidden');
         hamburger.classList.add('visible');
+        name.classList.add('visible');
     }
 }
 
