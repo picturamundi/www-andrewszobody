@@ -233,20 +233,29 @@ Background and blur
 img#background-img {
     position: absolute;
     min-height: 100%;
-    min-width: 100%;
-    max-width: 125%;
+    width: 100%;
     overflow: hidden;
 }
 
+/* shift portrait background up for tablet */
 @media (min-aspect-ratio: 8/10) {
     #background-img {
         margin-top: -30vh;
     }
 }
 
+/* shift portrait background up more for desktop */
 @media (min-aspect-ratio: 8/6) {
     #background-img {
         margin-top: -60vh;
+    }
+}
+
+/* allow x-overflow for portrait background on narrow screens */
+@media (max-aspect-ratio: 4.5/8) {
+    img#background-img {
+        height: 100vh;
+        width: auto;
     }
 }
 
