@@ -11,7 +11,7 @@
     --header-padding: 1.5rem;
     --header-height: 2rem;
     --real-header-height: calc(var(--header-height) + (var(--header-padding) * 2));
-    --name-font-size: 3rem;
+    --name-font-size: 2.5rem;
     --default-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     --focus-trans: 0.5s;
     --menu-trans: 0.2s;
