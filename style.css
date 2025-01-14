@@ -1,5 +1,4 @@
 @charset "UTF-8";
-/* CSS Document */
 
 :root {
     --page-background: rgb(209, 228, 221);
@@ -22,6 +21,10 @@
     --font-weight-headings: 200;
 }
 
+/* ----------------------------------
+UNIVERSAL HTML ELEMENTS
+---------------------------------- */
+
 html {
     font-size: var(--default-font-size);
 }
@@ -34,15 +37,6 @@ body {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-primary);
 }
-
-body#home {
-    user-select: none;
-}
-
-/* body {
-    background-image: url(artwork/portrait.jpeg);
-    background-size: auto 100vh;
-} */
 
 h1,
 h2,
@@ -63,9 +57,10 @@ svg path {
     stroke: var(--text-color-primary);
 }
 
-/* --------------------
-HEADER
--------------------- */
+
+/* ----------------------------------
+HEADER AND FOOTER
+---------------------------------- */
 
 header {
     width: calc(100% - (var(--header-padding) * 2));
@@ -102,7 +97,7 @@ header {
     display: none;
 }
 
-#nav-items {
+#nav {
     width: fit-content;
     position: absolute;
     right: 0;
@@ -114,16 +109,25 @@ header {
     z-index: 3;
 }
 
-#nav-items a {
+#nav a {
     text-shadow: var(--default-shadow);
     font-size: calc(var(--default-font-size) * 2);
 }
 
-#nav-items p {
+#nav p {
     margin-top: 1rem;
     margin-bottom: 0rem;
     font-weight: var(--font-weight-primary);
     font-family: var(--name-font-family);
+}
+
+
+/* ----------------------------------
+HOME PAGE
+---------------------------------- */
+
+body#home {
+    user-select: none;
 }
 
 /* site name */
@@ -149,7 +153,9 @@ header {
     text-shadow: var(--default-shadow);
 }
 
-#blur {
+/* frosted glass */
+
+#glass {
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -160,9 +166,84 @@ header {
 }
 
 @media screen and (min-width: 850px) {
-    #blur {
+    #glass {
         backdrop-filter: blur(15px);
     }
+}
+
+#interface-toggle {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+/* wallpaper */
+
+#wallpaper-wrapper {
+    position: absolute;
+    min-height: 100vh;
+    min-width: 100vw;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img#wallpaper-4x3 {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+}
+
+@media (min-aspect-ratio: 4/3) {
+    img#wallpaper-4x3 {
+        height: auto;
+        width: 100%;
+    }
+}
+
+img#wallpaper-3x4 {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+}
+
+@media (min-aspect-ratio: 3/4) {
+    img#wallpaper-3x4 {
+        height: auto;
+        width: 100%;
+    }
+}
+
+img#wallpaper-1x1 {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+}
+
+@media (min-aspect-ratio: 1/1) {
+    img#wallpaper-1x1 {
+        height: auto;
+        width: 100%;
+    }
+}
+
+
+/* ----------------------------------
+ANIMATIONS AND FILTERS
+---------------------------------- */
+
+.trans {
+    opacity: 0;
+}
+
+.opaque {
+    opacity: 1;
 }
 
 .blur {
@@ -174,15 +255,22 @@ header {
     opacity: 0;
 }
 
-
-/* animations */
-
-
-.hidden,
-#nav-items.hidden,
-#site-name.hidden {
+.hide,
+#nav.hide,
+#site-name.hide {
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
 }
 
 .show,
@@ -191,7 +279,7 @@ header {
     -webkit-animation-fill-mode: forwards;
 }
 
-#nav-items.show {
+#nav.show {
     display: flex;
 }
 
@@ -199,103 +287,15 @@ header {
     display: block;
 }
 
-.visible {
-    display: block;
-}
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
 
-.trans {
-    opacity: 0;
-}
-
-.opaque {
-    opacity: 1;
-}
-
-/* --------------------
-Background and blur
--------------------- */
-
-#interface-toggle {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-}
-
-#background-wrapper {
-    position: absolute;
-    min-height: 100vh;
-    min-width: 100vw;
-    z-index: -1;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-img#background-4x3 {
-    position: absolute;
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-}
-
-@media (min-aspect-ratio: 4/3) {
-    img#background-4x3 {
-        height: auto;
-        width: 100%;
+    100% {
+        opacity: 1;
     }
 }
-
-img#background-3x4 {
-    position: absolute;
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-}
-
-@media (min-aspect-ratio: 3/4) {
-    img#background-3x4 {
-        height: auto;
-        width: 100%;
-    }
-}
-
-img#background-1x1 {
-    position: absolute;
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-}
-
-@media (min-aspect-ratio: 1/1) {
-    img#background-1x1 {
-        height: auto;
-        width: 100%;
-    }
-}
-
-/* shift portrait background up for tablet */
-/* @media (min-aspect-ratio: 8/10) {
-    #background-img {
-        margin-top: -30vh;
-    }
-} */
-
-/* shift portrait background up more for desktop */
-/* @media (min-aspect-ratio: 8/6) {
-    #background-img {
-        margin-top: -60vh;
-    }
-} */
-
-/* allow x-overflow for portrait background on narrow screens */
-/* @media (max-aspect-ratio: 4.5/8) {
-    img#background-img {
-        height: 100vh;
-        width: auto;
-    }
-} */
 
 .fadeOut {
     animation: fadeOut var(--focus-trans);
@@ -305,22 +305,6 @@ img#background-1x1 {
 #nav-button.fadeOut {
     animation: fadeOutMenu var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
-}
-
-.fadeIn {
-    animation: fadeIn var(--focus-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 
 @keyframes fadeOut {
@@ -356,18 +340,12 @@ img#background-1x1 {
     }
 }
 
-@keyframes hide {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        display: none;
-    }
+.fadeIn {
+    animation: fadeIn var(--focus-trans);
+    -webkit-animation-fill-mode: forwards;
 }
 
-@keyframes show {
+@keyframes fadeIn {
     0% {
         opacity: 0;
     }

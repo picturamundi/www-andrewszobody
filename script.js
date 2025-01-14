@@ -1,16 +1,16 @@
 
 function toggleMenu() {
-    var items = document.getElementById('nav-items');
+    var items = document.getElementById('nav');
     var hamburger = document.getElementById('menu-icon');
     var cross = document.getElementById('exit-icon');
     var name = document.getElementById('site-name');
 
-    if (items.className.includes('hidden')) {
+    if (items.className.includes('hide')) {
         // expand menu
-        cross.classList.remove('hidden');
-        hamburger.classList.add('hidden');
-        items.classList.remove('hidden');
-        name.classList.add('hidden');
+        cross.classList.remove('hide');
+        hamburger.classList.add('hide');
+        items.classList.remove('hide');
+        name.classList.add('hide');
 
         cross.classList.add('show');
         hamburger.classList.remove('show');
@@ -19,10 +19,10 @@ function toggleMenu() {
 
     } else {
         // collapse menu
-        cross.classList.add('hidden');
-        hamburger.classList.remove('hidden');
-        items.classList.add('hidden');
-        name.classList.remove('hidden');
+        cross.classList.add('hide');
+        hamburger.classList.remove('hide');
+        items.classList.add('hide');
+        name.classList.remove('hide');
 
         cross.classList.remove('show');
         hamburger.classList.add('show');
@@ -33,14 +33,14 @@ function toggleMenu() {
 }
 
 function toggleFocus() {
-    var blur = document.getElementById('blur');
+    var glass = document.getElementById('glass');
     var header = document.getElementById('nav-button');
     var name = document.getElementById('site-name-container');
-    var items = document.getElementById('nav-items');
+    var items = document.getElementById('nav');
 
-    if (blur.className == 'trans') {
+    if (glass.className == 'trans') {
         // focus name
-        blur.classList.remove('trans');
+        glass.classList.remove('trans');
         header.classList.remove('fadeOut');
         name.classList.remove('fadeOut');
         items.classList.remove('fadeOut');
@@ -49,7 +49,7 @@ function toggleFocus() {
         items.classList.add('fadeIn');
     } else {
         // focus work
-        blur.classList.add('trans');
+        glass.classList.add('trans');
         header.classList.remove('fadeIn');
         name.classList.remove('fadeIn');
         items.classList.remove('fadeIn');

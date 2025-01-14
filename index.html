@@ -24,17 +24,16 @@
 
 <body id="home">
 
-    <div id="background-wrapper">
-        <img src="artwork/4x3.jpeg" alt="" id="background-4x3">
-        <img src="artwork/3x4.jpeg" alt="" id="background-3x4">
-        <img src="artwork/1x1.jpeg" alt="" id="background-1x1">
+    <div id="wallpaper-wrapper">
+        <img src="artwork/4x3.jpeg" alt="" id="wallpaper-4x3">
+        <img src="artwork/3x4.jpeg" alt="" id="wallpaper-3x4">
+        <img src="artwork/1x1.jpeg" alt="" id="wallpaper-1x1">
     </div>
 
-    <div id="blur" class=""></div>
+    <div id="glass" class=""></div>
 
     <div id="interface-toggle" onclick="toggleFocus()"></div>
 
-    <!-- <header id=" header"> -->
     <div id="nav-button" onclick="toggleMenu()">
         <div id="menu-icon" class="">
             <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,20 +42,20 @@
                 <path d="M0 44H50" stroke="#28303D" stroke-width="4" />
             </svg>
         </div>
-        <div id="exit-icon" class="hidden">
+        <div id="exit-icon" class="hide">
             <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 1.5L48 44.5" stroke="#28303D" stroke-width="4" />
                 <path d="M48 1.5L2 44.5" stroke="#28303D" stroke-width="4" />
             </svg>
         </div>
     </div>
-    <nav id="nav-items" class="hidden">
+
+    <nav id="nav" class="hide">
         <p><a href="#recent">Recent</a></p>
         <p><a href="#less-recent">Less Recent</a></p>
         <p><a href="#old">Old</a></p>
         <p><a href="#bio-contact">Bio/Contact</a></p>
     </nav>
-    <!-- </header> -->
 
     <main>
         <div id="site-name-container">
