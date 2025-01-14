@@ -5,36 +5,52 @@ function toggleMenu() {
     var cross = document.getElementById('exit-icon');
     var name = document.getElementById('site-name');
     var blur = document.getElementById('blur');
+
     if (items.className.includes('hidden')) {
-        // expand
-        items.classList.remove('hidden');
+        // expand menu
         cross.classList.remove('hidden');
-        items.classList.add('visible');
-        cross.classList.add('visible');
         hamburger.classList.add('hidden');
-        hamburger.classList.remove('visible');
+        items.classList.remove('hidden');
+        name.classList.add('hidden');
+
+        cross.classList.add('show');
+        hamburger.classList.remove('show');
+        items.classList.add('show');
+        name.classList.remove('show');
+
     } else {
-        // collapse
-        items.classList.remove('visible');
-        cross.classList.remove('visible');
-        items.classList.add('hidden');
+        // collapse menu
         cross.classList.add('hidden');
         hamburger.classList.remove('hidden');
-        hamburger.classList.add('visible');
+        items.classList.add('hidden');
+        name.classList.remove('hidden');
+
+        cross.classList.remove('show');
+        hamburger.classList.add('show');
+        items.classList.remove('show');
+        name.classList.add('show');
+
     }
 }
 
 function toggleFocus() {
     var blur = document.getElementById('blur');
-    var button = document.getElementById('nav-button');
-    var name = document.getElementById('site-name');
-    if (blur.className == 'visible trans') {
+    var header = document.getElementById('header');
+    var name = document.getElementById('site-name-container');
+
+    if (blur.className == 'trans') {
+        // focus name
         blur.classList.remove('trans');
-        button.classList.remove('blur');
-        name.classList.remove('blur');
+        header.classList.remove('fadeOut');
+        name.classList.remove('fadeOut');
+        header.classList.add('fadeIn');
+        name.classList.add('fadeIn');
     } else {
+        // focus work
         blur.classList.add('trans');
-        button.classList.add('blur');
-        name.classList.add('blur');
+        header.classList.remove('fadeIn');
+        name.classList.remove('fadeIn');
+        header.classList.add('fadeOut');
+        name.classList.add('fadeOut');
     }
 }
