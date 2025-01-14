@@ -27,31 +27,34 @@
     <div id="background-wrapper">
         <img src="artwork/portrait.jpeg" alt="" id="background-img">
     </div>
-    <div id="blur" class="" onclick="toggleFocus()"></div>
 
-    <header id="header">
-        <div id="nav-button" onclick="toggleMenu()">
-            <div id="menu-icon" class="">
-                <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 2H50" stroke="#28303D" stroke-width="4" />
-                    <path d="M0 23H50" stroke="#28303D" stroke-width="4" />
-                    <path d="M0 44H50" stroke="#28303D" stroke-width="4" />
-                </svg>
-            </div>
-            <div id="exit-icon" class="hidden">
-                <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 1.5L48 44.5" stroke="#28303D" stroke-width="4" />
-                    <path d="M48 1.5L2 44.5" stroke="#28303D" stroke-width="4" />
-                </svg>
-            </div>
+    <div id="blur" class=""></div>
+
+    <div id="interface-toggle" onclick="toggleFocus()"></div>
+
+    <!-- <header id=" header"> -->
+    <div id="nav-button" onclick="toggleMenu()">
+        <div id="menu-icon" class="">
+            <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 2H50" stroke="#28303D" stroke-width="4" />
+                <path d="M0 23H50" stroke="#28303D" stroke-width="4" />
+                <path d="M0 44H50" stroke="#28303D" stroke-width="4" />
+            </svg>
         </div>
-        <nav id="nav-items" class="hidden">
-            <p><a href="#recent">Recent</a></p>
-            <p><a href="#less-recent">Less Recent</a></p>
-            <p><a href="#old">Old</a></p>
-            <p><a href="#bio-contact">Bio/Contact</a></p>
-        </nav>
-    </header>
+        <div id="exit-icon" class="hidden">
+            <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 1.5L48 44.5" stroke="#28303D" stroke-width="4" />
+                <path d="M48 1.5L2 44.5" stroke="#28303D" stroke-width="4" />
+            </svg>
+        </div>
+    </div>
+    <nav id="nav-items" class="hidden">
+        <p><a href="#recent">Recent</a></p>
+        <p><a href="#less-recent">Less Recent</a></p>
+        <p><a href="#old">Old</a></p>
+        <p><a href="#bio-contact">Bio/Contact</a></p>
+    </nav>
+    <!-- </header> -->
 
     <main>
         <div id="site-name-container">

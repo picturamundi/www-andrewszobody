@@ -4,7 +4,6 @@ function toggleMenu() {
     var hamburger = document.getElementById('menu-icon');
     var cross = document.getElementById('exit-icon');
     var name = document.getElementById('site-name');
-    var blur = document.getElementById('blur');
 
     if (items.className.includes('hidden')) {
         // expand menu
@@ -35,22 +34,27 @@ function toggleMenu() {
 
 function toggleFocus() {
     var blur = document.getElementById('blur');
-    var header = document.getElementById('header');
+    var header = document.getElementById('nav-button');
     var name = document.getElementById('site-name-container');
+    var items = document.getElementById('nav-items');
 
     if (blur.className == 'trans') {
         // focus name
         blur.classList.remove('trans');
         header.classList.remove('fadeOut');
         name.classList.remove('fadeOut');
+        items.classList.remove('fadeOut');
         header.classList.add('fadeIn');
         name.classList.add('fadeIn');
+        items.classList.add('fadeIn');
     } else {
         // focus work
         blur.classList.add('trans');
         header.classList.remove('fadeIn');
         name.classList.remove('fadeIn');
+        items.classList.remove('fadeIn');
         header.classList.add('fadeOut');
         name.classList.add('fadeOut');
+        items.classList.add('fadeOut');
     }
 }
