@@ -47,7 +47,7 @@ h6 {
     font-weight: var(--font-weight-headings);
 }
 
-a {
+p a {
     text-decoration: none;
     color: var(--text-color-primary);
     border-bottom: 1px solid var(--text-color-primary);
@@ -61,6 +61,8 @@ svg path {
 /* ----------------------------------
 HEADER AND FOOTER
 ---------------------------------- */
+
+/* menu button */
 
 header {
     width: calc(100% - (var(--header-padding) * 2));
@@ -81,8 +83,8 @@ header {
 #menu-icon,
 #exit-icon {
     position: absolute;
-    margin: var(--header-padding);
-    padding: var(--header-padding);
+    margin: calc(var(--header-padding) * 1.5);
+    padding: calc(var(--header-padding) * 0.5);
     top: 0;
     right: 0;
     height: var(--header-height);
@@ -93,9 +95,16 @@ header {
     display: block;
 }
 
+#menu-icon svg,
+#exit-icon svg {
+    padding: 3px;
+}
+
 #exit-icon {
     display: none;
 }
+
+/* menu list */
 
 #nav {
     width: fit-content;
@@ -119,6 +128,22 @@ header {
     margin-bottom: 0rem;
     font-weight: var(--font-weight-primary);
     font-family: var(--name-font-family);
+}
+
+/* instagram link */
+
+#social svg path {
+    fill: var(--text-color-primary);
+}
+
+#social {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.8;
+    width: var(--header-height);
+    margin: calc(var(--header-padding) * 1.5);
+    padding: calc(var(--header-padding) * 0.5);
+    z-index: 3;
 }
 
 

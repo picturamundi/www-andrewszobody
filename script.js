@@ -37,24 +37,33 @@ function toggleFocus() {
     var header = document.getElementById('nav-button');
     var name = document.getElementById('site-name-container');
     var items = document.getElementById('nav');
+    var social = document.getElementById('social');
 
     if (glass.className == 'trans') {
         // focus name
         glass.classList.remove('trans');
+
         header.classList.remove('fadeOut');
         name.classList.remove('fadeOut');
         items.classList.remove('fadeOut');
+        social.classList.remove('fadeOut');
+
         header.classList.add('fadeIn');
         name.classList.add('fadeIn');
         items.classList.add('fadeIn');
+        social.classList.add('fadeIn');
     } else {
         // focus work
         glass.classList.add('trans');
+
         header.classList.remove('fadeIn');
         name.classList.remove('fadeIn');
         items.classList.remove('fadeIn');
+        social.classList.remove('fadeIn');
+
         header.classList.add('fadeOut');
         name.classList.add('fadeOut');
         items.classList.add('fadeOut');
+        social.classList.add('fadeOut');
     }
 }
