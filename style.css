@@ -137,7 +137,7 @@ header {
 }
 
 #social {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     opacity: 0.8;
     width: var(--header-height);
