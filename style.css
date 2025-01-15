@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 :root {
-    --page-background: rgb(209, 228, 221);
+    --page-background: rgba(200, 187, 170, 1);
     --text-color-primary: white;
     --glass-color: rgba(171, 154, 129, 0.5);
 

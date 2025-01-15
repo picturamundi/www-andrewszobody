@@ -17,5 +17,8 @@ The wallpaper image must be a file with the `.jpeg` extension (not `.jpg`), must
 - `3x4.jpeg`
 - `1x1.jpeg`
 
+<!--adjust page background color and theme color?-->
+
+
 ## Add new images to galleries
 
