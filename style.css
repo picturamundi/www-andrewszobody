@@ -70,6 +70,8 @@ HEADER AND FOOTER
 /* menu button */
 
 #nav-button {
+    margin: calc(var(--header-padding) * 1.5);
+    padding: calc(var(--header-padding) * 0.5);
     position: fixed;
     z-index: 3;
     top: 0;
@@ -77,8 +79,6 @@ HEADER AND FOOTER
 }
 
 #menu-icon {
-    margin: calc(var(--header-padding) * 1.5);
-    padding: calc(var(--header-padding) * 0.5);
     top: 0;
     right: 0;
     height: var(--header-height);
