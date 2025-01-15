@@ -95,7 +95,7 @@ HEADER AND FOOTER
 
 /* menu list */
 
-#nav {
+#nav-list {
     width: fit-content;
     position: absolute;
     right: 0;
@@ -107,11 +107,11 @@ HEADER AND FOOTER
     z-index: 3;
 }
 
-#nav a {
+#nav-list a {
     font-size: calc(var(--default-font-size) * 1.5);
 }
 
-#nav p {
+#nav-list p {
     margin-top: 1.5rem;
     margin-bottom: 0rem;
     font-weight: var(--font-weight-primary);
@@ -268,7 +268,7 @@ ANIMATIONS AND FILTERS
 }
 
 .hide,
-#nav.hide,
+#nav-list.hide,
 #site-name.hide {
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
@@ -291,7 +291,7 @@ ANIMATIONS AND FILTERS
     -webkit-animation-fill-mode: forwards;
 }
 
-#nav.show {
+#nav-list.show {
     display: flex;
 }
 

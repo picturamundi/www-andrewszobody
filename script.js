@@ -1,6 +1,6 @@
 
 function toggleMenu() {
-    var items = document.getElementById('nav');
+    var items = document.getElementById('nav-list');
     var menu = document.getElementById('menu-icon');
     // var cross = document.getElementById('exit-icon');
     var name = document.getElementById('site-name');
@@ -36,7 +36,7 @@ function toggleFocus() {
     var glass = document.getElementById('glass');
     var header = document.getElementById('nav-button');
     var name = document.getElementById('site-name-container');
-    var items = document.getElementById('nav');
+    var items = document.getElementById('nav-list');
     var social = document.getElementById('social');
 
     if (glass.className == 'trans') {
