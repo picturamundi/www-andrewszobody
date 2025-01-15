@@ -14,7 +14,7 @@
     --insta-opacity: 0.7;
 
     --name-case: capitalize;
-    --name-font-family: 'Montserrat';
+    --name-font-family: 'custom-1';
     --name-font-size: 2.5rem;
 
     --header-padding: 1.5rem;
@@ -22,6 +22,19 @@
 
     --menu-trans: 0.2s;
     --focus-trans: 0.5s;
+}
+
+@font-face {
+    font-family: 'custom-1';
+    src: url('fonts/montserrat/Montserrat-VariableFont_wght.ttf');
+    /* src: url('assets/font/Pictura-Regular.eot?#iefix') format('embedded-opentype'),
+        url('assets/font/Pictura-Regular.woff2') format('woff2'),
+        url('assets/font/Pictura-Regular.woff') format('woff'),
+        url('assets/font/Pictura-Regular.ttf') format('truetype'),
+        url('assets/font/Pictura-Regular.svg#Pictura-Regular') format('svg'); */
+    /* font-weight: var(--font-weight-headings); */
+    font-style: normal;
+    font-display: swap;
 }
 
 /* ----------------------------------

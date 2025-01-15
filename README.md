@@ -9,7 +9,7 @@ To increase compression, hit `File > Export…`, select `JPEG` as the format and
 
 ## Change home page wallpaper
 
-The current image for the home page wallpaper can be found in the `/artwork` folder. Remove this image file by placing it in the `/inactive` sub-folder, then add your new wallpaper image to the `/artwork folder`.
+The current image for the home page wallpaper can be found in the `/wallpaper` folder. Remove this image file by placing it in the `/inactive` sub-folder, then add your new wallpaper image to the `/wallpaper` folder.
 
 The wallpaper image must be a file with the `.jpeg` extension (not `.jpg`), must have an aspect ratio of either 4:3 (landscape), 3:4 (portrait), or 1:1, and be named according to its ratio, like so:
 
