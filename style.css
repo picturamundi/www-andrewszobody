@@ -2,23 +2,26 @@
 
 :root {
     --page-background: rgb(209, 228, 221);
+    --text-color-primary: white;
+    --glass-color: rgba(171, 157, 129, 0.5);
+
     --font-primary: sans-serif;
     --default-font-size: 17px;
     --font-weight-primary: 300;
+    --font-weight-headings: 200;
+
+    --icon-weight: 3px;
+    --insta-opacity: 0.7;
 
     --name-case: capitalize;
     --name-font-family: 'Montserrat';
+    --name-font-size: 2.5rem;
+
     --header-padding: 1.5rem;
     --header-height: 2rem;
-    --real-header-height: calc(var(--header-height) + (var(--header-padding) * 2));
-    --name-font-size: 2.5rem;
-    --default-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    --focus-trans: 0.5s;
-    --menu-trans: 0.2s;
 
-    --text-color-primary: white;
-    --glass-color: rgba(171, 157, 129, 0.5);
-    --font-weight-headings: 200;
+    --menu-trans: 0.2s;
+    --focus-trans: 0.5s;
 }
 
 /* ----------------------------------
@@ -53,8 +56,10 @@ p a {
     border-bottom: 1px solid var(--text-color-primary);
 }
 
-svg path {
+svg path,
+svg rect {
     stroke: var(--text-color-primary);
+    stroke-width: var(--icon-weight);
 }
 
 
@@ -64,17 +69,8 @@ HEADER AND FOOTER
 
 /* menu button */
 
-header {
-    width: calc(100% - (var(--header-padding) * 2));
-    position: fixed;
-    padding: var(--header-padding);
-    display: flex;
-    justify-content: right;
-    height: var(--header-height);
-}
-
 #nav-button {
-    position: fixed;
+    position: absolute;
     z-index: 3;
     top: 0;
     right: 0;
@@ -82,7 +78,6 @@ header {
 
 #menu-icon,
 #exit-icon {
-    position: absolute;
     margin: calc(var(--header-padding) * 1.5);
     padding: calc(var(--header-padding) * 0.5);
     top: 0;
@@ -91,7 +86,8 @@ header {
     width: var(--header-height);
 }
 
-#menu-icon {
+#menu-icon,
+#exit-icon {
     display: block;
 }
 
@@ -119,7 +115,6 @@ header {
 }
 
 #nav a {
-    text-shadow: var(--default-shadow);
     font-size: calc(var(--default-font-size) * 2);
 }
 
@@ -132,20 +127,20 @@ header {
 
 /* instagram link */
 
-#social svg path {
-    fill: var(--text-color-primary);
-}
-
 #social {
     position: fixed;
     bottom: 0;
-    opacity: 0.7;
+    opacity: var(--insta-opacity);
     width: var(--header-height);
     margin: calc(var(--header-padding) * 1.5);
     padding: calc(var(--header-padding) * 0.5);
     z-index: 3;
 }
 
+#social svg g rect+rect+rect {
+    stroke: none;
+    fill: var(--text-color-primary);
+}
 
 /* ----------------------------------
 HOME PAGE
@@ -175,7 +170,6 @@ body#home {
     text-transform: var(--name-case);
     text-align: center;
     width: 60%;
-    text-shadow: var(--default-shadow);
 }
 
 /* frosted glass */
@@ -328,7 +322,7 @@ ANIMATIONS AND FILTERS
 }
 
 #nav-button.fadeOut {
-    animation: fadeOutMenu var(--focus-trans);
+    animation: fadeOut var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
@@ -349,22 +343,6 @@ ANIMATIONS AND FILTERS
     }
 }
 
-@keyframes fadeOutMenu {
-    0% {
-        opacity: 1;
-        filter: blur(0px);
-    }
-
-    50% {
-        filter: blur(3px);
-    }
-
-    100% {
-        opacity: 0;
-        display: none;
-    }
-}
-
 .fadeIn {
     animation: fadeIn var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
@@ -378,4 +356,36 @@ ANIMATIONS AND FILTERS
     100% {
         opacity: 1;
     }
+}
+
+#menu-icon.cross svg path {
+    transform-origin: 50% 50%;
+    transition: rotate var(--menu-trans), opacity var(--menu-trans);
+    opacity: 0;
+}
+
+#menu-icon.cross svg path+path:not(path+path+path+path, path+path+path) {
+    opacity: 1;
+    rotate: 45deg;
+}
+
+#menu-icon.cross svg path+path+path:not(path+path+path+path) {
+    opacity: 1;
+    rotate: -45deg;
+}
+
+#menu-icon.hamburger svg path {
+    transform-origin: 50% 50%;
+    transition: rotate var(--menu-trans), opacity var(--menu-trans);
+    opacity: 1;
+}
+
+#menu-icon.hamburger svg path+path:not(path+path+path+path, path+path+path) {
+    opacity: 0;
+    rotate: 45deg;
+}
+
+#menu-icon.hamburger svg path+path+path:not(path+path+path+path) {
+    opacity: 1;
+    rotate: 0deg;
 }

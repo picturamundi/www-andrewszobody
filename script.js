@@ -1,31 +1,31 @@
 
 function toggleMenu() {
     var items = document.getElementById('nav');
-    var hamburger = document.getElementById('menu-icon');
-    var cross = document.getElementById('exit-icon');
+    var menu = document.getElementById('menu-icon');
+    // var cross = document.getElementById('exit-icon');
     var name = document.getElementById('site-name');
 
     if (items.className.includes('hide')) {
         // expand menu
-        cross.classList.remove('hide');
-        hamburger.classList.add('hide');
+        // cross.classList.remove('hide');
+        menu.classList.add('cross');
         items.classList.remove('hide');
         name.classList.add('hide');
 
-        cross.classList.add('show');
-        hamburger.classList.remove('show');
+        // cross.classList.add('show');
+        menu.classList.remove('hamburger');
         items.classList.add('show');
         name.classList.remove('show');
 
     } else {
         // collapse menu
-        cross.classList.add('hide');
-        hamburger.classList.remove('hide');
+        // cross.classList.add('hide');
+        menu.classList.remove('cross');
         items.classList.add('hide');
         name.classList.remove('hide');
 
-        cross.classList.remove('show');
-        hamburger.classList.add('show');
+        // cross.classList.remove('show');
+        menu.classList.add('hamburger');
         items.classList.remove('show');
         name.classList.add('show');
 
