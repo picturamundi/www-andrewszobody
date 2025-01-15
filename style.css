@@ -3,7 +3,7 @@
 :root {
     --page-background: rgb(209, 228, 221);
     --text-color-primary: white;
-    --glass-color: rgba(171, 157, 129, 0.5);
+    --glass-color: rgba(171, 154, 129, 0.5);
 
     --font-primary: sans-serif;
     --default-font-size: 17px;
@@ -76,8 +76,7 @@ HEADER AND FOOTER
     right: 0;
 }
 
-#menu-icon,
-#exit-icon {
+#menu-icon {
     margin: calc(var(--header-padding) * 1.5);
     padding: calc(var(--header-padding) * 0.5);
     top: 0;
@@ -86,18 +85,12 @@ HEADER AND FOOTER
     width: var(--header-height);
 }
 
-#menu-icon,
-#exit-icon {
+#menu-icon {
     display: block;
 }
 
-#menu-icon svg,
-#exit-icon svg {
+#menu-icon svg {
     padding: 2px;
-}
-
-#exit-icon {
-    display: none;
 }
 
 /* menu list */
@@ -302,10 +295,6 @@ ANIMATIONS AND FILTERS
     display: flex;
 }
 
-#exit-icon.show {
-    display: block;
-}
-
 @keyframes show {
     0% {
         opacity: 0;
@@ -381,8 +370,8 @@ ANIMATIONS AND FILTERS
 }
 
 #menu-icon.hamburger svg path+path:not(path+path+path+path, path+path+path) {
-    opacity: 0;
-    rotate: 45deg;
+    opacity: 1;
+    rotate: 0deg;
 }
 
 #menu-icon.hamburger svg path+path+path:not(path+path+path+path) {
