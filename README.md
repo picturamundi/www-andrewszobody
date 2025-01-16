@@ -21,6 +21,8 @@ The wallpaper image must be a file with the `.jpeg` extension (not `.jpg`), must
 - `3x4.jpeg`
 - `1x1.jpeg`
 
+![alt text](readme/active-wallpaper.png)
+
 <!--adjust page background color and theme color?-->
 
 

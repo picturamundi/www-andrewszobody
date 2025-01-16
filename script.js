@@ -2,33 +2,25 @@
 function toggleMenu() {
     var items = document.getElementById('nav-list');
     var menu = document.getElementById('menu-icon');
-    // var cross = document.getElementById('exit-icon');
-    var name = document.getElementById('site-name');
+    var main = document.getElementById('main');
 
     if (items.className.includes('hide')) {
         // expand menu
-        // cross.classList.remove('hide');
         menu.classList.add('cross');
         items.classList.remove('hide');
-        name.classList.add('hide');
+        main.classList.add('menu-expanded');
 
-        // cross.classList.add('show');
         menu.classList.remove('hamburger');
         items.classList.add('show');
-        name.classList.remove('show');
 
     } else {
         // collapse menu
-        // cross.classList.add('hide');
         menu.classList.remove('cross');
         items.classList.add('hide');
-        name.classList.remove('hide');
+        main.classList.remove('menu-expanded');
 
-        // cross.classList.remove('show');
         menu.classList.add('hamburger');
         items.classList.remove('show');
-        name.classList.add('show');
-
     }
 }
 

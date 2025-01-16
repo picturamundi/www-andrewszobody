@@ -1,9 +1,8 @@
 @charset "UTF-8";
 
 :root {
-    --page-background: rgba(200, 187, 170, 1);
-    --text-color-primary: white;
-    --glass-color: rgba(171, 154, 129, 0.5);
+    --theme-color: rgba(200, 187, 170, 1);
+    /* theme-color should match the home page wallpaper */
 
     --font-primary: sans-serif;
     --default-font-size: 17px;
@@ -22,6 +21,19 @@
 
     --menu-trans: 0.2s;
     --focus-trans: 0.5s;
+}
+
+#home {
+    --page-background: var(--theme-color);
+    --text-color-primary: white;
+    --ui-color: white;
+    --glass-color: rgba(171, 154, 129, 0.5);
+}
+
+#recent {
+    --page-background: white;
+    --ui-color: var(--theme-color);
+    --text-color-primary: black;
 }
 
 @font-face {
@@ -69,12 +81,30 @@ p a {
     border-bottom: 1px solid var(--text-color-primary);
 }
 
+main {
+    width: 100%;
+    height: fit-content;
+}
+
+#recent main {
+    padding-bottom: 2rem;
+}
+
 svg path,
 svg rect {
-    stroke: var(--text-color-primary);
+    stroke: var(--ui-color);
     stroke-width: var(--icon-weight);
 }
 
+figure {
+    margin: 4rem 3px;
+}
+
+figure img {
+    width: 100%;
+}
+
+figcaption {}
 
 /* ----------------------------------
 HEADER AND FOOTER
@@ -89,6 +119,12 @@ HEADER AND FOOTER
     z-index: 3;
     top: 0;
     right: 0;
+}
+
+#recent #nav-button {
+    position: relative;
+    display: flex;
+    justify-content: right;
 }
 
 #menu-icon {
@@ -122,6 +158,8 @@ HEADER AND FOOTER
 
 #nav-list a {
     font-size: calc(var(--default-font-size) * 1.5);
+    color: var(--ui-color);
+    border-bottom: 1px solid var(--ui-color);
 }
 
 #nav-list p {
@@ -145,7 +183,7 @@ HEADER AND FOOTER
 
 #social svg g rect+rect+rect {
     stroke: none;
-    fill: var(--text-color-primary);
+    fill: var(--ui-color);
 }
 
 /* ----------------------------------
@@ -283,6 +321,11 @@ ANIMATIONS AND FILTERS
 .hide,
 #nav-list.hide,
 #site-name.hide {
+    animation: hide var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
+}
+
+#main.menu-expanded #site-name {
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }

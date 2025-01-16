@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Szobody</title>
+    <title>Recent Works | Andrew Szobody</title>
     <link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-64x64.png">
     <link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
@@ -16,23 +16,9 @@
     <meta name="theme-color" content="#D1E4DD">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
 </head>
 
-<body id="home">
-
-    <div id="wallpaper-wrapper">
-        <img src="artwork/4x3.jpeg" alt="" id="wallpaper-4x3">
-        <img src="artwork/3x4.jpeg" alt="" id="wallpaper-3x4">
-        <img src="artwork/1x1.jpeg" alt="" id="wallpaper-1x1">
-    </div>
-
-    <div id="glass" class=""></div>
-
-    <div id="interface-toggle" onclick="toggleFocus()"></div>
+<body id="recent">
 
     <header id="nav-button" onclick="toggleMenu()">
         <div id="menu-icon" class="">
@@ -46,34 +32,76 @@
     </header>
 
     <nav id="nav-list" class="hide">
-        <p><a href="#recent">Recent</a></p>
+        <p><a href="index.html">Home</a></p>
         <p><a href="#less-recent">Less Recent</a></p>
         <p><a href="#old">Old</a></p>
         <p><a href="#bio-contact">Bio/Contact</a></p>
     </nav>
 
-    <main>
-        <div id="site-name-container">
-            <div id="site-name" class="">andrew szobody</div>
-        </div>
+    <main id="main">
+        <figure id="fig1">
+            <img src="artwork/recent/recent-1.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">Title here</div>
+                <div class="fig-details">
+                    Medium<br>
+                    Dimensions<br>
+                    Etc.
+                </div>
+            </figcaption>
+        </figure>
+        <figure id="fig2">
+            <img src="artwork/recent/recent-2.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">Title here</div>
+                <div class="fig-details">
+                    Medium<br>
+                    Dimensions<br>
+                    Etc.
+                </div>
+            </figcaption>
+        </figure>
+
+        <!-----------------------------------------------------------------
+         ADD NEW IMAGES BELOW
+        ------------------------------------------------------------------>
+
+        <figure id="fig3">
+            <img src="artwork/recent/recent-3.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">
+                    <!--TITLE HERE-->
+                </div>
+                <div class="fig-details">
+                    <!--MEDIUM HERE-->
+                </div>
+            </figcaption>
+        </figure>
+        <figure id="fig4">
+            <img src="artwork/recent/recent-4.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">
+                    <!--TITLE HERE-->
+                </div>
+                <div class="fig-details">
+                    <!--MEDIUM HERE-->
+                </div>
+            </figcaption>
+        </figure>
+        <figure id="fig5">
+            <img src="artwork/recent/recent-5.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">
+                    <!--TITLE HERE-->
+                </div>
+                <div class="fig-details">
+                    <!--MEDIUM HERE-->
+                </div>
+            </figcaption>
+        </figure>
     </main>
 
     <footer>
-        <a href="https://www.instagram.com/andrewszzb/" id="social">
-            <svg width="" height="" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_794_52)">
-                    <rect x="2" y="2" width="44" height="44" rx="11" stroke="black" stroke-width="4" />
-                    <rect x="13.4783" y="13.4783" width="21.0435" height="21.0435" rx="10.5217" stroke="black"
-                        stroke-width="4" />
-                    <rect x="34.4348" y="8.34778" width="5.21739" height="5.21739" rx="2.6087" fill="black" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_794_52">
-                        <rect width="48" height="48" fill="white" transform="matrix(-1 0 0 1 48 0)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </a>
     </footer>
 
 </body>
