@@ -120,3 +120,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
         img.onerror = function () { this.style.display = 'none'; };
     })
 });
+
+// custom back arrow
+
+window.onpopstate = function () {
+    home();
+}; history.pushState({}, '/home');

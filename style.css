@@ -35,7 +35,7 @@ VARIABLES AND FONTS
 }
 
 #recent {
-    --page-background: var(--theme-color);
+    --page-background: white;
     --ui-color: white;
     --text-color-primary: rgb(111, 100, 86);
 }
@@ -79,6 +79,17 @@ body {
     font-weight: var(--font-weight-primary);
 }
 
+body#home {
+    height: 100vh;
+}
+
+body#home #content {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
 /* body#recent {
     height: fit-content;
 } */
@@ -119,6 +130,7 @@ main#recent-main {
     height: fit-content;
     background-color: white;
     z-index: 1;
+    padding-bottom: 7rem;
     /* border-radius: 10px 10px 0px 0px; */
     transition: margin var(--page-trans), opacity var(--page-trans);
 }
@@ -126,6 +138,16 @@ main#recent-main {
 body#home main#recent-main {
     opacity: 0;
     margin: 140% 0% 0% 0% !important;
+}
+
+@keyframes displayNone {
+    0% {
+        display: none;
+    }
+
+    100% {
+        display: none;
+    }
 }
 
 body#recent main#recent-main {
@@ -231,13 +253,14 @@ svg rect,
 
 figure {
     margin: 0;
-    padding: 4rem 2px;
+    padding: 0px 2px;
 }
 
 
 figure img {
     width: 100%;
-    margin-bottom: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 1rem;
 }
 
 
