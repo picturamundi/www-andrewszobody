@@ -8,7 +8,7 @@ To increase compression, hit `File > Export…`, select `JPEG` as the format and
 
 A handy tool to check image compression (as well as other elements of the website that effect load time) is [pagespeed.web.dev](https://pagespeed.web.dev/). It flags images that could be further compressed without effecting visual quality and estimates how much space could be saved.
 
-If you find that you really can’t the image resolution and quality you want without the page slowing down a lot, another option is to ditch to JPEG and try to use a format like [AVIF](https://en.wikipedia.org/wiki/AVIF).
+<!-- If you find that you really can’t the image resolution and quality you want without the page slowing down a lot, another option is to ditch to JPEG and try to use a format like [AVIF](https://en.wikipedia.org/wiki/AVIF). -->
 
 
 ## Change home page wallpaper
