@@ -1,14 +1,14 @@
 
 function toggleMenu() {
     var items = document.getElementById('nav-list');
-    var menu = document.getElementById('menu-icon');
-    var main = document.getElementById('main');
+    var menu = document.getElementById('nav-button');
+    var body = document.body;
 
     if (items.className.includes('hide')) {
         // expand menu
         menu.classList.add('cross');
         items.classList.remove('hide');
-        main.classList.add('menu-expanded');
+        body.classList.add('menu-expanded');
 
         menu.classList.remove('hamburger');
         items.classList.add('show');
@@ -17,7 +17,7 @@ function toggleMenu() {
         // collapse menu
         menu.classList.remove('cross');
         items.classList.add('hide');
-        main.classList.remove('menu-expanded');
+        body.classList.remove('menu-expanded');
 
         menu.classList.add('hamburger');
         items.classList.remove('show');

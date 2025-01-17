@@ -20,8 +20,16 @@
 
 <body id="recent">
 
-    <header id="nav-button" onclick="toggleMenu()">
-        <div id="menu-icon" class="">
+    <div id="glass" class=""></div>
+
+    <header id="header">
+        <div id="back-button" onclick="history.back();">
+            <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 2L3 23L24 44" stroke="" stroke-width="" />
+                <path d="M4 23.0001H50" stroke="" stroke-width="" />
+            </svg>
+        </div>
+        <div id="nav-button" class="" onclick="toggleMenu()">
             <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 2H50" stroke="" stroke-width="" />
                 <path d="M0 23H50" stroke="" stroke-width="" />
@@ -39,66 +47,47 @@
     </nav>
 
     <main id="main">
-        <figure id="fig1">
-            <img src="artwork/recent/recent-1.jpeg" alt="" class="tableau">
+
+        <figure>
+            <img data-src="artwork/recent/1.jpeg" alt="" class="tableau">
             <figcaption>
-                <div class="fig-title">Title here</div>
-                <div class="fig-details">
-                    Medium<br>
-                    Dimensions<br>
-                    Etc.
-                </div>
-            </figcaption>
-        </figure>
-        <figure id="fig2">
-            <img src="artwork/recent/recent-2.jpeg" alt="" class="tableau">
-            <figcaption>
-                <div class="fig-title">Title here</div>
-                <div class="fig-details">
-                    Medium<br>
-                    Dimensions<br>
-                    Etc.
-                </div>
+                <div class="fig-title">Title</div>
+                <div class="fig-medium">Medium</div>
+                <div class="fig-size">Dimensions</div>
             </figcaption>
         </figure>
 
-        <!-----------------------------------------------------------------
+        <figure>
+            <img data-src="artwork/recent/2.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">Title</div>
+                <div class="fig-medium">Medium</div>
+                <div class="fig-size">Dimensions</div>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img data-src="artwork/recent/3.jpeg" alt="" class="tableau">
+            <figcaption>
+                <div class="fig-title">Title</div>
+                <div class="fig-medium">Medium</div>
+                <div class="fig-size">Dimensions</div>
+            </figcaption>
+        </figure>
+
+        <!------------------------------------------
          ADD NEW IMAGES BELOW
-        ------------------------------------------------------------------>
+        -------------------------------------------->
 
-        <figure id="fig3">
-            <img src="artwork/recent/recent-3.jpeg" alt="" class="tableau">
+        <figure>
+            <img data-src="artwork/recent/4.jpeg" alt="" class="tableau">
             <figcaption>
-                <div class="fig-title">
-                    <!--TITLE HERE-->
-                </div>
-                <div class="fig-details">
-                    <!--MEDIUM HERE-->
-                </div>
+                <div class="fig-title"> <!--Title--> </div>
+                <div class="fig-medium"> <!--Medium--> </div>
+                <div class="fig-size"> <!--Dimensions--> </div>
             </figcaption>
         </figure>
-        <figure id="fig4">
-            <img src="artwork/recent/recent-4.jpeg" alt="" class="tableau">
-            <figcaption>
-                <div class="fig-title">
-                    <!--TITLE HERE-->
-                </div>
-                <div class="fig-details">
-                    <!--MEDIUM HERE-->
-                </div>
-            </figcaption>
-        </figure>
-        <figure id="fig5">
-            <img src="artwork/recent/recent-5.jpeg" alt="" class="tableau">
-            <figcaption>
-                <div class="fig-title">
-                    <!--TITLE HERE-->
-                </div>
-                <div class="fig-details">
-                    <!--MEDIUM HERE-->
-                </div>
-            </figcaption>
-        </figure>
+
     </main>
 
     <footer>

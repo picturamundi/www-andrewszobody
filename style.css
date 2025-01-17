@@ -3,8 +3,9 @@
 :root {
     --theme-color: rgba(200, 187, 170, 1);
     /* theme-color should match the home page wallpaper */
+    --glass-color: rgba(171, 154, 129, 0.5);
 
-    --font-primary: sans-serif;
+    --font-primary: "custom-1";
     --default-font-size: 17px;
     --font-weight-primary: 300;
     --font-weight-headings: 200;
@@ -16,10 +17,10 @@
     --name-font-family: 'custom-1';
     --name-font-size: 2.5rem;
 
-    --header-padding: 1.5rem;
+    --header-padding: 1rem;
     --header-height: 2rem;
 
-    --menu-trans: 0.2s;
+    --menu-trans: 0.3s;
     --focus-trans: 0.5s;
 }
 
@@ -27,13 +28,13 @@
     --page-background: var(--theme-color);
     --text-color-primary: white;
     --ui-color: white;
-    --glass-color: rgba(171, 154, 129, 0.5);
 }
 
 #recent {
     --page-background: white;
-    --ui-color: var(--theme-color);
-    --text-color-primary: black;
+    --ui-color: white;
+    --text-color-primary: rgb(111, 100, 86);
+    --header-height: 1.5rem;
 }
 
 @font-face {
@@ -57,13 +58,22 @@ html {
     font-size: var(--default-font-size);
 }
 
+html:has(body#recent) {
+    background-color: var(--theme-color);
+}
+
 body {
     height: 100vh;
     margin: 0rem;
+    top: 0;
     background-color: var(--page-background);
     color: var(--text-color-primary);
     font-family: var(--font-primary);
     font-weight: var(--font-weight-primary);
+}
+
+body#recent {
+    height: fit-content;
 }
 
 h1,
@@ -97,14 +107,21 @@ svg rect {
 }
 
 figure {
-    margin: 4rem 3px;
+    margin: 4rem 1rem;
 }
 
 figure img {
     width: 100%;
+    margin-bottom: 1rem;
 }
 
-figcaption {}
+figcaption div {
+    margin-bottom: 5px;
+}
+
+figcaption .fig-title {
+    font-weight: 500;
+}
 
 /* ----------------------------------
 HEADER AND FOOTER
@@ -112,7 +129,7 @@ HEADER AND FOOTER
 
 /* menu button */
 
-#nav-button {
+header {
     margin: calc(var(--header-padding) * 1.5);
     padding: calc(var(--header-padding) * 0.5);
     position: fixed;
@@ -121,24 +138,30 @@ HEADER AND FOOTER
     right: 0;
 }
 
-#recent #nav-button {
-    position: relative;
-    display: flex;
-    justify-content: right;
+#recent header {
+    padding: calc(var(--header-padding) * 1.1);
+    margin: 0rem;
+    background-color: var(--theme-color);
 }
 
-#menu-icon {
+#recent header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-button {
     top: 0;
     right: 0;
     height: var(--header-height);
     width: var(--header-height);
 }
 
-#menu-icon {
+#nav-button {
     display: block;
 }
 
-#menu-icon svg {
+#nav-button svg {
     padding: 2px;
 }
 
@@ -149,11 +172,16 @@ HEADER AND FOOTER
     position: absolute;
     right: 0;
     margin: calc(var(--header-padding) * 2);
-    margin-top: calc(var(--header-padding) * 4);
+    margin-top: calc(var(--header-padding) * 6);
     display: none;
     flex-direction: column;
     text-align: right;
     z-index: 3;
+}
+
+#recent #nav-list {
+    margin: var(--header-padding);
+    margin-top: 0;
 }
 
 #nav-list a {
@@ -167,6 +195,13 @@ HEADER AND FOOTER
     margin-bottom: 0rem;
     font-weight: var(--font-weight-primary);
     font-family: var(--name-font-family);
+}
+
+/* back button */
+
+#back-button {
+    height: var(--header-height);
+    width: var(--header-height);
 }
 
 /* instagram link */
@@ -220,12 +255,24 @@ body#home {
 
 #glass {
     position: fixed;
+    top: 0;
     height: 100vh;
     width: 100vw;
     background-color: var(--glass-color);
     backdrop-filter: blur(10px);
     z-index: 0;
     transition: opacity var(--focus-trans);
+}
+
+#recent #glass {
+    display: none;
+}
+
+#recent.menu-expanded #glass {
+    display: block;
+    opacity: 0;
+    animation: fadeIn var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
 }
 
 @media screen and (min-width: 850px) {
@@ -325,7 +372,7 @@ ANIMATIONS AND FILTERS
     -webkit-animation-fill-mode: forwards;
 }
 
-#main.menu-expanded #site-name {
+body.menu-expanded #site-name {
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
@@ -366,7 +413,7 @@ ANIMATIONS AND FILTERS
     -webkit-animation-fill-mode: forwards;
 }
 
-#nav-button.fadeOut {
+header.fadeOut {
     animation: fadeOut var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
 }
@@ -403,34 +450,38 @@ ANIMATIONS AND FILTERS
     }
 }
 
-#menu-icon.cross svg path {
+#recent.menu-expanded svg path {
+    stroke: var(--ui-color);
+}
+
+#nav-button.cross svg path {
     transform-origin: 50% 50%;
     transition: rotate var(--menu-trans), opacity var(--menu-trans);
     opacity: 0;
 }
 
-#menu-icon.cross svg path+path:not(path+path+path+path, path+path+path) {
+#nav-button.cross svg path+path:not(path+path+path+path, path+path+path) {
     opacity: 1;
     rotate: 45deg;
 }
 
-#menu-icon.cross svg path+path+path:not(path+path+path+path) {
+#nav-button.cross svg path+path+path:not(path+path+path+path) {
     opacity: 1;
     rotate: -45deg;
 }
 
-#menu-icon.hamburger svg path {
+#nav-button.hamburger svg path {
     transform-origin: 50% 50%;
     transition: rotate var(--menu-trans), opacity var(--menu-trans);
     opacity: 1;
 }
 
-#menu-icon.hamburger svg path+path:not(path+path+path+path, path+path+path) {
+#nav-button.hamburger svg path+path:not(path+path+path+path, path+path+path) {
     opacity: 1;
     rotate: 0deg;
 }
 
-#menu-icon.hamburger svg path+path+path:not(path+path+path+path) {
+#nav-button.hamburger svg path+path+path:not(path+path+path+path) {
     opacity: 1;
     rotate: 0deg;
 }
