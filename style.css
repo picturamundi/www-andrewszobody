@@ -67,10 +67,6 @@ html {
     box-sizing: border-box;
 }
 
-/* html:has(body#recent) {
-    background-color: var(--theme-color-1);
-} */
-
 body {
     height: 100vh;
     margin: 0rem;
@@ -92,10 +88,6 @@ body#home #content {
     overflow: hidden;
 }
 
-/* body#recent {
-    height: fit-content;
-} */
-
 h1,
 h2,
 h3,
@@ -110,10 +102,6 @@ h1 {
     margin-top: 7rem;
     font-size: var(--heading-font-size);
 }
-
-/* #recent h1 {
-    color: white;
-} */
 
 p a {
     text-decoration: none;
@@ -161,83 +149,6 @@ body#recent main#recent-main {
     margin-top: 22rem;
 }
 
-/* 
-#recent.nav main#recent-main {
-    margin-top: 0%;
-    animation: slideUp var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-
-#recent.nav main#recent-main {
-    margin-top: 10%;
-    animation: slideUp var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-@keyframes slideUp {
-    0% {}
-
-    100% {
-        margin-top: 0;
-    }
-}
-
-#home.nav main#recent-main {
-    transition: margin 5s;
-}
-
-#home.nav main#recent-main {
-    display: block;
-    margin-top: 150%;
-    animation: hide var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-#home main#recent-main {
-    display: none;
-}
-
-#home.nav main#recent-main {
-    display: block;
-    animation: slideDown var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-@keyframes slideDown {
-    0% {}
-
-    100% {
-        margin-top: 200%;
-        opacity: 0;
-        display: none;
-    }
-}
-
-#recent.menu-expanded main#recent-main {
-    animation: nudgeDown var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-#recent.menu-collapsed main#recent-main {
-    margin-top: 100%;
-    animation: slideUp var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-@keyframes nudgeDown {
-    0% {}
-
-    100% {
-        margin-top: 125%;
-    }
-} */
-
-
-/* #recent main {
-    padding-bottom: 2rem;
-} */
-
 svg path,
 svg rect,
 #recent.menu-expanded svg path,
@@ -246,12 +157,6 @@ svg rect,
     stroke-width: var(--icon-weight);
     transition: stroke var(--menu-trans);
 }
-
-/* #recent svg path,
-#recent svg rect {
-    stroke: var(--text-color-primary);
-} */
-
 
 figure {
     margin: 0;
@@ -274,11 +179,6 @@ figcaption div {
 figcaption .fig-title {
     font-style: italic;
 }
-
-/*
-figcaption .fig-title {
-    font-weight: 500;
-} */
 
 /* ----------------------------------
 HEADER AND FOOTER
@@ -317,12 +217,6 @@ header {
 #recent header {
     position: relative;
 }
-
-/* #recent header {
-    padding: calc(var(--header-padding) * 1.1);
-    margin: 0rem;
-    background-color: var(--theme-color-1);
-} */
 
 #nav-button {
     top: 0;
@@ -364,11 +258,6 @@ body#recent #nav-list {
     position: absolute;
 }
 
-/* #recent #nav-list {
-    margin: var(--header-padding);
-    margin-top: 0;
-} */
-
 #nav-list a {
     font-size: calc(var(--default-font-size) * 1.7);
     color: var(--ui-color);
@@ -405,7 +294,6 @@ body#recent #nav-list {
     -webkit-animation-fill-mode: forwards;
 }
 
-
 /* instagram link */
 
 #social {
@@ -419,10 +307,6 @@ body#recent #nav-list {
 #social svg {
     opacity: var(--insta-opacity);
 }
-
-/* #recent #social {
-    display: none;
-} */
 
 #recent #social {
     display: none;
@@ -498,10 +382,6 @@ body#home {
     z-index: 0;
     transition: opacity var(--focus-trans);
 }
-
-/* #recent #glass {
-    display: none;
-} */
 
 @media screen and (min-width: 850px) {
     #glass {
@@ -684,10 +564,6 @@ header.fadeOut {
         opacity: 1;
     }
 }
-
-/* #recent.menu-expanded svg path {
-    stroke: var(--ui-color);
-} */
 
 #nav-button.cross svg path {
     transform-origin: 50% 50%;
