@@ -5,12 +5,13 @@ VARIABLES AND FONTS
 ---------------------------------- */
 
 :root {
-    --theme-color: rgba(200, 187, 170, 1);
+    --theme-color-1: rgba(200, 187, 170, 1);
+    --theme-color-2: rgb(197, 203, 194);
     /* theme-color should match the home page wallpaper */
     --glass-color: rgba(171, 154, 129, 0.5);
 
     --font-primary: "custom-1";
-    --default-font-size: 17px;
+    --default-font-size: 14px;
     --heading-font-size: 24px;
     --font-weight-primary: 300;
     --font-weight-headings: 200;
@@ -20,9 +21,9 @@ VARIABLES AND FONTS
 
     --name-case: capitalize;
     --name-font-family: 'custom-1';
-    --name-font-size: 2.5rem;
+    --name-font-size: 40px;
 
-    --header-height: 2rem;
+    --header-height: 2.3rem;
 
     --menu-trans: 0.3s;
     --focus-trans: 0.5s;
@@ -30,8 +31,9 @@ VARIABLES AND FONTS
 }
 
 #home {
-    --page-background: var(--theme-color);
+    --page-background: var(--theme-color-1);
     --ui-color: white;
+    --text-color-primary: rgb(111, 100, 86);
 }
 
 #recent {
@@ -66,7 +68,7 @@ html {
 }
 
 /* html:has(body#recent) {
-    background-color: var(--theme-color);
+    background-color: var(--theme-color-1);
 } */
 
 body {
@@ -128,7 +130,7 @@ main#recent-main {
     position: absolute;
     width: 100%;
     height: fit-content;
-    background-color: white;
+    background-color: var(--theme-color-2);
     z-index: 1;
     padding-bottom: 7rem;
     /* border-radius: 10px 10px 0px 0px; */
@@ -253,7 +255,7 @@ svg rect,
 
 figure {
     margin: 0;
-    padding: 0px 2px;
+    padding: 0px 0px;
 }
 
 
@@ -267,6 +269,10 @@ figure img {
 figcaption div {
     margin-bottom: 5px;
     text-align: center;
+}
+
+figcaption .fig-title {
+    font-style: italic;
 }
 
 /*
@@ -291,7 +297,7 @@ header {
     justify-content: space-between;
 }
 
-#home.nav header {
+#home header {
     position: relative;
     animation: homeHeader var(--menu-trans);
     animation-delay: var(--page-trans);
@@ -315,7 +321,7 @@ header {
 /* #recent header {
     padding: calc(var(--header-padding) * 1.1);
     margin: 0rem;
-    background-color: var(--theme-color);
+    background-color: var(--theme-color-1);
 } */
 
 #nav-button {
@@ -364,7 +370,7 @@ body#recent #nav-list {
 } */
 
 #nav-list a {
-    font-size: calc(var(--default-font-size) * 1.5);
+    font-size: calc(var(--default-font-size) * 1.7);
     color: var(--ui-color);
     border-bottom: 1px solid var(--ui-color);
 }
@@ -378,7 +384,8 @@ body#recent #nav-list {
 
 /* back button */
 
-#back-button {
+#back-button,
+#back-button a {
     height: var(--header-height);
     width: var(--header-height);
 }
@@ -530,7 +537,6 @@ img#wallpaper-4x3 {
     position: absolute;
     height: 100%;
     width: auto;
-    overflow: hidden;
 }
 
 @media (min-aspect-ratio: 4/3) {
