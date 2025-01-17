@@ -30,8 +30,24 @@
 
     <div id="interface-toggle" onclick="toggleFocus()"></div>
 
-    <header id="nav-button" onclick="toggleMenu()">
+    <!-- <header id="nav-button" onclick="toggleMenu()">
         <div id="menu-icon" class="">
+            <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 2H50" stroke="" stroke-width="" />
+                <path d="M0 23H50" stroke="" stroke-width="" />
+                <path d="M0 23H50" stroke="" stroke-width="" />
+                <path d="M0 44H50" stroke="" stroke-width="" />
+            </svg>
+        </div>
+    </header> -->
+    <header id="header">
+        <div id="back-button">
+            <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="history.back();">
+                <path d="M24 2L3 23L24 44" stroke="" stroke-width="" />
+                <path d="M4 23.0001H50" stroke="" stroke-width="" />
+            </svg>
+        </div>
+        <div id="nav-button" class="" onclick="toggleMenu()">
             <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 2H50" stroke="" stroke-width="" />
                 <path d="M0 23H50" stroke="" stroke-width="" />
@@ -41,16 +57,50 @@
         </div>
     </header>
 
+
     <nav id="nav-list" class="hide">
-        <p><a href="recent.html">Recent</a></p>
-        <p><a href="#less-recent">Less Recent</a></p>
+        <p><a href="#home">Home</a></p>
+        <p><a href="#recent">Recent</a></p>
+        <p><a href="#less">Less Recent</a></p>
         <p><a href="#old">Old</a></p>
-        <p><a href="#bio-contact">Bio/Contact</a></p>
+        <p><a href="#bio">Bio/Contact</a></p>
     </nav>
 
-    <main id="main">
+    <main id="home-main">
         <div id="site-name-container">
             <div id="site-name" class="">andrew szobody</div>
+        </div>
+    </main>
+
+    <main id="recent-main">
+        <h1>Recent works</h1>
+        <div id="gallery">
+            <figure>
+                <img src="artwork/recent/1.jpeg" alt="" class="tableau">
+                <figcaption>
+                    <div class="fig-title">Title</div>
+                    <div class="fig-medium">Medium</div>
+                    <div class="fig-size">Dimensions</div>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="artwork/recent/2.jpeg" alt="" class="tableau">
+                <figcaption>
+                    <div class="fig-title">Title</div>
+                    <div class="fig-medium">Medium</div>
+                    <div class="fig-size">Dimensions</div>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="artwork/recent/3.jpeg" alt="" class="tableau">
+                <figcaption>
+                    <div class="fig-title">Title</div>
+                    <div class="fig-medium">Medium</div>
+                    <div class="fig-size">Dimensions</div>
+                </figcaption>
+            </figure>
         </div>
     </main>
 
