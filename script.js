@@ -2,6 +2,10 @@
 
 window.addEventListener('DOMContentLoaded', function () {
     route();
+    if (!window.location.hash) {
+        // If no hash exists, add #home to the URL
+        window.location.hash = 'home';
+    }
 });
 
 window.addEventListener("hashchange", function () {
