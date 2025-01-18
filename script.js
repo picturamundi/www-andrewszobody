@@ -171,6 +171,6 @@ function toggleFocus() {
 
 // custom back arrow
 
-window.onpopstate = function () {
-    home();
-}; history.pushState({}, '/home');
+// window.onpopstate = function () {
+//     home();
+// }; history.pushState({}, '/home');

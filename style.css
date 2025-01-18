@@ -76,11 +76,20 @@ body#home {
     height: 100vh;
 }
 
-body#home #content {
-    position: fixed;
-    height: 100vh;
+#content {
+    position: absolute;
     width: 100vw;
+    /* overflow hidden for non-active (transparent) pages */
     overflow: hidden;
+}
+
+body#home #content,
+body#bio #content {
+    height: 100vh;
+}
+
+body.page #content {
+    height: fit-content;
 }
 
 #home {
@@ -155,6 +164,20 @@ figure img {
     padding-bottom: 1rem;
 }
 
+/* #recent #recent-main figure img {
+    animation: unfold 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes unfold {
+    0% {
+        height: 0px;
+    }
+
+    100% {
+        height: 100px;
+    }
+} */
 
 figcaption div {
     margin-bottom: 5px;
@@ -171,6 +194,8 @@ PAGES
 
 body main.page {
     opacity: 0;
+    /* position absolute so that inactive pages overflow #content */
+    position: absolute;
     margin: 140% 0% 0% 0%;
 }
 
@@ -180,10 +205,11 @@ body#less main#less-main,
 body#old main#old-main,
 body#bio main#bio-main {
     display: block;
+    /* position relative so that #content resizes to fit and overflow pages are hidden */
+    position: relative;
     opacity: 1;
     margin: 0%;
     overflow: hidden;
-    /* TAKE CARE OF THIS! */
 }
 
 body#home #nav-list #link-home a,
