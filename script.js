@@ -8,7 +8,9 @@ window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
     // so that transition animations can be triggered
     document.body.classList.add('nav');
-    collapseMenu();
+    if (document.body.classList.contains('menu-expanded')) {
+        collapseMenu();
+    }
     route();
 });
 
@@ -25,53 +27,107 @@ function route() {
     } else {
         console.log("Function not found");
     }
+    if (document.body.hasAttribute('id')) {
+        if (document.body.getAttribute('id') !== 'home') {
+            // tag body if on a page (not the home screen)
+            document.body.classList.add('page');
+            // show images if on a page
+            showImages();
+            window.addEventListener("hashchange", function () {
+                document.body.classList.remove('leave-home');
+            });
+        } else {
+            document.body.classList.remove('page');
+            window.addEventListener("hashchange", function () {
+                // tag body when we’ve gone from home to page
+                document.body.classList.add('leave-home');
+            });
+        }
+    }
+    hideMissingImages();
+}
+
+// lazy load images
+
+function showImages() {
+    var bodyId = document.body.id;
+    var imgClass = '.' + bodyId + '-img';
+    var lazyImgs = document.querySelectorAll(imgClass);
+
+    // Loop through each element
+    lazyImgs.forEach(function (image) {
+        // Get the value of the 'data-src' attribute
+        var dataSrc = image.getAttribute('data-src');
+        // Set the 'src' attribute to the value of 'data-src'
+        image.setAttribute('src', dataSrc);
+    });
+}
+
+// show images that belong to current page
+// except for those with a missing source file
+
+function hideMissingImages() {
+    var bodyId = document.body.id;
+    var imgClass = '.' + bodyId + '-img';
+    var lazyImgs = document.querySelectorAll(imgClass);
+
+    lazyImgs.forEach(function (image) {
+        image.style.display = 'block';
+    });
+    document.querySelectorAll('img').forEach(function (img) {
+        img.onerror = function () { this.style.display = 'none'; };
+    })
 }
 
 // page functions
-
-function recent() {
-    document.body.setAttribute('id', 'recent');
-}
 
 function home() {
     document.body.setAttribute('id', 'home');
 }
 
+function recent() {
+    document.body.setAttribute('id', 'recent');
+}
+
+function less() {
+    document.body.setAttribute('id', 'less');
+}
+
+function old() {
+    document.body.setAttribute('id', 'old');
+}
+
+function bio() {
+    document.body.setAttribute('id', 'bio');
+}
+
 // toggle menu
 
 function toggleMenu() {
-    var items = document.getElementById('nav-list');
-
-    if (items.className.includes('hide')) {
-        expandMenu();
-    } else {
+    if (document.body.className.includes('menu-expanded')) {
         collapseMenu();
+    } else {
+        expandMenu();
     }
 }
 
 function expandMenu() {
-    var items = document.getElementById('nav-list');
     var menu = document.getElementById('nav-button');
     var body = document.body;
 
     menu.classList.add('cross');
-    items.classList.remove('hide');
     body.classList.remove('menu-collapsed');
     body.classList.add('menu-expanded');
     menu.classList.remove('hamburger');
-    items.classList.add('show');
 }
 
 function collapseMenu() {
-    var items = document.getElementById('nav-list');
     var menu = document.getElementById('nav-button');
     var body = document.body;
 
     menu.classList.remove('cross');
-    items.classList.add('hide');
     body.classList.remove('menu-expanded');
     menu.classList.add('hamburger');
-    items.classList.remove('show');
     body.classList.add('menu-collapsed');
 }
 
@@ -112,14 +168,6 @@ function toggleFocus() {
         social.classList.add('fadeOut');
     }
 }
-
-// hide missing image icon
-
-document.addEventListener("DOMContentLoaded", function (event) {
-    document.querySelectorAll('img').forEach(function (img) {
-        img.onerror = function () { this.style.display = 'none'; };
-    })
-});
 
 // custom back arrow
 

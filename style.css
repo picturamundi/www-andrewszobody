@@ -6,10 +6,17 @@ VARIABLES AND FONTS
 
 :root {
     --theme-color-1: rgba(200, 187, 170, 1);
-    /* theme-color-1 is the home page background */
-    --theme-color-2: rgb(197, 203, 194);
-    /* theme-color-2 is the gallery background */
+    /* theme-color-1 is used for the home page background */
+    --theme-color-2: rgb(230, 237, 226);
+    /* theme-color-2 is used for the gallery background */
+    --theme-color-3: rgb(111, 100, 86);
+    /* theme-color-3 is used for default text and active links */
+    --ui-color: white;
+    /* --ui-color is used for buttons and banner */
+    --text-color-primary: var(--theme-color-3);
+    /* change text-color-primary to white for darker gallery backgrounds */
     --glass-color: rgba(171, 154, 129, 0.5);
+    --glass-blur: blur(10px);
 
     --font-primary: "custom-1";
     --default-font-size: 14px;
@@ -31,18 +38,6 @@ VARIABLES AND FONTS
     --page-trans: 0.5s;
 }
 
-#home {
-    --page-background: var(--theme-color-1);
-    --ui-color: white;
-    --text-color-primary: rgb(111, 100, 86);
-}
-
-#recent {
-    --page-background: white;
-    --ui-color: white;
-    --text-color-primary: rgb(111, 100, 86);
-}
-
 @font-face {
     font-family: 'custom-1';
     src: url('fonts/montserrat/Montserrat-VariableFont_wght.ttf');
@@ -59,13 +54,12 @@ VARIABLES AND FONTS
 /* ----------------------------------
 UNIVERSAL HTML ELEMENTS
 ---------------------------------- */
+* {
+    box-sizing: border-box;
+}
 
 html {
     font-size: var(--default-font-size);
-}
-
-* {
-    box-sizing: border-box;
 }
 
 body {
@@ -89,6 +83,14 @@ body#home #content {
     overflow: hidden;
 }
 
+#home {
+    --page-background: var(--theme-color-1);
+}
+
+main.page {
+    --page-background: white;
+}
+
 h1,
 h2,
 h3,
@@ -100,7 +102,7 @@ h6 {
 
 h1 {
     text-align: center;
-    margin-top: 7rem;
+    margin-top: 10rem;
     font-size: var(--heading-font-size);
 }
 
@@ -115,9 +117,10 @@ main#home-main {
     height: fit-content;
 }
 
-main#recent-main {
+main.page {
     position: absolute;
     width: 100%;
+    /* top: 0; */
     height: fit-content;
     background-color: var(--theme-color-2);
     z-index: 1;
@@ -126,34 +129,15 @@ main#recent-main {
     transition: margin var(--page-trans), opacity var(--page-trans);
 }
 
-body#home main#recent-main {
-    opacity: 0;
-    margin: 140% 0% 0% 0% !important;
-}
-
-@keyframes displayNone {
-    0% {
-        display: none;
-    }
-
-    100% {
-        display: none;
-    }
-}
-
-body#recent main#recent-main {
-    display: block;
-    margin: 0%;
-}
-
-#recent.menu-expanded main#recent-main {
-    margin-top: 22rem;
+body.page.menu-expanded main.page {
+    margin-top: 24rem !important;
+    /* margin-top: 30rem; */
 }
 
 svg path,
 svg rect,
-#recent.menu-expanded svg path,
-#recent.menu-expanded svg rect {
+body.page.menu-expanded svg path,
+body.page.menu-expanded svg rect {
     stroke: var(--ui-color);
     stroke-width: var(--icon-weight);
     transition: stroke var(--menu-trans);
@@ -179,6 +163,37 @@ figcaption div {
 
 figcaption .fig-title {
     font-style: italic;
+}
+
+/* ----------------------------------
+PAGES
+---------------------------------- */
+
+body main.page {
+    opacity: 0;
+    margin: 140% 0% 0% 0%;
+}
+
+body#home main#home-main,
+body#recent main#recent-main,
+body#less main#less-main,
+body#old main#old-main,
+body#bio main#bio-main {
+    display: block;
+    opacity: 1;
+    margin: 0%;
+    overflow: hidden;
+    /* TAKE CARE OF THIS! */
+}
+
+body#home #nav-list #link-home a,
+body#recent #nav-list #link-recent a,
+body#less #nav-list #link-less a,
+body#old #nav-list #link-old a,
+body#bio #nav-list #link-bio a {
+    border-bottom: none;
+    color: var(--theme-color-3);
+    font-weight: var(--font-weight-headings);
 }
 
 /* ----------------------------------
@@ -215,7 +230,7 @@ header {
     }
 }
 
-#recent header {
+body.page header {
     position: relative;
 }
 
@@ -243,19 +258,19 @@ header {
 /* menu list */
 
 #nav-list {
-    width: fit-content;
     position: fixed;
     top: 0;
     right: 0;
+    width: fit-content;
     margin: var(--header-height);
     margin-top: calc(var(--header-height) * 3);
-    display: none;
     flex-direction: column;
     text-align: right;
     z-index: 3;
+    display: none;
 }
 
-body#recent #nav-list {
+body.page #nav-list {
     position: absolute;
 }
 
@@ -263,6 +278,7 @@ body#recent #nav-list {
     font-size: calc(var(--default-font-size) * 1.7);
     color: var(--ui-color);
     border-bottom: 1px solid var(--ui-color);
+    transition: border var(--menu-trans), color var(--menu-trans);
 }
 
 #nav-list p {
@@ -270,6 +286,17 @@ body#recent #nav-list {
     margin-bottom: 0rem;
     font-weight: var(--font-weight-primary);
     font-family: var(--name-font-family);
+}
+
+body.menu-expanded #nav-list {
+    display: flex;
+    animation: show var(--menu-trans);
+}
+
+body.menu-collapsed #nav-list {
+    display: flex;
+    animation: hide var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
 }
 
 /* back button */
@@ -290,7 +317,7 @@ body#recent #nav-list {
     -webkit-animation-fill-mode: forwards;
 }
 
-#recent.nav #back-button svg {
+body.page.nav #back-button svg {
     animation: show var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
@@ -309,11 +336,11 @@ body#recent #nav-list {
     opacity: var(--insta-opacity);
 }
 
-#recent #social {
+body.page #social {
     display: none;
 }
 
-#recent.nav #social {
+body.page.leave-home #social {
     display: block;
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
@@ -361,13 +388,13 @@ body#home {
     color: var(--ui-color);
 }
 
-#recent #site-name {
+body.page #site-name-container {
     display: none;
 }
 
-#recent.nav #site-name {
-    display: block;
-    animation: hide var(--menu-trans);
+body#home.nav #site-name-container {
+    display: flex;
+    animation: show var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
@@ -379,7 +406,7 @@ body#home {
     height: 100vh;
     width: 100vw;
     background-color: var(--glass-color);
-    backdrop-filter: blur(10px);
+    backdrop-filter: var(--glass-blur);
     z-index: 0;
     transition: opacity var(--focus-trans);
 }
@@ -397,7 +424,7 @@ body#home {
     z-index: 2;
 }
 
-#recent #interface-toggle {
+body.page #interface-toggle {
     display: none;
 }
 
@@ -455,7 +482,6 @@ img#wallpaper-1x1 {
     }
 }
 
-
 /* ----------------------------------
 ANIMATIONS AND FILTERS
 ---------------------------------- */
@@ -477,19 +503,12 @@ ANIMATIONS AND FILTERS
     opacity: 0;
 }
 
-.hide,
-#nav-list.hide,
-#site-name.hide {
+body#home.menu-expanded #site-name {
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
-body.menu-expanded #site-name {
-    animation: hide var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-body.menu-collapsed #site-name {
+body#home.menu-collapsed #site-name {
     /* display: none; */
     animation: show var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
@@ -508,10 +527,6 @@ body.menu-collapsed #site-name {
 #site-name.show {
     animation: show var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
-}
-
-#nav-list.show {
-    display: flex;
 }
 
 @keyframes show {
