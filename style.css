@@ -7,7 +7,7 @@ VARIABLES AND FONTS
 :root {
     --theme-color-1: rgba(200, 187, 170, 1);
     /* theme-color-1 is used for the home page background */
-    --theme-color-2: rgba(255, 226, 170, 1);
+    --theme-color-2: rgb(230, 237, 226);
     /* theme-color-2 is used for the gallery background */
     --theme-color-3: rgb(111, 100, 86);
     /* theme-color-3 is used for default text and active links */
