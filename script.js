@@ -1,7 +1,9 @@
 // address-based page load
 
+//initial load
 window.addEventListener('DOMContentLoaded', function () {
     route();
+    // assign hash if there is none, this is important for the back button
     if (!window.location.hash) {
         // If no hash exists, add #home to the URL
         window.location.hash = 'home';
@@ -173,8 +175,14 @@ function toggleFocus() {
     }
 }
 
-// custom back arrow
+// back button
 
-// window.onpopstate = function () {
-//     home();
-// }; history.pushState({}, '/home');
+function backButton() {
+    if (history.length > 1) {
+        // If there is history to go back to, use history.back()
+        history.back();
+    } else {
+        // Otherwise, redirect to the homepage
+        window.location.hash = 'home';
+    }
+}
