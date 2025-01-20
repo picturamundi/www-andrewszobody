@@ -11,14 +11,36 @@ A handy tool to check image compression (as well as other elements of the websit
 
 ## Add new images to galleries
 
+Each gallery has a dedicated sub-folder in `/artwork` with a one-word name: `recent`, `less`, and `old`.
 
+Dropping `.jpeg` files into these subfolders with the following naming convention will cause them to show up in the corresponding gallery: 
 
+- `01.jpeg`
+- `02.jpeg`
+- etc.
+- `15.jpeg`
+
+By default, galleries are set up for 15 images, but more can be added into the HTML file. You can change whether these images are displayed in numerical order or reverse numerical order by modifying the `gallery-order` variable in the CSS file.
+
+In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct `figure` element. Inside this figure, fill out `fig-title` and `fig-medium` (remove the comment syntax, `<--` and `-->`):
+
+```html
+<figure>
+  <img data-src="artwork/less/03.jpeg" src="" alt="" class="less-img">
+  <figcaption>
+    <div class="fig-title"> <!--Put title here--> </div>
+    <div class="fig-medium"> <!--Put medium, dimensions here--> </div>
+  </figcaption>
+</figure>
+```
+
+That should be all!
 
 ## Change home page wallpaper
 
-The current image for the home page wallpaper can be found in the `/wallpaper` folder. Remove this file by placing it in the `/inactive` sub-folder, then add your new image to the `/wallpaper` folder.
+The current image for the home page wallpaper can be found in the `/wallpaper` folder. Remove this file by placing it in the `/inactive` sub-folder, then add your new image to `/wallpaper`.
 
-The wallpaper image must be a file with the `.jpeg` extension (not `.jpg`), must have an aspect ratio of either 4:3 (landscape), 3:4 (portrait), or 1:1, and be named accordingly, like so:
+The wallpaper image needs to be a file with the `.jpeg` extension (not `.jpg`), should have an aspect ratio of either 4:3 (landscape), 3:4 (portrait), or 1:1, and needs to be named accordingly, like so:
 
 - `4x3.jpeg`
 - `3x4.jpeg`
