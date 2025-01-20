@@ -22,7 +22,7 @@ Dropping `.jpeg` files into these subfolders with the following naming conventio
 
 By default, galleries are set up for 15 images, but more can be added into the HTML file. You can change whether these images are displayed in numerical order or reverse numerical order by modifying the `gallery-order` variable in the CSS file.
 
-In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct `figure` element. Inside this figure, fill out `fig-title` and `fig-medium` (remove the comment syntax, `<--` and `-->`):
+In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct `figure` element. Inside this figure, fill out `fig-title` and `fig-medium` (remove the comment syntax, `<!--` and `-->`, which hide my comments from end users):
 
 ```html
 <figure>
