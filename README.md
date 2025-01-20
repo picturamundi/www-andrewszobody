@@ -8,22 +8,22 @@ To increase compression, hit `File > Export…`, select `JPEG` as the format and
 
 A handy tool to check image compression (as well as other elements of the website that effect load time) is [pagespeed.web.dev](https://pagespeed.web.dev/). It flags images that could be further compressed without effecting visual quality and estimates how much space could be saved.
 
-<!-- If you find that you really can’t the image resolution and quality you want without the page slowing down a lot, another option is to ditch to JPEG and try to use a format like [AVIF](https://en.wikipedia.org/wiki/AVIF). -->
-
 
 ## Change home page wallpaper
 
-The current image for the home page wallpaper can be found in the `/wallpaper` folder. Remove this image file by placing it in the `/inactive` sub-folder, then add your new wallpaper image to the `/wallpaper` folder.
+The current image for the home page wallpaper can be found in the `/wallpaper` folder. Remove this file by placing it in the `/inactive` sub-folder, then add your new image to the `/wallpaper` folder.
 
-The wallpaper image must be a file with the `.jpeg` extension (not `.jpg`), must have an aspect ratio of either 4:3 (landscape), 3:4 (portrait), or 1:1, and be named according to its ratio, like so:
+The wallpaper image must be a file with the `.jpeg` extension (not `.jpg`), must have an aspect ratio of either 4:3 (landscape), 3:4 (portrait), or 1:1, and be named accordingly, like so:
 
 - `4x3.jpeg`
 - `3x4.jpeg`
 - `1x1.jpeg`
 
-![alt text](readme/active-wallpaper.png)
+![active wallpaper](readme/active-wallpaper.png)
 
-<!--adjust page background color and theme color?-->
+When swapping wallpapers, it’s a good idea to update the `theme-color-1` variable in the css file to match, as well as the `theme-color` meta element in the html head. `theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
+
+![color matching](readme/color-matching.png)
 
 
 ## Add new images to galleries

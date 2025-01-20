@@ -1,24 +1,31 @@
-// address-based page load
+// ---------------------------------------
+// 1. PSEUDO PAGES
+// ---------------------------------------
 
-//initial load
+//initial load trigger
+
 window.addEventListener('DOMContentLoaded', function () {
     route();
-    // assign hash if there is none, this is important for the back button
     if (!window.location.hash) {
-        // If no hash exists, add #home to the URL
+        // If no hash exists, add #home to the URL (for navigating back)
         window.location.hash = 'home';
     }
 });
 
+// address change trigger
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
     // so that transition animations can be triggered
     document.body.classList.add('nav');
     if (document.body.classList.contains('menu-expanded')) {
+        // collapse the menu when switching pages
         collapseMenu();
     }
     route();
 });
+
+// route() calls the correct page based on the url hash 
+// and loads the relevant images
 
 function route() {
     // get the hash fragment from the URL
@@ -35,9 +42,9 @@ function route() {
     }
     if (document.body.hasAttribute('id')) {
         if (document.body.getAttribute('id') !== 'home') {
-            // tag body if on a page (not the home screen)
+            // tag body if on a page (not home screen)
             document.body.classList.add('page');
-            // show images if on a page
+            // if on a page, load the img sources on that page
             showImages();
             window.addEventListener("hashchange", function () {
                 document.body.classList.remove('leave-home');
@@ -45,44 +52,13 @@ function route() {
         } else {
             document.body.classList.remove('page');
             window.addEventListener("hashchange", function () {
-                // tag body when we’ve gone from home to page
+                // tag body when we’ve left from the home to page (for animations)
                 document.body.classList.add('leave-home');
             });
         }
     }
+    // show images on current page, hide those with invalid sources
     hideMissingImages();
-}
-
-// lazy load images
-
-function showImages() {
-    var bodyId = document.body.id;
-    var imgClass = '.' + bodyId + '-img';
-    var lazyImgs = document.querySelectorAll(imgClass);
-
-    // Loop through each element
-    lazyImgs.forEach(function (image) {
-        // Get the value of the 'data-src' attribute
-        var dataSrc = image.getAttribute('data-src');
-        // Set the 'src' attribute to the value of 'data-src'
-        image.setAttribute('src', dataSrc);
-    });
-}
-
-// show images that belong to current page
-// except for those with a missing source file
-
-function hideMissingImages() {
-    var bodyId = document.body.id;
-    var imgClass = '.' + bodyId + '-img';
-    var lazyImgs = document.querySelectorAll(imgClass);
-
-    lazyImgs.forEach(function (image) {
-        image.style.display = 'block';
-    });
-    document.querySelectorAll('img').forEach(function (img) {
-        img.onerror = function () { this.style.display = 'none'; };
-    })
 }
 
 // page functions
@@ -106,6 +82,54 @@ function old() {
 function bio() {
     document.body.setAttribute('id', 'bio');
 }
+
+// load img-sources on current page
+
+function showImages() {
+    var bodyId = document.body.id;
+    var imgClass = '.' + bodyId + '-img';
+    var lazyImgs = document.querySelectorAll(imgClass);
+
+    // Loop through each element
+    lazyImgs.forEach(function (image) {
+        // Get the value of the 'data-src' attribute
+        var dataSrc = image.getAttribute('data-src');
+        // Set the 'src' attribute to the value of 'data-src'
+        image.setAttribute('src', dataSrc);
+    });
+}
+
+// show images on current page, hide those with invalid sources
+
+function hideMissingImages() {
+    var bodyId = document.body.id;
+    var imgClass = '.' + bodyId + '-img';
+    var lazyImgs = document.querySelectorAll(imgClass);
+
+    lazyImgs.forEach(function (image) {
+        image.style.display = 'block';
+    });
+    document.querySelectorAll('img').forEach(function (img) {
+        img.onerror = function () { this.style.display = 'none'; };
+    })
+}
+
+// back button
+
+function backButton() {
+    if (history.length > 1) {
+        // If there is history to go back to, use history.back()
+        history.back();
+    } else {
+        // Otherwise, redirect to the homepage
+        window.location.hash = 'home';
+    }
+}
+
+
+// ---------------------------------------
+// 2. USER INTERFACE
+// ---------------------------------------
 
 // toggle menu
 
@@ -172,17 +196,5 @@ function toggleFocus() {
         name.classList.add('fadeOut');
         items.classList.add('fadeOut');
         social.classList.add('fadeOut');
-    }
-}
-
-// back button
-
-function backButton() {
-    if (history.length > 1) {
-        // If there is history to go back to, use history.back()
-        history.back();
-    } else {
-        // Otherwise, redirect to the homepage
-        window.location.hash = 'home';
     }
 }
