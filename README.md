@@ -1,4 +1,4 @@
-## Guidelines for image file size
+## Managing image file size
 
 To help keep the website’s load time low you should make sure image files aren’t too large. You can reduce file size either by reducing the image dimensions (resolution) or increasing compression. Here’s how to do both on a mac:
 
@@ -9,7 +9,7 @@ To increase compression, hit `File > Export…`, select `JPEG` as the format and
 A handy tool to check image compression (as well as other elements of the website that effect load time) is [pagespeed.web.dev](https://pagespeed.web.dev/). It flags images that could be further compressed without effecting visual quality and estimates how much space could be saved.
 
 
-## Add new images to galleries
+## Adding new images to galleries
 
 Each gallery has a dedicated sub-folder in `/artwork` with a one-word name: `recent`, `less`, and `old`.
 
@@ -36,7 +36,7 @@ In order to add a caption to a new image — or to modify a caption —, open t
 
 That should be all!
 
-## Change home page wallpaper
+## Changing home page wallpaper
 
 The current image for the home page wallpaper can be found in the `/wallpaper` folder. Remove this file by placing it in the `/inactive` sub-folder, then add your new image to `/wallpaper`.
 
