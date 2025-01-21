@@ -1,4 +1,4 @@
-## Understanding the website’s file structure
+## Understanding the files you’ll need to edit
 
 At the bare minimum, every website is at least a single HTML file. This is a plain text file with content formatted using opening and closing tags:
 
