@@ -1,6 +1,6 @@
 ## Understanding the files you’ll need to edit
 
-At the bare minimum, every website is at least a single HTML file. This is a plain text file with content formatted using opening and closing tags:
+At the bare minimum, every website is at least a single HTML file, usually called `index.html`. This is a plain text file with content formatted using opening and closing tags:
 
 ```html
 <h1>Here is a heading</h1>
@@ -11,7 +11,7 @@ while others are in <strong>bold</strong>.</p>
 <button>Here is a button</button>
 ```
 
-In our case, we also have a CSS file. While HTML is for adding content to the webpage, CSS is for styling that content. In CSS, you first type out what part of the HTML you want to style, then you add styling information between curly braces:
+In our case, we also have a CSS file, `style.css`. While HTML is for adding content to the webpage, CSS is for styling that content. In CSS, you first type out what part of the HTML you want to style, then you add styling information between curly braces:
 
 ```css
 h1 {
@@ -39,7 +39,7 @@ p {
 
 By modifying these variables, you modify everything that is styled using them. This makes it easy to do things like change text color across the board (rather than change the text color of paragraphs, figure captions, etc. one by one).
 
-The third core file type used in a website is javascript. While HTML adds content and CSS styles it, javascript uses logic to manipulate and engage that content dynamically. It’s javascript that allows us to say: "When I click this image of a aback arrow that’s in the HTML file, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
+The third core file type used in a website is javascript, usually called `script.js`. While HTML adds content and CSS styles it, javascript uses logic to manipulate and engage that content dynamically. It’s javascript that allows us to say: "When I click this image of a aback arrow that’s in the HTML file, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
 
 ```js
 function backButton() {
