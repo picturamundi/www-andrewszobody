@@ -5,24 +5,27 @@ At the bare minimum, every website is at least a single HTML file. This is a pla
 ```html
 <h1>Here is a heading</h1>
 
-<p>Here is a paragraph of text. Some words are in <em>italics<em> while others are in <strong>bold</strong>.</p>
+<p>Here is a paragraph of text. Some words are <em>emphasized<em> (i.e. in italics) while others are in <strong>bold</strong>.</p>
+
+<button>Here is a button</button>
 ```
 
-In our case, there is also a CSS file. While HTML is for adding content to the webpage, CSS is for styling that content. In CSS, you select what part of the HTML you want to style, then you add styling information between curly braces:
+In our case, we also have a CSS file. While HTML is for adding content to the webpage, CSS is for styling that content. In CSS, you first type out what part of the HTML you want to style, then you add styling information between curly braces:
 
 ```css
 h1 {
   font-size: 24px;
-  font-color: rgb(92, 118, 116)
+  color: rgb(92, 118, 116);
+  margin-bottom: 20px;
 }
 
 p {
   font-size: 14px;
-  font-color: var(--text-color-primary);
+  color: var(--text-color-primary);
 }
 ```
 
-`var(--text-color-primary)` refers to a variable by name. All variables are defined at the top of the CSS document: 
+`var(--text-color-primary)` refers to a variable by name. All such variables are defined at the top of the CSS document: 
 
 ```css
 :root {
@@ -30,11 +33,12 @@ p {
     --theme-color-2: rgb(230, 237, 226);
     --text-color-primary: var(--theme-color-3);
     --etc.
+}
 ```
 
-By modifying these variables, you modify everything that is styled using them. This makes it easy to do things like change text color across the board (rather than change the text color of paragraphs, menus, etc. one by one).
+By modifying these variables, you modify everything that is styled using them. This makes it easy to do things like change text color across the board (rather than change the text color of paragraphs, figure captions, etc. one by one).
 
-The third core file type used in a website is javascript. While HTML adds content and CSS styles it, javascript uses logic to manipulate the content dynamically. It’s javascript that allows us to say: "When I click this image of a aback arrow that’s in the HTML file, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
+The third core file type used in a website is javascript. While HTML adds content and CSS styles it, javascript uses logic to manipulate and engage that content dynamically. It’s javascript that allows us to say: "When I click this image of a aback arrow that’s in the HTML file, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
 
 ```js
 function backButton() {
