@@ -32,7 +32,7 @@ p {
 :root {
     --theme-color-1: rgba(200, 187, 170, 1);
     --theme-color-2: rgb(230, 237, 226);
-    --text-color-primary: var(--theme-color-3);
+    --text-color-primary: rgb(111, 100, 86);
     --etc.
 }
 ```
