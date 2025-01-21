@@ -39,7 +39,7 @@ p {
 
 By modifying these variables, you modify everything that is styled using them. This makes it easy to do things like change text color across the board (rather than change the text color of paragraphs, figure captions, etc. one by one).
 
-The third core file type used in a website is javascript, usually called `script.js`. While HTML adds content and CSS styles it, javascript uses logic to manipulate and engage that content dynamically. It’s javascript that allows us to say: "When I click this image of a aback arrow that’s in the HTML file, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
+The third core file type used in a website is javascript, usually called `script.js`. While HTML adds content and CSS styles it, javascript uses logic to manipulate and engage that content dynamically. It’s javascript that allows us to say: "When I click this image of a back arrow, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
 
 ```js
 function backButton() {
