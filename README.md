@@ -48,7 +48,29 @@ The wallpaper image needs to be a file with the `.jpeg` extension (not `.jpg`), 
 
 ![active wallpaper](readme/active-wallpaper.png)
 
-When swapping wallpapers, it’s a good idea to update the `theme-color-1` variable in the css file to match, as well as the `theme-color` meta element in the html head. `theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
+When swapping wallpapers, it’s a good idea to update the `theme-color-1` variable in the css file to match: 
+
+```css
+:root {
+    --theme-color-1: rgba(200, 187, 170, 1);
+    /* theme-color-1 is used for the home page background */
+    --theme-color-2: rgb(230, 237, 226);
+    /* theme-color-2 is used for the gallery background */
+    --etc.
+```
+
+… as well as the `theme-color` meta element in the html head: 
+
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Szobody</title>
+    <meta name="theme-color" content="#c8bbaa"> <!--Match this to page background color-->
+    <etc.>
+```
+
+`theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
 
 ![color matching](readme/color-matching.png)
 
