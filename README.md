@@ -1,3 +1,54 @@
+## Understanding the website’s file structure
+
+At the bare minimum, every website is at least a single HTML file. This is a plain text file with content formatted using opening and closing tags:
+
+```html
+<h1>Here is a heading<h1>
+
+<p>Here is a paragraph of text. Some words are in <em>italics<em> while others are in <strong>bold</strong>.</p>
+```
+
+In our case, there is also a CSS file. While HTML is for adding content to the webpage, CSS is for styling that content. In CSS, you select what part of the HTML you want to style, then you add styling information between curly braces:
+
+```css
+h1 {
+  font-size: 24px;
+  font-color: rgb(92, 118, 116)
+}
+
+p {
+  font-size: 14px;
+  font-color: var(--text-color-primary);
+}
+```
+
+`var(--text-color-primary)` refers to a variable by name. All variables are defined at the top of the CSS document: 
+
+```css
+:root {
+    --theme-color-1: rgba(200, 187, 170, 1);
+    --theme-color-2: rgb(230, 237, 226);
+    --text-color-primary: var(--theme-color-3);
+    --etc.
+```
+
+By modifying these variables, you modify everything that is styled using them. This makes it easy to do things like change text color across the board (rather than change the text color of paragraphs, menus, etc. one by one).
+
+The third core file type used in a website is javascript. While HTML adds content and CSS styles it, javascript uses logic to manipulate the content dynamically. It’s javascript that allows us to say: "When I click this image of a aback arrow that’s in the HTML file, check and see if there is a previous entry in our website history. If there is, go back to it. If there isn’t, go to the home page."
+
+```js
+function backButton() {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        window.location.hash = 'home';
+    }
+}
+```
+
+While you’ll need to edit the HTML to add captions to new gallery items, and while you’ll need to edit CSS to pick you prefered colors and such, I don’t think you should ever need to edit the javascript.
+
+
 ## Managing image file size
 
 To help keep the website’s load time low you should make sure image files aren’t too large. You can reduce file size either by reducing the image dimensions (resolution) or increasing compression. Here’s how to do both on a mac:
