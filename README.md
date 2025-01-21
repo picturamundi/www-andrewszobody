@@ -1,3 +1,24 @@
+## Editing files locally
+
+If you want to be able to make changes to the website while 1] being able to view those changes before they go live and 2] inadvertently  causing issues with your edits, you’ll need to install a couple of things.
+
+### 1. Github desktop app
+
+[Here](https://youtu.be/PvUexC0-D2s) is a short and straightforward guide for setting up the github desktop app. The app allows you to work on and view a local copy of the website files. Once you want your edits to go live, you sync your local copy with GitHub.
+
+<!--When several people work on the same project, collaborators usually create "branches" of a project. These branches are copies of the website files that allow you to freely experiment and test changes without effecting other collaborators.
+
+I think we can get away with not setting up branches as long as we are editing our own local copies of the website files, and as long as we only "comit" (save changes in the github app) and "push" (sync the files) when our edits are final and we’ve checked that they haven’t broken anything.-->
+
+### 2. Text editor
+
+Once you have your local copy of the website files, you’ll need a text editor to view and edit them. [Sumblime Text](https://www.sublimetext.com/) is a good lightweight and free option.
+
+Say you want to edit CSS variables in order modify the gallery background color. Locate the `style.css` file in the, right click on it, and select `Open With > Sublime Text`. 
+
+In order to preview how your edits to the text files effect the final product, open `index.html` (it should automatically open in a browser). To continue seeing changes as you add edits, just remember to hit save in your text-editor, and then refresh in the browser.
+
+
 ## Guidelines for image file size
 
 To keep the website’s load time low, you can decrease image file size either by reducing the image dimensions (resolution) or increasing compression. Here’s how to do both on a mac:
@@ -22,7 +43,7 @@ Dropping `.jpeg` files into these subfolders with the following naming conventio
 
 By default, galleries are set up for 15 images, but more can be added into the HTML file. You can change whether these images are displayed in numerical order or reverse numerical order by modifying the `gallery-order` variable in the CSS file.
 
-In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct `figure` element. Inside this figure, fill out `fig-title` and `fig-medium` (remove the comment syntax, `<!--` and `-->`, which hide my comments from end users):
+In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct work, which in the HTML is a `<figure>` element. Inside this figure, fill out `fig-title` and `fig-medium` (remove the comment syntax, `<!--` and `-->`, which hide my comments from end users):
 
 ```html
 <figure>
