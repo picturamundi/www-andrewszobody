@@ -51,7 +51,9 @@ function backButton() {
 }
 ```
 
-While you’ll need to edit the HTML to add captions to new gallery items, and while you’ll need to edit CSS to pick you prefered colors and such, I don’t think you should ever need to edit the javascript.
+While you’ll need to edit the HTML to add captions to new gallery items (see below), and while you’ll need to edit CSS to pick you prefered colors and such (see below), I don’t think you should ever need to edit the javascript.
+
+There are other files in the repository, like images and fonts, and but they’re all there to be grabbed and used by those three core documents.
 
 
 ## Managing image file size
