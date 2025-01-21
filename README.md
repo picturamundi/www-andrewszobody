@@ -2,7 +2,7 @@
 
 If you want to be able to make changes to the website while 1] being able to view those changes before they go live and 2] inadvertently  causing issues with your edits, you’ll need to install a couple of things.
 
-### 1. Github desktop app
+#### 1. Github desktop app
 
 [Here](https://youtu.be/PvUexC0-D2s) is a short and straightforward guide for setting up the github desktop app. The app allows you to work on and view a local copy of the website files. Once you want your edits to go live, you sync your local copy with GitHub.
 
@@ -10,7 +10,7 @@ If you want to be able to make changes to the website while 1] being able to vie
 
 I think we can get away with not setting up branches as long as we are editing our own local copies of the website files, and as long as we only "comit" (save changes in the github app) and "push" (sync the files) when our edits are final and we’ve checked that they haven’t broken anything.-->
 
-### 2. Text editor
+#### 2. Text editor
 
 Once you have your local copy of the website files, you’ll need a text editor to view and edit them. [Sumblime Text](https://www.sublimetext.com/) is a good lightweight and free option.
 
