@@ -58,7 +58,9 @@ There are other files in the repository, like images and fonts, and but they’r
 
 ## Managing image file size
 
-To help keep the website’s load time low you should make sure image files aren’t too large. You can reduce file size either by reducing the image dimensions (resolution) or increasing compression. Here’s how to do both on a mac:
+By far the largest files your website has to load are the images. Every additional 1MB image file could add over a second of load time to the page it’s on. It’s probably a good idea to try and keep images below 1/2MB or 500KB whenever you can.
+
+You can reduce file size either by reducing the image dimensions (resolution) or increasing compression. Here’s how to do both on a mac:
 
 In Apple Preview, hitting Cmd-0 will zoom the open image to 100% which can give you an idea of how much resolution you have and if you can sacrifice some to decrease file size. Hit `Tools > Adjust Size…` to decrease the dimensions of the image.
 
