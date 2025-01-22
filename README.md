@@ -5,8 +5,8 @@ At the bare minimum, every website is at least a single HTML file, usually calle
 ```html
 <h1>Here is a heading</h1>
 
-<p>Here is a paragraph of text. Some words are <em>emphasized<em> (i.e. in italics) 
-while others are in <strong>bold</strong>.</p>
+<p>Here is a paragraph of text. Some words are <em>emphasized<em>
+(i.e. in italics) while others are in <strong>bold</strong>.</p>
 
 <button>Here is a button</button>
 ```
@@ -134,8 +134,9 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
 
 `theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
 
-![color matching](readme/color-matching.png)
+![color matching](readme/color-matching-1.png)
 
+![color matching](readme/color-matching-2.png)
 
 ## Editing files locally
 

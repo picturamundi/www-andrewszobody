@@ -5,12 +5,12 @@ VARIABLES AND FONTS
 ---------------------------------- */
 
 :root {
-    --theme-color-1: rgba(200, 187, 170, 1);
+    --theme-color-1: rgb(200, 187, 170);
     /* theme-color-1 is used for the home page background */
-    --theme-color-2: rgb(230, 237, 226);
+    --theme-color-2: white;
     /* theme-color-2 is used for the gallery background */
-    --theme-color-3: rgb(111, 100, 86);
-    /* theme-color-3 is used for default text and active links */
+    --theme-color-3: rgb(108, 104, 98);
+    /* theme-color-3 is used for default text */
     --ui-color: white;
     /* --ui-color is used for buttons and banner */
     --text-color-primary: var(--theme-color-3);
@@ -21,8 +21,9 @@ VARIABLES AND FONTS
     --font-primary: "custom-1";
     --default-font-size: 14px;
     --heading-font-size: 24px;
-    --font-weight-primary: 300;
+    --font-weight-primary: 200;
     --font-weight-headings: 200;
+    --font-weight-bold: 600;
 
     --icon-weight: 3px;
     --insta-opacity: 0.7;
@@ -31,11 +32,13 @@ VARIABLES AND FONTS
     --name-font-family: 'custom-1';
     --name-font-size: 40px;
 
-    --header-height: 2.3rem;
+    --header-height: 2.1rem;
 
     --menu-trans: 0.3s;
     --focus-trans: 0.5s;
     --page-trans: 0.5s;
+
+    --gallery-order: ;
 }
 
 @font-face {
@@ -111,7 +114,8 @@ h6 {
 
 h1 {
     text-align: center;
-    margin-top: 10rem;
+    margin-top: 8rem;
+    margin-bottom: 6rem;
     font-size: var(--heading-font-size);
 }
 
@@ -121,21 +125,24 @@ p a {
     border-bottom: 1px solid var(--text-color-primary);
 }
 
-main#home-main {
-    width: 100%;
-    height: fit-content;
+#home main {
+    /* this keeps pages from interfering with the ui toggle on home screen */
+    z-index: 1;
 }
 
-main.page {
+main {
     position: absolute;
     width: 100%;
     /* top: 0; */
     height: fit-content;
-    background-color: var(--theme-color-2);
-    z-index: 1;
     padding-bottom: 7rem;
     /* border-radius: 10px 10px 0px 0px; */
     transition: margin var(--page-trans), opacity var(--page-trans);
+}
+
+main.page {
+    background-color: var(--theme-color-2);
+    z-index: 4;
 }
 
 body.page.menu-expanded main.page {
@@ -153,15 +160,14 @@ body.page.menu-expanded svg rect {
 }
 
 figure {
-    margin: 0;
+    margin: 0px;
+    margin-bottom: -10px;
     padding: 0px 0px;
 }
 
 
 figure img {
     width: 100%;
-    padding-top: 5rem;
-    padding-bottom: 1rem;
 }
 
 /* #recent #recent-main figure img {
@@ -180,8 +186,26 @@ figure img {
 } */
 
 figcaption div {
-    margin-bottom: 5px;
+    /* height: 0px; */
+    opacity: 0;
+    margin-top: 0px;
+    margin-bottom: 0rem;
     text-align: center;
+}
+
+figcaption,
+figcaption div {
+    transition: opacity var(--menu-trans), margin var(--menu-trans), height var(--menu-trans);
+}
+
+figcaption.show {
+    margin-bottom: 6rem;
+}
+
+figcaption.show div {
+    /* height: 10px; */
+    opacity: 1;
+    margin-top: 10px;
 }
 
 figcaption .fig-title {
@@ -217,9 +241,9 @@ body#recent #nav-list #link-recent a,
 body#less #nav-list #link-less a,
 body#old #nav-list #link-old a,
 body#bio #nav-list #link-bio a {
-    border-bottom: none;
-    color: var(--theme-color-3);
-    font-weight: var(--font-weight-headings);
+    /* border-bottom: none; */
+    /* color: var(--theme-color-3); */
+    font-weight: var(--font-weight-bold);
 }
 
 /* ----------------------------------
@@ -281,17 +305,26 @@ body.page header {
     padding: 2px;
 }
 
+@media only screen and (min-width: 600px) {
+
+    header,
+    footer {
+        display: none;
+    }
+}
+
+
 /* menu list */
 
 #nav-list {
     position: fixed;
     top: 0;
     right: 0;
-    width: fit-content;
-    margin: var(--header-height);
+    width: 100%;
+    padding: var(--header-height);
     margin-top: calc(var(--header-height) * 3);
     flex-direction: column;
-    text-align: right;
+    text-align: center;
     z-index: 3;
     display: none;
 }
@@ -354,7 +387,7 @@ body.page.nav #back-button svg {
     position: fixed;
     bottom: 0;
     width: var(--header-height);
-    padding: var(--header-height);
+    margin: var(--header-height);
     z-index: 3;
 }
 
@@ -390,10 +423,11 @@ body#home {
     user-select: none;
 }
 
+
 /* site name */
 
 #site-name-container {
-    width: 100%;
+    width: -webkit-fill-available;
     position: fixed;
     top: 0;
     margin-top: 10rem;
@@ -565,7 +599,9 @@ body#home.menu-collapsed #site-name {
     }
 }
 
-.fadeOut {
+.fadeOut,
+body#home.nav #site-name-container.fadeOut,
+#home.nav #social.fadeOut {
     animation: fadeOut var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
 }
@@ -592,7 +628,9 @@ header.fadeOut {
     }
 }
 
-.fadeIn {
+.fadeIn,
+body#home.nav #site-name-container.fadeIn,
+#home.nav #social.fadeIn {
     animation: fadeIn var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
 }
@@ -637,4 +675,86 @@ header.fadeOut {
 #nav-button.hamburger svg path+path+path:not(path+path+path+path) {
     opacity: 1;
     rotate: 0deg;
+}
+
+/* mobile */
+
+@media only screen and (min-width: 600px) {
+    body#home main#home-main {
+        display: flex;
+        justify-content: center;
+    }
+
+    #site-name-container {
+        position: relative;
+        margin-top: 0px;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+
+    #wallpaper-wrapper,
+    #glass {
+        position: fixed;
+    }
+
+    #interface-toggle {
+        display: none;
+    }
+
+    #desktop-content-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    #desktop-content {
+        width: 100%;
+        height: 100vh;
+        align-items: start;
+        display: flex;
+    }
+
+    #home main#home-main {
+        height: 100vh;
+        /* background-color: white; */
+    }
+
+    #home main#home-main,
+    #home nav {
+        padding-top: 20%;
+        padding-right: 0px;
+    }
+
+    #desktop-content main#home-main,
+    #desktop-content nav {
+        position: relative;
+        top: 0;
+    }
+
+    main #site-name-container {
+        align-items: start;
+    }
+
+    #site-name {
+        font-size: calc(var(--name-font-size) * 1.5);
+        color: var(--ui-color);
+    }
+
+    #nav-list {
+        display: block;
+        position: relative;
+        text-align: left;
+        margin: 0px;
+        padding: 120px;
+        padding-top: 0px;
+        width: 400px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #nav-list a {
+        font-size: calc(var(--default-font-size) * 1.5);
+    }
 }

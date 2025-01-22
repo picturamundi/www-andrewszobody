@@ -131,6 +131,35 @@ function backButton() {
 // 2. USER INTERFACE
 // ---------------------------------------
 
+// toggle caption
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all <figure> elements
+    const figures = document.querySelectorAll('figure');
+
+    figures.forEach(function (figure) {
+        const img = figure.querySelector('img');
+        if (img) {
+            // For some reason clicks register on the img, not the parent figure
+            img.addEventListener('click', function (event) {
+                // Find the caption within the clicked figure
+                const caption = figure.querySelector('figcaption');
+                console.log('Figure clicked');
+
+                // Change class
+                if (caption.classList.contains('show')) {
+                    caption.classList.remove('show');
+                    figure.classList.remove('popup');
+                } else {
+                    figure.classList.add('popup');
+                    caption.classList.add('show');
+                }
+            });
+        }
+    });
+
+});
+
 // toggle menu
 
 function toggleMenu() {
