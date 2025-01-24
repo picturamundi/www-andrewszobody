@@ -39,6 +39,7 @@ VARIABLES AND FONTS
     --page-trans: 0.5s;
 
     --gallery-order: ;
+    --desktop-gallery-padding: 15%;
 }
 
 @font-face {
@@ -83,6 +84,9 @@ body#home {
     position: absolute;
     width: 100vw;
     /* overflow hidden for non-active (transparent) pages */
+}
+
+.mobile #content {
     overflow: hidden;
 }
 
@@ -132,12 +136,14 @@ p a {
 
 main {
     position: absolute;
-    width: 100%;
-    /* top: 0; */
     height: fit-content;
     padding-bottom: 7rem;
-    /* border-radius: 10px 10px 0px 0px; */
+    overflow: hidden;
+}
+
+.mobile main {
     transition: margin var(--page-trans), opacity var(--page-trans);
+    width: 100%;
 }
 
 main.page {
@@ -147,7 +153,6 @@ main.page {
 
 body.page.menu-expanded main.page {
     margin-top: 24rem !important;
-    /* margin-top: 30rem; */
 }
 
 svg path,
@@ -170,20 +175,9 @@ figure img {
     width: 100%;
 }
 
-/* #recent #recent-main figure img {
-    animation: unfold 1s;
-    -webkit-animation-fill-mode: forwards;
+figure:has(img.inactive) {
+    display: none;
 }
-
-@keyframes unfold {
-    0% {
-        height: 0px;
-    }
-
-    100% {
-        height: 100px;
-    }
-} */
 
 figcaption div {
     /* height: 0px; */
@@ -216,23 +210,27 @@ figcaption .fig-title {
 PAGES
 ---------------------------------- */
 
-body main.page {
-    opacity: 0;
-    /* position absolute so that inactive pages overflow #content */
-    position: absolute;
-    margin: 140% 0% 0% 0%;
+/* inactive pages */
+body.mobile main.page {
+    /* position: absolute; */
+    margin-top: 140%;
 }
 
-body#home main#home-main,
-body#recent main#recent-main,
-body#less main#less-main,
-body#old main#old-main,
-body#bio main#bio-main {
+body main.page {
+    opacity: 0;
+    /* position: absolute; */
+}
+
+body#home.mobile main#home-main,
+body#recent.mobile main#recent-main,
+body#less.mobile main#less-main,
+body#old.mobile main#old-main,
+body#bio.mobile main#bio-main {
     display: block;
     /* position relative so that #content resizes to fit and overflow pages are hidden */
     position: relative;
     opacity: 1;
-    margin: 0%;
+    margin-top: 0%;
     overflow: hidden;
 }
 
@@ -341,8 +339,8 @@ body.page #nav-list {
 }
 
 #nav-list p {
-    margin-top: 1.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0rem;
     font-weight: var(--font-weight-primary);
     font-family: var(--name-font-family);
 }
@@ -356,6 +354,10 @@ body.menu-collapsed #nav-list {
     display: flex;
     animation: hide var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
+}
+
+#nav-name {
+    display: none;
 }
 
 /* back button */
@@ -691,8 +693,25 @@ body#home.nav #site-name-container.fadeIn,
     }
 }
 
+span.desktop-page,
+span.non-desktop-page {
+    transition: opacity 0.5s;
+}
+
+span.desktop-page {
+    opacity: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+}
+
 
 @media only screen and (min-width: 600px) {
+
+    /* body main.page {
+        display: none;
+    } */
+
 
     #wallpaper-wrapper,
     #glass {
@@ -705,56 +724,161 @@ body#home.nav #site-name-container.fadeIn,
 
     #desktop-content-wrapper {
         height: 100%;
-        display: flex;
-        align-items: center;
+        /* display: flex;
+        align-items: center; */
     }
 
     #desktop-content {
         width: 100%;
         height: 100vh;
-        align-items: start;
-        display: flex;
+        /* align-items: start; */
+        /* display: flex; */
+        /* overflow: scroll; */
     }
 
-    #home main#home-main {
-        height: 100vh;
-        /* background-color: white; */
+    body#home #content {
+        overflow: hidden;
     }
 
     #home main#home-main,
-    #home nav {
-        padding-top: 20%;
+    nav#nav-list {
+        /* padding-top: 20%; */
         padding-right: 0px;
     }
 
-    #desktop-content main#home-main,
     #desktop-content nav {
         position: relative;
         top: 0;
     }
 
-    main #site-name-container {
+    #home main#home-main {
+        top: 0;
+    }
+
+    #site-name-container {
         align-items: start;
+        margin-left: calc(5% + 15rem);
     }
 
     #site-name {
-        font-size: calc(var(--name-font-size) * 1.5);
+        font-size: calc(var(--name-font-size) * 1.3);
         color: var(--ui-color);
     }
 
-    #nav-list {
+    #nav-list,
+    body.page #nav-list {
+        box-sizing: border-box;
         display: block;
-        position: relative;
+        position: fixed;
+        left: 0;
         text-align: left;
         margin: 0px;
-        padding: 120px;
-        padding-top: 0px;
-        width: 400px;
+        padding-left: 5%;
         display: flex;
         justify-content: center;
+        transition: padding 0.5s;
+        width: 25rem;
+    }
+
+    body#home #nav-list {
+        padding-left: 10%;
+        padding-top: 30vh;
     }
 
     #nav-list a {
         font-size: calc(var(--default-font-size) * 1.5);
     }
+
+    #nav-list p {
+        position: relative;
+    }
+
+    body.page p#link-home {
+        font-weight: var(--font-weight-bold);
+    }
+
+    body.page p#link-home a {
+        border-bottom: none;
+        font-size: calc(var(--default-font-size) * 1.6)
+    }
+
+    body.page h1,
+    body.page p#link-home {
+        margin-top: 8rem;
+        margin-bottom: 6rem;
+    }
+
+    body p#link-home {
+        margin-top: 2rem;
+        transition: margin 0.5s;
+    }
+
+    body.page span.desktop-page {
+        opacity: 1;
+    }
+
+    body.page span.non-desktop-page {
+        opacity: 0;
+    }
+
+    body main:not(#home-main) {
+        position: absolute;
+        width: calc(80% - 80px);
+        margin-left: calc(20% + 80px);
+        margin-top: 200px;
+        right: 0;
+        top: 0;
+        /* overflow: scroll; */
+        border-radius: 5px 0px 0px 0px;
+        transition: margin-top 0.7s, opacity 0.7s;
+        max-height: 100vh;
+    }
+
+    body main#home-main {
+        width: 100%;
+        margin-top: 30vh;
+    }
+
+    body#recent main#recent-main,
+    body#less main#less-main,
+    body#old main#old-main,
+    body#bio main#bio-main {
+        opacity: 1;
+        margin-top: 20px;
+        max-height: fit-content;
+    }
+
+    div.gallery {
+        display: flex;
+        width: calc(100% - (var(--desktop-gallery-padding) * 2));
+        margin: 0px var(--desktop-gallery-padding);
+        flex-wrap: wrap;
+        gap: var(--default-font-size);
+        /* justify-content: first baseline; */
+        align-items: start;
+        flex-direction: column;
+        overflow: hidden;
+        flex: 1 1 var(--default-font-size);
+        /* height: 2300px; */
+    }
+
+    .gallery figure {
+        box-sizing: border-box;
+        position: relative;
+        width: calc(50% - (var(--default-font-size) / 2));
+        margin: 0 !important;
+        padding: 0 !important;
+        /* display: flex;
+        justify-content: center; */
+    }
+
+    figure img {
+        /* height: 100%; */
+        width: 100%;
+    }
+
+    figcaption {
+        display: none;
+    }
+
 }

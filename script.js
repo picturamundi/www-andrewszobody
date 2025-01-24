@@ -1,33 +1,62 @@
 // ---------------------------------------
-// 1. PSEUDO PAGES
+//  WINDOW TRIGGERS
 // ---------------------------------------
 
 //initial load trigger
-
 window.addEventListener('DOMContentLoaded', function () {
+    updateDevice();
     route();
-    if (!window.location.hash) {
-        // If no hash exists, add #home to the URL (for navigating back)
-        window.location.hash = 'home';
-    }
+    serveImages();
+    buildGallery();
 });
 
 // address change trigger
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
-    // so that transition animations can be triggered
     document.body.classList.add('nav');
-    if (document.body.classList.contains('menu-expanded')) {
-        // collapse the menu when switching pages
-        collapseMenu();
-    }
     route();
+    serveImages();
+    buildGallery();
 });
 
-// route() calls the correct page based on the url hash 
-// and loads the relevant images
+window.addEventListener('resize', updateDevice);
+
+
+// ---------------------------------------
+//  DEVICE
+// ---------------------------------------
+
+function updateDevice() {
+    // Check if the screen width is less than 600px
+    if (window.innerWidth < 600) {
+        // Apply 'mobile' class if the screen width is less than 600px
+        document.body.classList.add('mobile');
+        document.body.classList.remove('desktop');
+    } else {
+        // Apply 'desktop' class if the screen width is 600px or more
+        document.body.classList.add('desktop');
+        document.body.classList.remove('mobile');
+    }
+}
+
+
+// ---------------------------------------
+//  PSEUDO PAGES
+// ---------------------------------------
+
+// route() loads pages
 
 function route() {
+
+    // collapse the menu when loading pages
+    if (document.body.classList.contains('menu-expanded')) {
+        collapseMenu();
+    }
+
+    // If no hash exists, add #home to the URL (for navigating back)
+    if (!window.location.hash) {
+        window.location.hash = 'home';
+    }
     // get the hash fragment from the URL
     var hash = window.location.hash;
 
@@ -44,8 +73,6 @@ function route() {
         if (document.body.getAttribute('id') !== 'home') {
             // tag body if on a page (not home screen)
             document.body.classList.add('page');
-            // if on a page, load the img sources on that page
-            showImages();
             window.addEventListener("hashchange", function () {
                 document.body.classList.remove('leave-home');
             });
@@ -57,35 +84,74 @@ function route() {
             });
         }
     }
-    // show images on current page, hide those with invalid sources
-    hideMissingImages();
 }
 
 // page functions
 
 function home() {
+    globalThis.pageName = 'home';
     document.body.setAttribute('id', 'home');
+    var main = document.querySelector('#home-main');
+
+    pageVisit();
 }
 
 function recent() {
+    globalThis.pageName = 'recent';
     document.body.setAttribute('id', 'recent');
+    var main = document.querySelector('#recent-main');
+
+    pageVisit();
 }
 
 function less() {
+    globalThis.pageName = 'less';
     document.body.setAttribute('id', 'less');
+
+    pageVisit();
 }
 
 function old() {
+    globalThis.pageName = 'old';
     document.body.setAttribute('id', 'old');
+    var main = document.querySelector('#old-main');
+
+    pageVisit();
 }
 
 function bio() {
     document.body.setAttribute('id', 'bio');
+    pageVisit();
+}
+
+function pageVisit() {
+    var mainId = '#' + pageName + '-main';
+    var main = document.querySelector(mainId);
+    console.log('our visited page is: ' + mainId);
+
+    if (main.classList.contains('sleeping')) {
+        main.classList.remove('sleeping');
+        main.classList.add('first');
+        console.log('FIRST VISIT TO ' + pageName);
+    } else {
+        if (main.classList.contains('first')) {
+            main.classList.remove('first');
+        } else {
+            return;
+        }
+    }
 }
 
 // load img-sources on current page
 
-function showImages() {
+function serveImages() {
+    sourceImages();
+    revealActiveImages();
+}
+
+// activate source for images on current page
+
+function sourceImages() {
     var bodyId = document.body.id;
     var imgClass = '.' + bodyId + '-img';
     var lazyImgs = document.querySelectorAll(imgClass);
@@ -101,16 +167,20 @@ function showImages() {
 
 // show images on current page, hide those with invalid sources
 
-function hideMissingImages() {
+function revealActiveImages() {
     var bodyId = document.body.id;
     var imgClass = '.' + bodyId + '-img';
     var lazyImgs = document.querySelectorAll(imgClass);
 
     lazyImgs.forEach(function (image) {
         image.style.display = 'block';
+        image.classList.remove('inactive');
     });
     document.querySelectorAll('img').forEach(function (img) {
-        img.onerror = function () { this.style.display = 'none'; };
+        img.onerror = function () {
+            this.style.display = 'none';
+            this.classList.add('inactive');
+        };
     })
 }
 
@@ -128,7 +198,7 @@ function backButton() {
 
 
 // ---------------------------------------
-// 2. USER INTERFACE
+//  USER INTERFACE
 // ---------------------------------------
 
 // toggle caption
@@ -226,4 +296,69 @@ function toggleFocus() {
         items.classList.add('fadeOut');
         social.classList.add('fadeOut');
     }
+}
+
+
+// gallery
+
+function buildGallery() {
+    mainId = '#' + pageName + '-main';
+    main = document.querySelector(mainId);
+    console.log('our page main is: ' + mainId);
+
+    if (main.classList.contains('first')) {
+        const images = document.querySelectorAll('img');
+        let loadedCount = 0;
+        const totalImages = images.length;
+
+        if (totalImages === 0) {
+            // If no images are on the page, immediately call the callback
+            adjustGalleryHeight();
+            console.log('there were no images');
+            return;
+        }
+
+        function checkImageLoad() {
+            loadedCount++;
+            if (loadedCount === totalImages) {
+                // If all images are loaded, call the provided callback
+                console.log('all images loaded');
+                adjustGalleryHeight();
+            }
+        }
+
+        images.forEach(img => {
+            if (img.complete) {
+                // If the image is already loaded, increment the count
+                checkImageLoad();
+            } else {
+                // Otherwise, listen for the load event
+                img.addEventListener('load', checkImageLoad);
+                img.addEventListener('error', checkImageLoad); // Optional: handle failed images
+            }
+        });
+    }
+}
+
+function adjustGalleryHeight() {
+    const galleryClass = '.gallery.' + pageName;
+    const gallery = document.querySelector(galleryClass);
+    console.log('page gallery is: ' + galleryClass);
+
+    if (!gallery) {
+        console.error("Gallery element not found!");
+        return; // Exit if the gallery element isn't found
+    }
+
+    // Step 1: Calculate initial gallery height in single column (no flex-wrap)
+    const initialHeight = gallery.offsetHeight;
+    console.log('Initial height: ' + initialHeight);
+
+    // Step 2: Calculate the desired height when in two columns
+    const galleryHeight = initialHeight / 2 + 200;  // Divide by 2 for two columns
+
+    // Step 3: Apply the new height to the gallery
+    gallery.style.setProperty('height', `${galleryHeight}px`);
+
+    console.log("Gallery height set to:", galleryHeight);
 }
