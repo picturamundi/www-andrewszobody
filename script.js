@@ -7,7 +7,9 @@ window.addEventListener('DOMContentLoaded', function () {
     updateDevice();
     route();
     serveImages();
-    buildGallery();
+    if (window.innerWidth > 600) {
+        buildGallery();
+    }
 });
 
 // address change trigger
@@ -16,7 +18,9 @@ window.addEventListener("hashchange", function () {
     document.body.classList.add('nav');
     route();
     serveImages();
-    buildGallery();
+    if (window.innerWidth > 600) {
+        buildGallery();
+    }
 });
 
 window.addEventListener('resize', updateDevice);
