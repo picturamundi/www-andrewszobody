@@ -37,13 +37,13 @@ window.addEventListener('resize', function () {
 // ---------------------------------------
 
 function updateDevice() {
-    // Check if the screen width is less than 600px
-    if (window.innerWidth < 600) {
-        // Apply 'mobile' class if the screen width is less than 600px
+    // Check if the screen width is less than 700px
+    if (window.innerWidth < 700) {
+        // Apply 'mobile' class if the screen width is less than 700px
         document.body.classList.add('mobile');
         document.body.classList.remove('desktop');
     } else {
-        // Apply 'desktop' class if the screen width is 600px or more
+        // Apply 'desktop' class if the screen width is 700px or more
         document.body.classList.add('desktop');
         document.body.classList.remove('mobile');
     }
@@ -335,7 +335,7 @@ function toggleFocus() {
 function galleryOnVisit() {
     var main = document.querySelector('main.active');
 
-    if (window.innerWidth > 600) {
+    if (window.innerWidth > 700) {
         // if (main.classList.contains('first')) {
         buildGallery();
         // }
