@@ -865,10 +865,10 @@ span.desktop-page {
     div.gallery {
         display: flex;
         width: fit-content;
-        min-width: var(--gallery-width);
+        /* min-width: var(--gallery-width); */
         margin-left: var(--desktop-gallery-padding);
         flex-wrap: wrap;
-        gap: var(--default-font-size);
+        gap: 20px;
         /* justify-content: first baseline; */
         align-items: center;
         justify-content: start;
@@ -881,7 +881,7 @@ span.desktop-page {
     .gallery figure {
         box-sizing: border-box;
         position: relative;
-        width: calc((var(--gallery-width) / 2) - var(--default-font-size));
+        width: calc((var(--gallery-width) / 2) - 10px);
         margin: 0 !important;
         padding: 0 !important;
         /* display: flex;
