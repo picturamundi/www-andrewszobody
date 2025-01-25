@@ -4,6 +4,7 @@
 
 //initial load trigger
 window.addEventListener('DOMContentLoaded', function () {
+    globalThis.galleryMargin = 30;
     updateDevice();
     route();
     serveImages();
@@ -23,7 +24,13 @@ window.addEventListener("hashchange", function () {
     }
 });
 
-window.addEventListener('resize', updateDevice);
+
+window.addEventListener('resize', function () {
+    // body class 'nav' lets CSS know this is not an initial page load
+    console.log('---------- resize!');
+    updateDevice();
+    resizeGallery();
+});
 
 
 // ---------------------------------------
@@ -71,7 +78,7 @@ function route() {
     if (typeof window[functionName] === "function") {
         window[functionName]();
     } else {
-        console.log("Function not found");
+        console.log("function not found");
     }
     if (document.body.hasAttribute('id')) {
         if (document.body.getAttribute('id') !== 'home') {
@@ -131,12 +138,11 @@ function bio() {
 function pageVisit() {
     var mainId = '#' + pageName + '-main';
     var main = document.querySelector(mainId);
-    console.log('our visited page is: ' + mainId);
 
     if (main.classList.contains('sleeping')) {
         main.classList.remove('sleeping');
         main.classList.add('first');
-        console.log('FIRST VISIT TO ' + pageName);
+        console.log('---------- FIRST VISIT TO PAGE: ' + pageName);
     } else {
         if (main.classList.contains('first')) {
             main.classList.remove('first');
@@ -218,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
             img.addEventListener('click', function (event) {
                 // Find the caption within the clicked figure
                 const caption = figure.querySelector('figcaption');
-                console.log('Figure clicked');
+                console.log('figure clicked');
 
                 // Change class
                 if (caption.classList.contains('show')) {
@@ -303,12 +309,18 @@ function toggleFocus() {
 }
 
 
-// gallery
+// ---------------------------------------
+//  DESKTOP GALLERIES
+// ---------------------------------------
+
+// buildGallery waits for all images to be loaded if this is a first visit to the gallery
+// once images are loaded, initial single-column gallery height is calculated
+// and finally calls the adjustGalleryHeight function
 
 function buildGallery() {
     mainId = '#' + pageName + '-main';
     main = document.querySelector(mainId);
-    console.log('our page main is: ' + mainId);
+    // console.log('our page main is: ' + mainId);
 
     if (main.classList.contains('first')) {
         const images = document.querySelectorAll('img');
@@ -327,6 +339,19 @@ function buildGallery() {
             if (loadedCount === totalImages) {
                 // If all images are loaded, call the provided callback
                 console.log('all images loaded');
+
+                // calculate initial gallery height
+                globalThis.galleryClass = '.gallery.' + pageName;
+                globalThis.gallery = document.querySelector(galleryClass);
+                globalThis.initialHeight = gallery.offsetHeight;
+                // console.log('Gallery on this page: ' + galleryClass);
+                console.log(pageName + ' gallery single column height: ' + initialHeight);
+
+                if (!gallery) {
+                    console.error(pageName + "gallery element not found");
+                    return; // Exit if the gallery element isn't found
+                }
+
                 adjustGalleryHeight();
             }
         }
@@ -344,25 +369,60 @@ function buildGallery() {
     }
 }
 
-function adjustGalleryHeight() {
-    const galleryClass = '.gallery.' + pageName;
-    const gallery = document.querySelector(galleryClass);
-    console.log('page gallery is: ' + galleryClass);
+// adjustGalleryHeight approximates the needed height for a 2-col gallery
+// then calls isGalleryWiderThanParent to check if the height meets needs
 
-    if (!gallery) {
-        console.error("Gallery element not found!");
-        return; // Exit if the gallery element isn't found
-    }
+function adjustGalleryHeight() {
 
     // Step 1: Calculate initial gallery height in single column (no flex-wrap)
-    const initialHeight = gallery.offsetHeight;
-    console.log('Initial height: ' + initialHeight);
+    // (this is now in function upstream)
 
     // Step 2: Calculate the desired height when in two columns
-    const galleryHeight = initialHeight / 2 + 200;  // Divide by 2 for two columns
+    const galleryHeight = initialHeight / 2 + galleryMargin;  // Divide by 2 for two columns
 
     // Step 3: Apply the new height to the gallery
     gallery.style.setProperty('height', `${galleryHeight}px`);
 
-    console.log("Gallery height set to:", galleryHeight);
+    console.log(pageName + " gallery height set to:", galleryHeight);
+    isGalleryWiderThanParent();
+}
+
+// does gallery fit ?
+
+function isGalleryWiderThanParent() {
+    const galleryClass = '.gallery.' + pageName;
+    const gallery = document.querySelector(galleryClass);
+
+    const parent = gallery.parentElement;
+
+    // Get the width of the gallery (including padding) and its parent element
+    const galleryWidth = gallery.offsetWidth; // Includes padding
+    // console.log('Gallery width is: ' + galleryWidth);
+
+    const parentWidth = parent.offsetWidth; // Width of the parent (main element)
+    // console.log('Page width is: ' + parentWidth);
+
+    // Get the total padding on both sides of the gallery
+    const galleryMarginLeft = parseFloat(window.getComputedStyle(gallery).marginLeft);
+    // console.log('Gallery margin width is: ' + galleryMarginLeft);
+
+    // Compare the content width of the gallery to the parent's width minus the padding
+    if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
+        console.log(pageName + ' gallery is wider than the available space');
+        globalThis.galleryMargin += 50;
+        console.log(pageName + ' gallery height increased by 50px');
+        adjustGalleryHeight();
+    } else {
+        console.log(pageName + ' gallery fits within the available space in its parent');
+    }
+}
+
+function resizeGallery() {
+    const galleryClass = '.gallery.' + pageName;
+    const gallery = document.querySelector(galleryClass);
+
+    gallery.style.height = 'auto';
+    console.log(pageName + ' gallery height was reset');
+    globalThis.galleryMargin = 30;
+    buildGallery();
 }

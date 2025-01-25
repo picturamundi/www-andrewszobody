@@ -38,8 +38,10 @@ VARIABLES AND FONTS
     --focus-trans: 0.5s;
     --page-trans: 0.5s;
 
+    --desktop-main-width: calc(80vw - 80px);
+    --desktop-gallery-padding: 12vw;
+    --gallery-width: calc(var(--desktop-main-width) - (var(--desktop-gallery-padding) * 2));
     --gallery-order: ;
-    --desktop-gallery-padding: 15%;
 }
 
 @font-face {
@@ -823,7 +825,7 @@ span.desktop-page {
 
     body main:not(#home-main) {
         position: absolute;
-        width: calc(80% - 80px);
+        width: var(--desktop-main-width);
         margin-left: calc(20% + 80px);
         margin-top: 200px;
         right: 0;
@@ -850,12 +852,14 @@ span.desktop-page {
 
     div.gallery {
         display: flex;
-        width: calc(100% - (var(--desktop-gallery-padding) * 2));
-        margin: 0px var(--desktop-gallery-padding);
+        width: fit-content;
+        min-width: var(--gallery-width);
+        margin-left: var(--desktop-gallery-padding);
         flex-wrap: wrap;
         gap: var(--default-font-size);
         /* justify-content: first baseline; */
-        align-items: start;
+        align-items: center;
+        justify-content: start;
         flex-direction: column;
         overflow: hidden;
         flex: 1 1 var(--default-font-size);
@@ -865,7 +869,7 @@ span.desktop-page {
     .gallery figure {
         box-sizing: border-box;
         position: relative;
-        width: calc(50% - (var(--default-font-size) / 2));
+        width: calc((var(--gallery-width) / 2) - var(--default-font-size));
         margin: 0 !important;
         padding: 0 !important;
         /* display: flex;
@@ -874,7 +878,6 @@ span.desktop-page {
 
     figure img {
         /* height: 100%; */
-        width: 100%;
     }
 
     figcaption {
