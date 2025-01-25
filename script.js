@@ -8,9 +8,7 @@ window.addEventListener('DOMContentLoaded', function () {
     updateDevice();
     route();
     serveImages();
-    if (window.innerWidth > 600) {
-        buildGallery();
-    }
+    galleryOnVisit();
 });
 
 // address change trigger
@@ -19,9 +17,7 @@ window.addEventListener("hashchange", function () {
     document.body.classList.add('nav');
     route();
     serveImages();
-    if (window.innerWidth > 600) {
-        buildGallery();
-    }
+    galleryOnVisit();
 });
 
 
@@ -102,7 +98,6 @@ function route() {
 function home() {
     globalThis.pageName = 'home';
     document.body.setAttribute('id', 'home');
-    var main = document.querySelector('#home-main');
 
     pageVisit();
 }
@@ -110,7 +105,6 @@ function home() {
 function recent() {
     globalThis.pageName = 'recent';
     document.body.setAttribute('id', 'recent');
-    var main = document.querySelector('#recent-main');
 
     pageVisit();
 }
@@ -125,7 +119,6 @@ function less() {
 function old() {
     globalThis.pageName = 'old';
     document.body.setAttribute('id', 'old');
-    var main = document.querySelector('#old-main');
 
     pageVisit();
 }
@@ -315,59 +308,84 @@ function toggleFocus() {
 //  DESKTOP GALLERIES
 // ---------------------------------------
 
-// buildGallery waits for all images to be loaded if this is a first visit to the gallery
-// once images are loaded, initial single-column gallery height is calculated
-// and finally calls the adjustGalleryHeight function
+
+// gallery on visit figures out if we need to build the gallery when a page is visited
+// We only build the gallery if we’re on desktop and it’s our first page visit
+
+function galleryOnVisit() {
+    mainId = '#' + pageName + '-main';
+    main = document.querySelector(mainId);
+
+    if (window.innerWidth > 600) {
+        if (main.classList.contains('first')) {
+            buildGallery();
+        }
+    }
+}
+
+// Other than page visits, window resizing is the only other thing that calls "buildGallery"
+
+function resizeGallery() {
+    const galleryClass = '.gallery.' + pageName;
+    const gallery = document.querySelector(galleryClass);
+
+    gallery.style.height = 'auto';
+    console.log(pageName + ' gallery height was reset');
+    globalThis.galleryMargin = 30;
+    buildGallery();
+}
+
+// buildGallery waits for all images to be loaded
+// then calculates initial single-column gallery height
+// then calls the adjustGalleryHeight function
 
 function buildGallery() {
     mainId = '#' + pageName + '-main';
     main = document.querySelector(mainId);
     // console.log('our page main is: ' + mainId);
 
-    if (main.classList.contains('first')) {
-        const images = document.querySelectorAll('img');
-        let loadedCount = 0;
-        const totalImages = images.length;
+    const images = document.querySelectorAll('img');
+    let loadedCount = 0;
+    const totalImages = images.length;
 
-        if (totalImages === 0) {
-            // If no images are on the page, immediately call the callback
+    if (totalImages === 0) {
+        // If no images are on the page, immediately call the callback
+        adjustGalleryHeight();
+        console.log('there were no images');
+        return;
+    }
+
+    images.forEach(img => {
+        if (img.complete) {
+            // If the image is already loaded, increment the count
+            checkImageLoad();
+        } else {
+            // Otherwise, listen for the load event
+            img.addEventListener('load', checkImageLoad);
+            img.addEventListener('error', checkImageLoad); // Optional: handle failed images
+        }
+    });
+
+    function checkImageLoad() {
+        loadedCount++;
+        // if all images loaded…
+        if (loadedCount === totalImages) {
+            console.log('images loaded');
+
+            // calculate initial gallery height
+            globalThis.galleryClass = '.gallery.' + pageName;
+            globalThis.gallery = document.querySelector(galleryClass);
+            globalThis.initialHeight = gallery.offsetHeight;
+
+            console.log(pageName + ' gallery single column height: ' + initialHeight);
+
+            if (!gallery) {
+                console.error(pageName + ' gallery element not found');
+                return; // Exit if the gallery element isn't found
+            }
+
             adjustGalleryHeight();
-            console.log('there were no images');
-            return;
         }
-
-        function checkImageLoad() {
-            loadedCount++;
-            if (loadedCount === totalImages) {
-                // If all images are loaded, call the provided callback
-                console.log('all images loaded');
-
-                // calculate initial gallery height
-                globalThis.galleryClass = '.gallery.' + pageName;
-                globalThis.gallery = document.querySelector(galleryClass);
-                globalThis.initialHeight = gallery.offsetHeight;
-                // console.log('Gallery on this page: ' + galleryClass);
-                console.log(pageName + ' gallery single column height: ' + initialHeight);
-
-                if (!gallery) {
-                    console.error(pageName + "gallery element not found");
-                    return; // Exit if the gallery element isn't found
-                }
-
-                adjustGalleryHeight();
-            }
-        }
-
-        images.forEach(img => {
-            if (img.complete) {
-                // If the image is already loaded, increment the count
-                checkImageLoad();
-            } else {
-                // Otherwise, listen for the load event
-                img.addEventListener('load', checkImageLoad);
-                img.addEventListener('error', checkImageLoad); // Optional: handle failed images
-            }
-        });
     }
 }
 
@@ -376,20 +394,18 @@ function buildGallery() {
 
 function adjustGalleryHeight() {
 
-    // Step 1: Calculate initial gallery height in single column (no flex-wrap)
-    // (this is now in function upstream)
-
-    // Step 2: Calculate the desired height when in two columns
+    // Calculate the desired height when in two columns
     const galleryHeight = initialHeight / 2 + galleryMargin;  // Divide by 2 for two columns
 
-    // Step 3: Apply the new height to the gallery
+    // Apply the new height to the gallery
     gallery.style.setProperty('height', `${galleryHeight}px`);
-
     console.log(pageName + " gallery height set to:", galleryHeight);
+
+    // Check if this height works
     isGalleryWiderThanParent();
 }
 
-// does gallery fit ?
+// Check if gallery has two or three columns
 
 function isGalleryWiderThanParent() {
     const galleryClass = '.gallery.' + pageName;
@@ -400,31 +416,20 @@ function isGalleryWiderThanParent() {
     // Get the width of the gallery (including padding) and its parent element
     const galleryWidth = gallery.offsetWidth; // Includes padding
     // console.log('Gallery width is: ' + galleryWidth);
-
     const parentWidth = parent.offsetWidth; // Width of the parent (main element)
     // console.log('Page width is: ' + parentWidth);
 
-    // Get the total padding on both sides of the gallery
+    // Get the margin on the gallery
     const galleryMarginLeft = parseFloat(window.getComputedStyle(gallery).marginLeft);
     // console.log('Gallery margin width is: ' + galleryMarginLeft);
 
-    // Compare the content width of the gallery to the parent's width minus the padding
+    // Compare the content width of the gallery to the parent's width minus the margin
     if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
-        console.log(pageName + ' gallery is wider than the available space');
+        console.log(pageName + ' gallery has too many columns');
         globalThis.galleryMargin += 50;
         console.log(pageName + ' gallery height increased by 50px');
         adjustGalleryHeight();
     } else {
-        console.log(pageName + ' gallery fits within the available space in its parent');
+        console.log(pageName + ' gallery has 2 columns');
     }
-}
-
-function resizeGallery() {
-    const galleryClass = '.gallery.' + pageName;
-    const gallery = document.querySelector(galleryClass);
-
-    gallery.style.height = 'auto';
-    console.log(pageName + ' gallery height was reset');
-    globalThis.galleryMargin = 30;
-    buildGallery();
 }
