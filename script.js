@@ -197,12 +197,14 @@ function revealActiveImages() {
 // back button
 
 function backButton() {
-    if (history.length > 1) {
-        // If there is history to go back to, use history.back()
-        history.back();
-    } else {
-        // Otherwise, redirect to the homepage
-        window.location.hash = 'home';
+    if (pageName != 'home') {
+        if (history.length > 1) {
+            // If there is history to go back to, use history.back()
+            history.back();
+        } else {
+            // Otherwise, redirect to the homepage
+            window.location.hash = 'home';
+        }
     }
 }
 
