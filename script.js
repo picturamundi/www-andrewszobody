@@ -14,15 +14,18 @@ window.addEventListener('DOMContentLoaded', function () {
 // address change trigger
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
+    globalThis.galleryMargin = 30;
     document.body.classList.add('nav');
     route();
     serveImages();
+    window.scrollTo(0, 0);
     galleryOnVisit();
 });
 
 
 window.addEventListener('resize', function () {
     // body class 'nav' lets CSS know this is not an initial page load
+    globalThis.galleryMargin = 30;
     console.log('---------- resize!');
     updateDevice();
     resizeGallery();
@@ -71,6 +74,7 @@ function route() {
     var functionName = hash.substring(1);
 
     // call the corresponding function
+    // mark the relevant page as active
     if (typeof window[functionName] === "function") {
         window[functionName]();
     } else {
@@ -99,6 +103,7 @@ function home() {
     globalThis.pageName = 'home';
     document.body.setAttribute('id', 'home');
 
+    markActivePage();
     pageVisit();
 }
 
@@ -106,6 +111,7 @@ function recent() {
     globalThis.pageName = 'recent';
     document.body.setAttribute('id', 'recent');
 
+    markActivePage();
     pageVisit();
 }
 
@@ -113,6 +119,7 @@ function less() {
     globalThis.pageName = 'less';
     document.body.setAttribute('id', 'less');
 
+    markActivePage();
     pageVisit();
 }
 
@@ -120,17 +127,29 @@ function old() {
     globalThis.pageName = 'old';
     document.body.setAttribute('id', 'old');
 
+    markActivePage();
     pageVisit();
 }
 
 function bio() {
+    globalThis.pageName = 'bio';
     document.body.setAttribute('id', 'bio');
+    markActivePage();
     pageVisit();
 }
 
-function pageVisit() {
+function markActivePage() {
     var mainId = '#' + pageName + '-main';
     var main = document.querySelector(mainId);
+
+    document.querySelectorAll('main').forEach(mainElement => {
+        mainElement.classList.remove('active');
+    });
+    main.classList.add('active');
+}
+
+function pageVisit() {
+    var main = document.querySelector('main.active');
 
     if (main.classList.contains('sleeping')) {
         main.classList.remove('sleeping');
@@ -222,12 +241,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log('figure clicked');
 
                 // Change class
-                if (caption.classList.contains('show')) {
-                    caption.classList.remove('show');
-                    figure.classList.remove('popup');
-                } else {
+                if (caption.classList.contains('hidden')) {
                     figure.classList.add('popup');
-                    caption.classList.add('show');
+                    caption.classList.remove('hidden');
+                } else {
+                    caption.classList.add('hidden');
+                    figure.classList.remove('popup');
                 }
             });
         }
@@ -310,16 +329,16 @@ function toggleFocus() {
 
 
 // gallery on visit figures out if we need to build the gallery when a page is visited
-// We only build the gallery if we’re on desktop and it’s our first page visit
+// We only build the gallery if we’re on desktop
+// Gallery is built on every visit because there may have been resizes
 
 function galleryOnVisit() {
-    mainId = '#' + pageName + '-main';
-    main = document.querySelector(mainId);
+    var main = document.querySelector('main.active');
 
     if (window.innerWidth > 600) {
-        if (main.classList.contains('first')) {
-            buildGallery();
-        }
+        // if (main.classList.contains('first')) {
+        buildGallery();
+        // }
     }
 }
 
@@ -340,9 +359,6 @@ function resizeGallery() {
 // then calls the adjustGalleryHeight function
 
 function buildGallery() {
-    mainId = '#' + pageName + '-main';
-    main = document.querySelector(mainId);
-    // console.log('our page main is: ' + mainId);
 
     const images = document.querySelectorAll('img');
     let loadedCount = 0;
