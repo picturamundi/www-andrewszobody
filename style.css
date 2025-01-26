@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+
+/* TO DO LIST */
+/* Make gaps in the gallery smaller and smaller desktop widths */
+/* Some screen resizes aren’t refreshing the gallery height (desktop -> mobile?) */
+
+
 /* ----------------------------------
 VARIABLES AND FONTS
 ---------------------------------- */
@@ -205,12 +211,13 @@ figure {
 }
 
 .mobile figure img {
-    max-width: 400px;
+    max-width: 420px;
 }
 
 
 figure img {
     width: 100%;
+    border-radius: 1px;
 }
 
 figure:has(img.inactive) {
@@ -889,31 +896,23 @@ span.desktop-page {
     div.gallery {
         display: flex;
         width: fit-content;
-        /* min-width: var(--gallery-width); */
         margin-left: var(--desktop-gallery-padding);
         flex-wrap: wrap;
-        gap: 20px;
-        /* justify-content: first baseline; */
+        gap: 1rem;
+        /* modify .gallery figure width along with gallery gap */
         align-items: center;
         justify-content: start;
         flex-direction: column;
         overflow: hidden;
         flex: 1 1 var(--default-font-size);
-        /* height: 2300px; */
     }
 
     .gallery figure {
         box-sizing: border-box;
         position: relative;
-        width: calc((var(--gallery-width) / 2) - 10px);
+        width: calc((var(--gallery-width) / 2) - 0.5rem);
         margin: 0 !important;
         padding: 0 !important;
-        /* display: flex;
-        justify-content: center; */
-    }
-
-    figure img {
-        /* height: 100%; */
     }
 
     figcaption {

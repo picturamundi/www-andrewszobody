@@ -28,6 +28,7 @@ window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     console.log('---------- resize!');
     updateDevice();
+    console.log('device updated');
     resizeGallery();
 });
 
@@ -348,10 +349,15 @@ function resizeGallery() {
     const galleryClass = '.gallery.' + pageName;
     const gallery = document.querySelector(galleryClass);
 
-    gallery.style.height = 'auto';
-    console.log(pageName + ' gallery height was reset');
-    globalThis.galleryMargin = 30;
-    buildGallery();
+    if (window.innerWidth < 700) {
+        gallery.style.height = 'fit-content';
+        console.log('gallery resized for mobile');
+    } else {
+        gallery.style.height = 'auto';
+        console.log(pageName + ' gallery height was reset');
+        globalThis.galleryMargin = 30;
+        buildGallery();
+    }
 }
 
 // buildGallery waits for all images to be loaded
