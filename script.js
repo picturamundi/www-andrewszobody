@@ -2,7 +2,7 @@
 //  WINDOW TRIGGERS
 // ---------------------------------------
 
-//initial load trigger
+//page load trigger
 window.addEventListener('DOMContentLoaded', function () {
     globalThis.galleryMargin = 30;
     updateDevice();
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function () {
     galleryOnVisit();
 });
 
-// address change trigger
+// url change trigger
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
     globalThis.galleryMargin = 30;
@@ -22,14 +22,14 @@ window.addEventListener("hashchange", function () {
     galleryOnVisit();
 });
 
-
+//window resize trigger
 window.addEventListener('resize', function () {
     // body class 'nav' lets CSS know this is not an initial page load
     globalThis.galleryMargin = 30;
     console.log('---------- resize!');
     updateDevice();
     console.log('device updated');
-    resizeGallery();
+    galleryOnResize();
 });
 
 
@@ -55,8 +55,7 @@ function updateDevice() {
 //  PSEUDO PAGES
 // ---------------------------------------
 
-// route() loads pages
-
+// route() decides which page to load based off of the URL
 function route() {
 
     // collapse the menu when loading pages
@@ -75,30 +74,14 @@ function route() {
     var functionName = hash.substring(1);
 
     // call the corresponding function
-    // mark the relevant page as active
     if (typeof window[functionName] === "function") {
         window[functionName]();
     } else {
         console.log("function not found");
     }
-    if (document.body.hasAttribute('id')) {
-        if (document.body.getAttribute('id') !== 'home') {
-            // tag body if on a page (not home screen)
-            document.body.classList.add('page');
-            window.addEventListener("hashchange", function () {
-                document.body.classList.remove('leave-home');
-            });
-        } else {
-            document.body.classList.remove('page');
-            window.addEventListener("hashchange", function () {
-                // tag body when we’ve left from the home to page (for animations)
-                document.body.classList.add('leave-home');
-            });
-        }
-    }
 }
 
-// page functions
+// route() calls one of these page functions
 
 function home() {
     globalThis.pageName = 'home';
@@ -149,6 +132,8 @@ function markActivePage() {
     main.classList.add('active');
 }
 
+// pageVisit lets us track navigation with CSS by applying tags to stuff
+
 function pageVisit() {
     var main = document.querySelector('main.active');
 
@@ -163,13 +148,28 @@ function pageVisit() {
             return;
         }
     }
+    if (document.body.hasAttribute('id')) {
+        if (document.body.getAttribute('id') !== 'home') {
+            // tag body if on a page (not home screen)
+            document.body.classList.add('page');
+            window.addEventListener("hashchange", function () {
+                document.body.classList.remove('leave-home');
+            });
+        } else {
+            document.body.classList.remove('page');
+            window.addEventListener("hashchange", function () {
+                // tag body when we’ve left from the home to page (for animations)
+                document.body.classList.add('leave-home');
+            });
+        }
+    }
 }
 
 // load img-sources on current page
 
 function serveImages() {
     sourceImages();
-    revealActiveImages();
+    revealSourcedImages();
 }
 
 // activate source for images on current page
@@ -190,7 +190,7 @@ function sourceImages() {
 
 // show images on current page, hide those with invalid sources
 
-function revealActiveImages() {
+function revealSourcedImages() {
     var bodyId = document.body.id;
     var imgClass = '.' + bodyId + '-img';
     var lazyImgs = document.querySelectorAll(imgClass);
@@ -230,10 +230,10 @@ function backButton() {
 
 document.addEventListener("DOMContentLoaded", function () {
     // Select all <figure> elements
-    const figures = document.querySelectorAll('figure');
+    const figures = document.querySelectorAll('.figure-wrapper');
 
     figures.forEach(function (figure) {
-        const img = figure.querySelector('img');
+        const img = figure.querySelector('.img-container');
         if (img) {
             // For some reason clicks register on the img, not the parent figure
             img.addEventListener('click', function (event) {
@@ -242,18 +242,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log('figure clicked');
 
                 // Change class
-                if (caption.classList.contains('hidden')) {
-                    figure.classList.add('popup');
-                    caption.classList.remove('hidden');
-                } else {
-                    caption.classList.add('hidden');
+                if (figure.classList.contains('popup')) {
                     figure.classList.remove('popup');
+                } else {
+                    figure.classList.add('popup');
                 }
             });
         }
     });
 
 });
+
+function closeCaption() {
+    document.querySelector('.popup').classList.remove('popup');
+}
 
 // toggle menu
 
@@ -325,27 +327,27 @@ function toggleFocus() {
 
 
 // ---------------------------------------
-//  DESKTOP GALLERIES
+// BUILD DESKTOP GALLERIES
 // ---------------------------------------
 
 
-// gallery on visit figures out if we need to build the gallery when a page is visited
+// galleryOnVisit figures out if we need to build the gallery when a page is visited
 // We only build the gallery if we’re on desktop
-// Gallery is built on every visit because there may have been resizes
+// For now, gallery is built on every visit because there may have been resizes
 
 function galleryOnVisit() {
     var main = document.querySelector('main.active');
 
     if (window.innerWidth > 700) {
         // if (main.classList.contains('first')) {
-        buildGallery();
+        measureGallery();
         // }
     }
 }
 
-// Other than page visits, window resizing is the only other thing that calls "buildGallery"
+// Other than page visits, window resizing is the only other thing that calls measureGallery()
 
-function resizeGallery() {
+function galleryOnResize() {
     const galleryClass = '.gallery.' + pageName;
     const gallery = document.querySelector(galleryClass);
 
@@ -356,15 +358,15 @@ function resizeGallery() {
         gallery.style.height = 'auto';
         console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
-        buildGallery();
+        measureGallery();
     }
 }
 
-// buildGallery waits for all images to be loaded
+// measureGallery() waits for all images to be loaded
 // then calculates initial single-column gallery height
-// then calls the adjustGalleryHeight function
+// then calls the setGalleryHeight function
 
-function buildGallery() {
+function measureGallery() {
 
     const images = document.querySelectorAll('img');
     let loadedCount = 0;
@@ -372,7 +374,7 @@ function buildGallery() {
 
     if (totalImages === 0) {
         // If no images are on the page, immediately call the callback
-        adjustGalleryHeight();
+        setGalleryHeight();
         console.log('there were no images');
         return;
     }
@@ -406,15 +408,15 @@ function buildGallery() {
                 return; // Exit if the gallery element isn't found
             }
 
-            adjustGalleryHeight();
+            setGalleryHeight();
         }
     }
 }
 
-// adjustGalleryHeight approximates the needed height for a 2-col gallery
-// then calls isGalleryWiderThanParent to check if the height meets needs
+// setGalleryHeight approximates the needed height for a 2-col gallery
+// then calls checkGalleryHeight to check if the height meets needs
 
-function adjustGalleryHeight() {
+function setGalleryHeight() {
 
     // Calculate the desired height when in two columns
     const galleryHeight = initialHeight / 2 + galleryMargin;  // Divide by 2 for two columns
@@ -424,12 +426,12 @@ function adjustGalleryHeight() {
     console.log(pageName + " gallery height set to:", galleryHeight);
 
     // Check if this height works
-    isGalleryWiderThanParent();
+    checkGalleryHeight();
 }
 
-// Check if gallery has two or three columns
+// Check if gallery has two columns or nor
 
-function isGalleryWiderThanParent() {
+function checkGalleryHeight() {
     const galleryClass = '.gallery.' + pageName;
     const gallery = document.querySelector(galleryClass);
 
@@ -450,7 +452,7 @@ function isGalleryWiderThanParent() {
         console.log(pageName + ' gallery has too many columns');
         globalThis.galleryMargin += 50;
         console.log(pageName + ' gallery height increased by 50px');
-        adjustGalleryHeight();
+        setGalleryHeight();
     } else {
         console.log(pageName + ' gallery has 2 columns');
     }

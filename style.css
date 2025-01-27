@@ -170,6 +170,14 @@ main {
     overflow: hidden;
 }
 
+main.active {
+    position: absolute;
+    height: fit-content;
+    padding-bottom: 7rem;
+    overflow: hidden;
+}
+
+
 .mobile main {
     transition: margin var(--page-trans), opacity var(--page-trans);
     width: 100%;
@@ -224,7 +232,7 @@ figure:has(img.inactive) {
     display: none;
 }
 
-figcaption.hidden div {
+figcaption div {
     opacity: 0;
     margin-top: 0px;
     margin-bottom: 0rem;
@@ -236,16 +244,16 @@ figcaption div {
     text-align: center;
 }
 
-figcaption.hidden {
+figcaption {
     margin-bottom: 0rem;
     height: 0px;
 }
 
-figcaption {
+.popup figcaption {
     margin-bottom: 6rem;
 }
 
-figcaption div {
+.popup figcaption div {
     /* height: 10px; */
     opacity: 1;
     margin-top: 10px;
@@ -749,6 +757,10 @@ span.desktop-page {
     top: 0;
 }
 
+div.popup-close {
+    display: none;
+}
+
 
 @media only screen and (min-width: 700px) {
 
@@ -918,5 +930,127 @@ span.desktop-page {
     figcaption {
         display: none;
     }
+
+    div.popup {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+
+    div.popup figure {
+        position: relative;
+        max-width: 75vw;
+        width: fit-content;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    div.popup .img-container {
+        position: relative;
+        max-height: 100%;
+        max-width: 100%;
+        height: 70vh;
+        width: fit-content;
+        /* background-color: red; */
+        display: flex;
+        justify-content: center;
+    }
+
+    div.popup .img-container img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+    }
+
+    div.popup figcaption {
+        position: relative;
+        display: block;
+        font-size: 1.3rem;
+        height: fit-content;
+        width: 100%;
+        margin-bottom: 0px;
+    }
+
+    div.popup figcaption div {
+        text-align: left;
+    }
+
+    .fig-title {
+        margin-top: 1.5rem;
+    }
+
+
+    body:has(div.popup) nav,
+    body:has(div.popup) main.active .figure-wrapper:not(.popup),
+    body:has(div.popup) main.active h1 {
+        opacity: 0;
+    }
+
+    body:has(div.popup) main.active {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    body:has(div.popup) main div.popup {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    body:has(div.popup) main div.popup figcaption div {
+        color: var(--ui-color);
+    }
+
+    .popup div.popup-close {
+        width: 100%;
+        height: var(--header-height);
+        display: flex;
+        justify-content: right;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    div.popup-close svg {
+        position: relative;
+        width: var(--header-height);
+    }
+
+    /* body:has(div.popup) div#popup-close {
+        display: block;
+        width: var(--header-height);
+        height: var(--header-height);
+        margin: calc(var(--header-height) * 2);
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 10;
+    } */
+
+    .popup figcaption div.fig-title {
+        margin-top: 1.5rem;
+    }
+
+    /* .popup .img-container::before {
+        display: block;
+        right: 0;
+        width: calc(100% - 1rem);
+        text-align: right;
+        content: "Close ";
+        margin-right: 1rem;
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        color: var(--ui-color);
+    } */
 
 }
