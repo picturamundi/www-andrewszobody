@@ -232,28 +232,37 @@ figure:has(img.inactive) {
     display: none;
 }
 
-figcaption div {
+figcaption {
+    margin-bottom: 0rem;
+    height: 0px;
+}
+
+figcaption .fig-title,
+figcaption .fig-details {
     opacity: 0;
     margin-top: 0px;
     margin-bottom: 0rem;
 }
 
 figcaption,
-figcaption div {
+figcaption .fig-title,
+figcaption .fig-details {
     transition: opacity var(--menu-trans), margin var(--menu-trans), height var(--menu-trans);
     text-align: center;
 }
 
-figcaption {
-    margin-bottom: 0rem;
-    height: 0px;
+figcaption .fig-medium,
+figcaption .fig-dimensions {
+    display: inline-block;
 }
+
 
 .popup figcaption {
     margin-bottom: 6rem;
 }
 
-.popup figcaption div {
+.popup figcaption .fig-title,
+.popup figcaption .fig-details {
     /* height: 10px; */
     opacity: 1;
     margin-top: 10px;
@@ -984,7 +993,8 @@ div.popup-close {
         margin-bottom: 0px;
     }
 
-    div.popup figcaption div {
+    div.popup figcaption .fig-title,
+    div.popup figcaption .fig-details {
         text-align: left;
     }
 

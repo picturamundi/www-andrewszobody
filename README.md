@@ -84,16 +84,19 @@ Dropping `.jpeg` files into these subfolders with the following naming conventio
 
 By default, galleries are set up for 15 images, but more can be added into the HTML file. You can change whether these images are displayed in numerical order or reverse numerical order by modifying the `gallery-order` variable in the CSS file.
 
-In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct work, which in the HTML is a `<figure>` element. Inside this figure, fill out `fig-title` and `fig-medium` (remove the comment syntax, `<!--` and `-->`, which hide my comments from end users):
+In order to add a caption to a new image — or to modify a caption —, open the HTML document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct work. Just under the address, fill out `fig-title`, `fig-medium`, and `fig-dimensions` (remove the comment syntax, `<!--` and `-->`, which hide my comments from end users):
 
 ```html
-<figure>
-  <img data-src="artwork/less/03.jpeg" src="" alt="" class="less-img">
-  <figcaption>
-    <div class="fig-title"> <!--Put title here--> </div>
-    <div class="fig-medium"> <!--Put medium, dimensions here--> </div>
-  </figcaption>
-</figure>
+<div class="img-container">
+    <img data-src="artwork/recent/01.jpeg" src="" alt="" class="recent-img">
+</div>
+<figcaption class="">
+    <div class="fig-title"><!--Put title Here--></div>
+    <div class="fig-details">
+        <div class="fig-medium"><!--Put medium Here--></div>
+        <div class="fig-dimensions"><!--Put dimenions Here--></div>
+    </div>
+</figcaption>
 ```
 
 That should be all!
@@ -132,7 +135,7 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
     <etc.>
 ```
 
-`theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
+The CSS variable `theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while the HTML `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
 
 ![color matching](readme/color-matching-1.png)
 

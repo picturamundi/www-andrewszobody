@@ -1,3 +1,9 @@
+
+// todo
+// figure out why gallery gets messed up when switching devices
+// collapse all popups when going from mobile to desktop
+
+
 // ---------------------------------------
 //  WINDOW TRIGGERS
 // ---------------------------------------
