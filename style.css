@@ -77,7 +77,7 @@ VARIABLES AND FONTS
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 699px) {
     :root {
         --default-font-size: 14px;
     }

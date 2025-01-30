@@ -2,6 +2,9 @@
 // todo
 // figure out why gallery gets messed up when switching devices
 // collapse all popups when going from mobile to desktop
+// optimize:
+//    - get rid of duplicate X-buttons in desktop popup
+//    - get rid of page-img class
 
 
 // ---------------------------------------
@@ -456,8 +459,8 @@ function checkGalleryHeight() {
     // Compare the content width of the gallery to the parent's width minus the margin
     if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
         console.log(pageName + ' gallery has too many columns');
-        globalThis.galleryMargin += 50;
-        console.log(pageName + ' gallery height increased by 50px');
+        globalThis.galleryMargin += 30;
+        console.log(pageName + ' gallery height increased by 30px');
         setGalleryHeight();
     } else {
         console.log(pageName + ' gallery has 2 columns');
