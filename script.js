@@ -1,10 +1,11 @@
 
-// todo
-// figure out why gallery gets messed up when switching devices
-// collapse all popups when going from mobile to desktop
-// optimize:
-//    - get rid of duplicate X-buttons in desktop popup
-//    - get rid of page-img class
+// TODO
+//      figure out why gallery gets messed up when switching devices
+//      collapse all popups when going from mobile to desktop
+//      nav-list display: flex when going from mobile to desktop
+//      optimize:
+//          - get rid of duplicate X-buttons in desktop popup
+//          - get rid of page-img class
 
 
 // ---------------------------------------
@@ -35,9 +36,9 @@ window.addEventListener("hashchange", function () {
 window.addEventListener('resize', function () {
     // body class 'nav' lets CSS know this is not an initial page load
     globalThis.galleryMargin = 30;
-    console.log('---------- resize!');
+    // console.log('---------- resize!');
     updateDevice();
-    console.log('device updated');
+    // console.log('device updated');
     galleryOnResize();
 });
 
@@ -127,6 +128,7 @@ function old() {
 function bio() {
     globalThis.pageName = 'bio';
     document.body.setAttribute('id', 'bio');
+
     markActivePage();
     pageVisit();
 }
@@ -149,28 +151,24 @@ function pageVisit() {
     if (main.classList.contains('sleeping')) {
         main.classList.remove('sleeping');
         main.classList.add('first');
-        console.log('---------- FIRST VISIT TO PAGE: ' + pageName);
+        // console.log('---------- FIRST VISIT TO PAGE: ' + pageName);
     } else {
         if (main.classList.contains('first')) {
             main.classList.remove('first');
-        } else {
-            return;
         }
     }
-    if (document.body.hasAttribute('id')) {
-        if (document.body.getAttribute('id') !== 'home') {
-            // tag body if on a page (not home screen)
-            document.body.classList.add('page');
-            window.addEventListener("hashchange", function () {
-                document.body.classList.remove('leave-home');
-            });
-        } else {
-            document.body.classList.remove('page');
-            window.addEventListener("hashchange", function () {
-                // tag body when we’ve left from the home to page (for animations)
-                document.body.classList.add('leave-home');
-            });
-        }
+    if (document.body.getAttribute('id') == 'home' || document.body.getAttribute('id') == 'bio') {
+        // tag body if on a page (white bg)
+        document.body.classList.remove('page');
+        window.addEventListener("hashchange", function () {
+            // tag body when we’ve left from the home to page (for animations)
+            document.body.classList.add('leave-home');
+        });
+    } else {
+        document.body.classList.add('page');
+        window.addEventListener("hashchange", function () {
+            document.body.classList.remove('leave-home');
+        });
     }
 }
 
@@ -247,8 +245,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // For some reason clicks register on the img, not the parent figure
             img.addEventListener('click', function (event) {
                 // Find the caption within the clicked figure
-                const caption = figure.querySelector('figcaption');
-                console.log('figure clicked');
 
                 // Change class
                 if (figure.classList.contains('popup')) {
@@ -362,10 +358,10 @@ function galleryOnResize() {
 
     if (window.innerWidth < 700) {
         gallery.style.height = 'fit-content';
-        console.log('gallery resized for mobile');
+        // console.log('gallery resized for mobile');
     } else {
         gallery.style.height = 'auto';
-        console.log(pageName + ' gallery height was reset');
+        // console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
         measureGallery();
     }
@@ -403,14 +399,14 @@ function measureGallery() {
         loadedCount++;
         // if all images loaded…
         if (loadedCount === totalImages) {
-            console.log('images loaded');
+            // console.log('images loaded');
 
             // calculate initial gallery height
             globalThis.galleryClass = '.gallery.' + pageName;
             globalThis.gallery = document.querySelector(galleryClass);
             globalThis.initialHeight = gallery.offsetHeight;
 
-            console.log(pageName + ' gallery single column height: ' + initialHeight);
+            // console.log(pageName + ' gallery single column height: ' + initialHeight);
 
             if (!gallery) {
                 console.error(pageName + ' gallery element not found');
@@ -432,7 +428,7 @@ function setGalleryHeight() {
 
     // Apply the new height to the gallery
     gallery.style.setProperty('height', `${galleryHeight}px`);
-    console.log(pageName + " gallery height set to:", galleryHeight);
+    // console.log(pageName + " gallery height set to:", galleryHeight);
 
     // Check if this height works
     checkGalleryHeight();
@@ -458,11 +454,11 @@ function checkGalleryHeight() {
 
     // Compare the content width of the gallery to the parent's width minus the margin
     if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
-        console.log(pageName + ' gallery has too many columns');
+        // console.log(pageName + ' gallery has too many columns');
         globalThis.galleryMargin += 30;
-        console.log(pageName + ' gallery height increased by 30px');
+        // console.log(pageName + ' gallery height increased by 30px');
         setGalleryHeight();
     } else {
-        console.log(pageName + ' gallery has 2 columns');
+        // console.log(pageName + ' gallery has 2 columns');
     }
 }
