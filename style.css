@@ -212,6 +212,10 @@ body.page.menu-expanded svg rect {
     transition: stroke var(--menu-trans);
 }
 
+#social svg rect+rect+rect {
+    stroke-width: 0px;
+}
+
 figure {
     margin: 0px;
     padding: 0px 0px;
@@ -489,6 +493,14 @@ body:not(#home) #back-button svg {
 
 #social svg {
     opacity: var(--insta-opacity);
+}
+
+#social svg rect+rect+rect {
+    fill: var(--ui-color);
+}
+
+.mobile #instagram-link {
+    display: none;
 }
 
 body.page #social {
