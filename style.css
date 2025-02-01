@@ -2,8 +2,7 @@
 
 
 /* TO DO LIST */
-/* Make gaps in the gallery smaller and smaller desktop widths */
-/* Some screen resizes aren’t refreshing the gallery height (desktop -> mobile?) */
+/* Clarify desktop-page and non-desktop-page */
 
 
 /* ----------------------------------
@@ -11,14 +10,15 @@ VARIABLES AND FONTS
 ---------------------------------- */
 
 :root {
+    --transparent: rgba(0, 0, 0, 0);
     --theme-color-1: rgb(200, 187, 170);
     /* theme-color-1 is used for the home page background */
     --theme-color-2: white;
     /* theme-color-2 is used for the gallery background */
     --theme-color-3: rgb(108, 104, 98);
-    /* theme-color-3 is used for default text */
+    /* theme-color-3 is used for default text color */
     --ui-color: white;
-    /* --ui-color is used for buttons and banner */
+    /* --ui-color is used for menus, buttons, headers and footers */
     --text-color-primary: var(--theme-color-3);
     /* change text-color-primary to white for darker gallery backgrounds */
     --glass-color: rgba(171, 154, 129, 0.5);
@@ -32,16 +32,18 @@ VARIABLES AND FONTS
     --font-weight-bold: 600;
 
     --icon-weight: 3px;
+    /* icon-weight determines the thickness of menu and instagram icons */
     --insta-opacity: 0.7;
+    /* instagram icon opacity */
 
     --name-case: capitalize;
     --name-font-family: 'custom-1';
-    --name-font-size: 40px;
+    --name-font-size: 3rem;
 
     --header-height: 2.1rem;
 
     --menu-trans: 0.4s;
-    --focus-trans: 0.5s;
+    --focus-trans: 1s;
     --page-trans: 0.5s;
 
     --desktop-main-width: calc(80vw - 80px);
@@ -50,19 +52,6 @@ VARIABLES AND FONTS
     --main-desktop-margin: 20px;
     --gallery-order: ;
 
-}
-
-@font-face {
-    font-family: 'custom-1';
-    src: url('fonts/montserrat/Montserrat-VariableFont_wght.ttf');
-    /* src: url('assets/font/Pictura-Regular.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Pictura-Regular.woff2') format('woff2'),
-        url('assets/font/Pictura-Regular.woff') format('woff'),
-        url('assets/font/Pictura-Regular.ttf') format('truetype'),
-        url('assets/font/Pictura-Regular.svg#Pictura-Regular') format('svg'); */
-    /* font-weight: var(--font-weight-headings); */
-    font-style: normal;
-    font-display: swap;
 }
 
 @media only screen and (max-width: 1050px) {
@@ -81,6 +70,25 @@ VARIABLES AND FONTS
     :root {
         --default-font-size: 14px;
     }
+}
+
+@font-face {
+    font-family: 'custom-1';
+    src: url('fonts/montserrat/Montserrat-VariableFont_wght.ttf');
+    /* src: url('assets/font/Pictura-Regular.eot?#iefix') format('embedded-opentype'),
+        url('assets/font/Pictura-Regular.woff2') format('woff2'),
+        url('assets/font/Pictura-Regular.woff') format('woff'),
+        url('assets/font/Pictura-Regular.ttf') format('truetype'),
+        url('assets/font/Pictura-Regular.svg#Pictura-Regular') format('svg'); */
+    /* font-weight: var(--font-weight-headings); */
+    font-style: normal;
+    font-display: swap;
+}
+
+#nav-list,
+header,
+#site-name {
+    user-select: none;
 }
 
 
@@ -105,7 +113,8 @@ body {
     font-weight: var(--font-weight-primary);
 }
 
-body#home {
+body#home,
+body#bio {
     height: 100vh;
 }
 
@@ -122,7 +131,9 @@ body#home {
 body#home #content,
 body#bio #content {
     height: 100vh;
+    overflow: hidden;
 }
+
 
 body.page #content {
     height: fit-content;
@@ -171,8 +182,8 @@ main {
     overflow: hidden;
 }
 
-main.active {
-    position: absolute;
+main.active:not(#home-main, #bio-main) {
+    position: relative;
     height: fit-content;
     padding-bottom: 7rem;
     overflow: hidden;
@@ -184,14 +195,15 @@ main.active {
     width: 100%;
 }
 
-main.page.active {
+main.page {
     background-color: var(--theme-color-2);
     z-index: 4;
 }
 
 body.page.menu-expanded main.page {
-    margin-top: 24rem !important;
+    margin-top: 24rem;
 }
+
 
 svg path,
 svg rect,
@@ -215,7 +227,6 @@ figure {
 }
 
 .mobile figure {
-    /* margin: 30px 0px; */
     padding: 0px 0px;
 }
 
@@ -245,6 +256,7 @@ figcaption .fig-details {
     margin-bottom: 0rem;
 }
 
+
 figcaption,
 figcaption .fig-title,
 figcaption .fig-details {
@@ -264,13 +276,18 @@ figcaption .fig-dimensions {
 
 .popup figcaption .fig-title,
 .popup figcaption .fig-details {
-    /* height: 10px; */
     opacity: 1;
     margin-top: 10px;
 }
 
 figcaption .fig-title {
     font-style: italic;
+}
+
+.page #desktop-content {
+    height: fit-content;
+    position: relative;
+    overflow: hidden;
 }
 
 /* ----------------------------------
@@ -289,16 +306,19 @@ body main.page {
     /* position: absolute; */
 }
 
+body main {
+    transition: margin-top var(--page-trans), opacity var(--page-trans);
+}
+
 body main.active {
     z-index: 5;
 }
 
-main:not(#home-main, #bio-main) {
+main.page {
     min-height: calc(100vh - var(--main-desktop-margin));
 }
 
 body.mobile main.active {
-    display: block;
     position: relative;
     opacity: 1;
     margin-top: 0%;
@@ -333,20 +353,7 @@ header {
 }
 
 #home header {
-    position: relative;
-    animation: homeHeader var(--menu-trans);
-    animation-delay: var(--page-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-@keyframes homeHeader {
-    0% {
-        position: fixed;
-    }
-
-    100% {
-        position: fixed;
-    }
+    position: fixed;
 }
 
 body.page header {
@@ -386,12 +393,13 @@ body.page header {
     flex-direction: column;
     text-align: center;
     z-index: 3;
-    display: none;
+    opacity: 0;
+    transition: opacity var(--menu-trans);
 }
 
-body.page #nav-list {
+/* body.page #nav-list {
     position: absolute;
-}
+} */
 
 #nav-list a {
     font-size: calc(var(--default-font-size) * 1.7);
@@ -407,19 +415,41 @@ body.page #nav-list {
     font-family: var(--name-font-family);
 }
 
-body.menu-expanded #nav-list {
-    display: flex;
-    animation: show var(--menu-trans);
-}
-
-body.menu-collapsed #nav-list {
-    display: flex;
-    animation: hide var(--menu-trans);
+body.mobile.menu-expanded #nav-list {
+    opacity: 1;
+    animation: visVisible var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
-#nav-name {
-    display: none;
+body.mobile.menu-collapsed #nav-list {
+    opacity: 0;
+    animation: visHidden var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes visHidden {
+    0% {}
+
+    100% {
+        visibility: hidden;
+    }
+}
+
+@keyframes visHidAbs {
+    0% {}
+
+    100% {
+        visibility: hidden;
+        position: absolute;
+    }
+}
+
+@keyframes visVisible {
+    0% {}
+
+    100% {
+        visibility: visible;
+    }
 }
 
 /* back button */
@@ -430,18 +460,21 @@ body.menu-collapsed #nav-list {
     width: var(--header-height);
 }
 
-#home #back-button svg {
-    display: none;
+#back-button svg {
+    transition: opacity var(--menu-trans);
+    opacity: 0;
 }
 
-#home.nav #back-button svg {
-    display: block;
-    animation: hide var(--menu-trans);
+
+#home #back-button svg {
+    opacity: 0;
+    animation: visHidden var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
-body.page.nav #back-button svg {
-    animation: show var(--menu-trans);
+body:not(#home) #back-button svg {
+    opacity: 1;
+    animation: visVisible var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
@@ -453,6 +486,7 @@ body.page.nav #back-button svg {
     width: var(--header-height);
     margin: var(--header-height);
     z-index: 3;
+    transition: opacity var(--menu-trans);
 }
 
 #social svg {
@@ -460,17 +494,18 @@ body.page.nav #back-button svg {
 }
 
 body.page #social {
-    display: none;
+    opacity: 0;
 }
 
 body.page.leave-home #social {
-    display: block;
-    animation: hide var(--menu-trans);
+    opacity: 0;
+    animation: visHidden var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
 #home.nav #social {
-    animation: show var(--menu-trans);
+    opacity: 1;
+    animation: visVisible var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
@@ -527,15 +562,22 @@ body#home {
     font-size: 1.3rem;
 }
 
-body:not(#home) #site-name-container,
-body:not(#bio) #bio-container {
-    display: none;
+#site-name,
+#bio-text {
+    transition: opacity var(--menu-trans);
 }
 
-body#home.nav #site-name-container,
-body#bio.nav #bio-container {
-    display: flex;
-    animation: show var(--menu-trans);
+body:not(#home) #site-name,
+body:not(#bio) #bio-text {
+    opacity: 0;
+    animation: visHidden var(--menu-trans);
+    -webkit-animation: forwards;
+}
+
+body#home.nav #site-name,
+body#bio.nav #bio-text {
+    opacity: 1;
+    animation: visVisible var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
@@ -550,6 +592,10 @@ body#bio.nav #bio-container {
     backdrop-filter: var(--glass-blur);
     z-index: 0;
     transition: opacity var(--focus-trans);
+}
+
+body.focus-work #glass {
+    opacity: 0;
 }
 
 @media screen and (min-width: 850px) {
@@ -627,108 +673,72 @@ img#wallpaper-1x1 {
 ANIMATIONS AND FILTERS
 ---------------------------------- */
 
-.trans {
-    opacity: 0;
+/* GUIDELINES FOR VISIBILITY TRANSITIONS */
+/*      - Give default element an opacity to override animations on load */
+/*      - Give default element an opacity transition time */
+/*      - Only use animations to toggle visibility with a delay */
+
+/* focus transitions need to be applied to parent elements */
+/* menu and page transitions are applied to child elements */
+
+#bio-container,
+#site-name-container,
+#social,
+#nav-button {
+    transition: opacity var(--focus-trans), filter var(--focus-trans), scale var(--focus-trans);
 }
 
-.opaque {
-    opacity: 1;
-}
-
-.blur {
-    filter: blur(2px);
-}
-
-#site-name.blur {
-    font-size: calc(var(--name-font-size) * 1.05);
-    opacity: 0;
+#site-name,
+#bio-text {
+    transition: opacity var(--menu-trans);
 }
 
 body#home.menu-expanded #site-name,
 body#bio.menu-expanded #bio-text {
-    animation: hide var(--menu-trans);
+    opacity: 0;
+    animation: visHidden var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
 body#home.menu-collapsed #site-name,
 body#bio.menu-collapsed #bio-text {
-    /* display: none; */
-    animation: show var(--menu-trans);
+    opacity: 1;
+    animation: visVisible var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
-@keyframes hide {
-    0% {}
-
-    100% {
-        opacity: 0;
-        display: none;
-    }
-}
-
-.show,
-#site-name.show,
-#bio-text.show {
-    animation: show var(--menu-trans);
+body#home.focus-work #site-name-container,
+body#home.focus-work #social,
+body#home.focus-work #nav-button {
+    opacity: 0;
+    filter: blur(5px);
+    scale: 1.2;
+    animation: visHidden var(--focus-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
-@keyframes show {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+body#home.focus-name #site-name-container,
+body#home.focus-name #social,
+.focus-name #nav-button {
+    opacity: 1;
 }
 
-.fadeOut,
-body#home.nav #site-name-container.fadeOut,
-body#home.nav #bio-container.fadeOut,
-#home.nav #social.fadeOut {
-    animation: fadeOut var(--focus-trans);
-    -webkit-animation-fill-mode: forwards;
+/* menu button animations */
+
+#nav-button.hamburger svg path {
+    transform-origin: 50% 50%;
+    transition: rotate var(--menu-trans), opacity var(--menu-trans);
+    opacity: 1;
 }
 
-header.fadeOut {
-    animation: fadeOut var(--focus-trans);
-    -webkit-animation-fill-mode: forwards;
+#nav-button.hamburger svg path+path:not(path+path+path+path, path+path+path) {
+    opacity: 1;
+    rotate: 0deg;
 }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-        filter: blur(0px);
-    }
-
-    50% {
-        filter: blur(3px);
-    }
-
-    100% {
-        opacity: 0;
-        scale: 1.2;
-        display: none;
-    }
-}
-
-.fadeIn,
-body#home.nav #site-name-container.fadeIn,
-body#home.nav #bio-container.fadeIn,
-#home.nav #social.fadeIn {
-    animation: fadeIn var(--focus-trans);
-    -webkit-animation-fill-mode: forwards;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+#nav-button.hamburger svg path+path+path:not(path+path+path+path) {
+    opacity: 1;
+    rotate: 0deg;
 }
 
 #nav-button.cross svg path {
@@ -747,25 +757,7 @@ body#home.nav #bio-container.fadeIn,
     rotate: -45deg;
 }
 
-#nav-button.hamburger svg path {
-    transform-origin: 50% 50%;
-    transition: rotate var(--menu-trans), opacity var(--menu-trans);
-    opacity: 1;
-}
-
-#nav-button.hamburger svg path+path:not(path+path+path+path, path+path+path) {
-    opacity: 1;
-    rotate: 0deg;
-}
-
-#nav-button.hamburger svg path+path+path:not(path+path+path+path) {
-    opacity: 1;
-    rotate: 0deg;
-}
-
 /* mobile */
-
-@media only screen and (min-width: 600px) {}
 
 span.desktop-page,
 span.non-desktop-page {
@@ -814,20 +806,11 @@ div.popup-close {
 
     #desktop-content-wrapper {
         height: 100%;
-        /* display: flex;
-        align-items: center; */
     }
 
     #desktop-content {
         width: 100%;
-        height: 100vh;
-        /* align-items: start; */
-        /* display: flex; */
-        /* overflow: scroll; */
-    }
-
-    body#home #content {
-        overflow: hidden;
+        height: fit-content;
     }
 
     #home main#home-main,
@@ -845,8 +828,8 @@ div.popup-close {
         z-index: 6;
     }
 
-    #home main#home-main,
-    #bio main#bio-main {
+    main#home-main,
+    main#bio-main {
         top: 0;
     }
 
@@ -874,6 +857,7 @@ div.popup-close {
         justify-content: center;
         transition: padding 0.5s;
         width: 25rem;
+        opacity: 1;
     }
 
     body#home #nav-list,
@@ -918,16 +902,18 @@ div.popup-close {
         opacity: 0;
     }
 
-    body main:not(#home-main, #bio-main) {
+    body main:not(.active) {
         position: absolute;
+    }
+
+    body main.page {
         width: var(--desktop-main-width);
         margin-left: calc(20% + 80px);
         margin-top: 200px;
+        /* margin-top sets the position pages slide up from */
         right: 0;
         top: 0;
-        /* overflow: scroll; */
         border-radius: 5px 0px 0px 0px;
-        transition: margin-top 0.7s, opacity 0.7s;
         max-height: 100vh;
     }
 
@@ -1003,16 +989,14 @@ div.popup-close {
         max-width: 100%;
         height: 70vh;
         width: fit-content;
-        /* background-color: red; */
         display: flex;
         justify-content: center;
     }
 
     div.popup .img-container img {
-        display: block;
         max-width: 100%;
         max-height: 100%;
-        width: auto;
+        object-fit: contain;
     }
 
     div.popup figcaption {
@@ -1033,20 +1017,19 @@ div.popup-close {
         margin-top: 1.5rem;
     }
 
-
-    body:has(div.popup) nav,
+    body:has(div.popup) #nav-list,
     body:has(div.popup) main.active .figure-wrapper:not(.popup),
     body:has(div.popup) main.active h1 {
         opacity: 0;
     }
 
     body:has(div.popup) main.active {
-        background-color: rgba(0, 0, 0, 0);
+        background-color: var(--transparent);
     }
 
     body:has(div.popup) main div.popup {
         opacity: 1;
-        background-color: rgba(0, 0, 0, 0);
+        background-color: var(--transparent);
     }
 
     body:has(div.popup) main div.popup figcaption div {
@@ -1067,31 +1050,8 @@ div.popup-close {
         width: var(--header-height);
     }
 
-    /* body:has(div.popup) div#popup-close {
-        display: block;
-        width: var(--header-height);
-        height: var(--header-height);
-        margin: calc(var(--header-height) * 2);
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 10;
-    } */
-
     .popup figcaption div.fig-title {
         margin-top: 1.5rem;
     }
-
-    /* .popup .img-container::before {
-        display: block;
-        right: 0;
-        width: calc(100% - 1rem);
-        text-align: right;
-        content: "Close ";
-        margin-right: 1rem;
-        margin-bottom: 2rem;
-        font-size: 1.2rem;
-        color: var(--ui-color);
-    } */
 
 }

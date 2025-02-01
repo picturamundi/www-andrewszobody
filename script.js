@@ -1,6 +1,5 @@
 
 // TODO
-//      figure out why gallery gets messed up when switching devices
 //      collapse all popups when going from mobile to desktop
 //      nav-list display: flex when going from mobile to desktop
 //      optimize:
@@ -30,6 +29,8 @@ window.addEventListener("hashchange", function () {
     serveImages();
     window.scrollTo(0, 0);
     galleryOnVisit();
+    // update device so that device switching updates
+    updateDevice();
 });
 
 //window resize trigger
@@ -49,14 +50,21 @@ window.addEventListener('resize', function () {
 
 function updateDevice() {
     // Check if the screen width is less than 700px
+
+    document.body.classList.remove('desktop-switch');
+
     if (window.innerWidth < 700) {
         // Apply 'mobile' class if the screen width is less than 700px
         document.body.classList.add('mobile');
         document.body.classList.remove('desktop');
     } else {
         // Apply 'desktop' class if the screen width is 700px or more
-        document.body.classList.add('desktop');
-        document.body.classList.remove('mobile');
+        if (document.body.classList.contains('mobile')) {
+            document.body.classList.add('desktop');
+            document.body.classList.remove('mobile');
+            document.body.classList.add('desktop-switch');
+            console.log('WE LEFT MOBILE');
+        }
     }
 }
 
@@ -236,7 +244,6 @@ function backButton() {
 // toggle caption
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Select all <figure> elements
     const figures = document.querySelectorAll('.figure-wrapper');
 
     figures.forEach(function (figure) {
@@ -244,7 +251,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (img) {
             // For some reason clicks register on the img, not the parent figure
             img.addEventListener('click', function (event) {
-                // Find the caption within the clicked figure
 
                 // Change class
                 if (figure.classList.contains('popup')) {
@@ -257,6 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
 
 function closeCaption() {
     document.querySelector('.popup').classList.remove('popup');
@@ -296,37 +303,17 @@ function collapseMenu() {
 
 function toggleFocus() {
     var glass = document.getElementById('glass');
-    var header = document.getElementById('nav-button');
-    var name = document.getElementById('site-name-container');
-    var items = document.getElementById('nav-list');
-    var social = document.getElementById('social');
 
     if (glass.className == 'trans') {
         // focus name
+        document.body.classList.add('focus-name');
+        document.body.classList.remove('focus-work');
         glass.classList.remove('trans');
-
-        header.classList.remove('fadeOut');
-        name.classList.remove('fadeOut');
-        items.classList.remove('fadeOut');
-        social.classList.remove('fadeOut');
-
-        header.classList.add('fadeIn');
-        name.classList.add('fadeIn');
-        items.classList.add('fadeIn');
-        social.classList.add('fadeIn');
     } else {
         // focus work
+        document.body.classList.remove('focus-name');
+        document.body.classList.add('focus-work');
         glass.classList.add('trans');
-
-        header.classList.remove('fadeIn');
-        name.classList.remove('fadeIn');
-        items.classList.remove('fadeIn');
-        social.classList.remove('fadeIn');
-
-        header.classList.add('fadeOut');
-        name.classList.add('fadeOut');
-        items.classList.add('fadeOut');
-        social.classList.add('fadeOut');
     }
 }
 
@@ -341,12 +328,13 @@ function toggleFocus() {
 // For now, gallery is built on every visit because there may have been resizes
 
 function galleryOnVisit() {
-    var main = document.querySelector('main.active');
-
     if (window.innerWidth > 700) {
-        // if (main.classList.contains('first')) {
         measureGallery();
-        // }
+    } else {
+        // this insures that mobile galleries aren’t applying heights calculated on desktop
+        const galleryClass = '.gallery.' + pageName;
+        const gallery = document.querySelector(galleryClass);
+        gallery.style.height = 'fit-content';
     }
 }
 
@@ -360,6 +348,12 @@ function galleryOnResize() {
         gallery.style.height = 'fit-content';
         // console.log('gallery resized for mobile');
     } else {
+        // close popups when switching to desktop
+        if (document.body.classList.contains('desktop-switch')) {
+            document.querySelectorAll('.popup').forEach(mainElement => {
+                mainElement.classList.remove('popup');
+            });
+        }
         gallery.style.height = 'auto';
         // console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
@@ -428,7 +422,7 @@ function setGalleryHeight() {
 
     // Apply the new height to the gallery
     gallery.style.setProperty('height', `${galleryHeight}px`);
-    // console.log(pageName + " gallery height set to:", galleryHeight);
+    console.log(pageName + " gallery height set to:", galleryHeight);
 
     // Check if this height works
     checkGalleryHeight();
@@ -455,8 +449,8 @@ function checkGalleryHeight() {
     // Compare the content width of the gallery to the parent's width minus the margin
     if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
         // console.log(pageName + ' gallery has too many columns');
-        globalThis.galleryMargin += 30;
-        // console.log(pageName + ' gallery height increased by 30px');
+        globalThis.galleryMargin += 5;
+        // console.log(pageName + ' gallery height increased by 5px');
         setGalleryHeight();
     } else {
         // console.log(pageName + ' gallery has 2 columns');
