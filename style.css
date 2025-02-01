@@ -1041,20 +1041,6 @@ div.popup-close,
         margin-top: 1.5rem;
     }
 
-    .popup div.popup-close {
-        width: 100%;
-        height: var(--header-height);
-        display: flex;
-        justify-content: right;
-        margin-bottom: 1.5rem;
-        position: relative;
-    }
-
-    div.popup-close svg {
-        position: relative;
-        width: var(--header-height);
-    }
-
     body:has(.popup) #popup-close {
         display: flex;
     }

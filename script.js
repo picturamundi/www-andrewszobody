@@ -1,7 +1,6 @@
 
-// TODO
-//      optimize:
-//          - get rid of duplicate X-buttons in desktop popup
+// TO DO LIST
+//      - empty!
 
 // ---------------------------------------
 //  WINDOW TRIGGERS
@@ -244,9 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     figures.forEach(function (figure) {
         const img = figure.querySelector('.img-container');
         if (img) {
-            // For some reason clicks register on the img, not the parent figure
-            img.addEventListener('click', function (event) {
-
+            img.addEventListener('click', function (event) { // For some reason clicks register on the img, not the parent figure
                 // Change class
                 if (figure.classList.contains('popup')) {
                     figure.classList.remove('popup');
@@ -257,7 +254,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     });
-
 });
 
 function styleCloseButton() {
@@ -268,7 +264,8 @@ function styleCloseButton() {
 
 
 function closeCaption() {
-    document.querySelector('.popup').classList.remove('popup');
+    document.querySelector('.popup').classList.remove('popup'); // if resize happened while popup was up, gallery was miscalculated
+    galleryOnResize();
 }
 
 // toggle menu
