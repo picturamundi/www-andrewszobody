@@ -164,7 +164,6 @@ h1 {
 
 p a {
     text-decoration: none;
-    color: var(--text-color-primary);
     border-bottom: 1px solid var(--text-color-primary);
 }
 
@@ -544,11 +543,13 @@ body#home {
 }
 
 #site-name,
-#bio-text {
+#bio-text,
+#bio-text a {
     font-family: var(--name-font-family);
     font-weight: var(--font-weight-headings);
     width: 60%;
     color: var(--ui-color);
+    border-bottom-color: var(--ui-color);
 }
 
 #bio-text {
