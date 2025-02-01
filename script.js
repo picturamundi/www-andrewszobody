@@ -1,15 +1,12 @@
 
 // TODO
-//      collapse all popups when going from mobile to desktop
-//      nav-list display: flex when going from mobile to desktop
 //      optimize:
 //          - get rid of duplicate X-buttons in desktop popup
-//          - get rid of page-img class
-
 
 // ---------------------------------------
 //  WINDOW TRIGGERS
 // ---------------------------------------
+
 
 //page load trigger
 window.addEventListener('DOMContentLoaded', function () {
@@ -190,8 +187,7 @@ function serveImages() {
 // activate source for images on current page
 
 function sourceImages() {
-    var bodyId = document.body.id;
-    var imgClass = '.' + bodyId + '-img';
+    var imgClass = '#' + pageName + '-main img';
     var lazyImgs = document.querySelectorAll(imgClass);
 
     // Loop through each element
@@ -206,8 +202,7 @@ function sourceImages() {
 // show images on current page, hide those with invalid sources
 
 function revealSourcedImages() {
-    var bodyId = document.body.id;
-    var imgClass = '.' + bodyId + '-img';
+    var imgClass = '#' + pageName + '-main img';
     var lazyImgs = document.querySelectorAll(imgClass);
 
     lazyImgs.forEach(function (image) {
@@ -257,12 +252,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     figure.classList.remove('popup');
                 } else {
                     figure.classList.add('popup');
+                    styleCloseButton();
                 }
             });
         }
     });
 
 });
+
+function styleCloseButton() {
+    var button = document.getElementById('popup-close');
+    var popupWidth = document.querySelector('.popup figure').offsetWidth
+    button.style.width = popupWidth + 'px';
+}
 
 
 function closeCaption() {

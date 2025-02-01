@@ -2,8 +2,7 @@
 
 
 /* TO DO LIST */
-/* Clarify desktop-page and non-desktop-page */
-
+/*      - empty! */
 
 /* ----------------------------------
 VARIABLES AND FONTS
@@ -759,19 +758,20 @@ body#home.focus-name #social,
 
 /* mobile */
 
-span.desktop-page,
-span.non-desktop-page {
+span#nav-home-label,
+span#nav-name-label {
     transition: opacity 0.5s;
 }
 
-span.desktop-page {
+span#nav-name-label {
     opacity: 0;
     display: block;
     position: absolute;
     top: 0;
 }
 
-div.popup-close {
+div.popup-close,
+#popup-close {
     display: none;
 }
 
@@ -894,11 +894,11 @@ div.popup-close {
         transition: margin 0.5s;
     }
 
-    body.page span.desktop-page {
+    body.page span#nav-name-label {
         opacity: 1;
     }
 
-    body.page span.non-desktop-page {
+    body.page span#nav-home-label {
         opacity: 0;
     }
 
@@ -991,6 +991,7 @@ div.popup-close {
         width: fit-content;
         display: flex;
         justify-content: center;
+        padding-top: calc(var(--header-height) + 2rem)
     }
 
     div.popup .img-container img {
@@ -1036,6 +1037,10 @@ div.popup-close {
         color: var(--ui-color);
     }
 
+    .popup figcaption div.fig-title {
+        margin-top: 1.5rem;
+    }
+
     .popup div.popup-close {
         width: 100%;
         height: var(--header-height);
@@ -1050,8 +1055,26 @@ div.popup-close {
         width: var(--header-height);
     }
 
-    .popup figcaption div.fig-title {
-        margin-top: 1.5rem;
+    body:has(.popup) #popup-close {
+        display: flex;
     }
 
+    #popup-close-wrapper {
+        position: fixed;
+        width: 100vw;
+        height: var(--header-height);
+        display: flex;
+        justify-content: center;
+        bottom: calc(85vh + 2rem);
+        z-index: 6;
+    }
+
+    #popup-close {
+        justify-content: right;
+        height: 100%;
+    }
+
+    #popup-close svg {
+        width: var(--header-height);
+    }
 }

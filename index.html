@@ -22,9 +22,9 @@
 <body id="home" class="menu-collapsed">
 
     <div id="wallpaper-wrapper">
-        <img src="wallpaper/4x3.jpeg" alt="" id="wallpaper-4x3">
-        <img src="wallpaper/3x4.jpeg" alt="" id="wallpaper-3x4">
-        <img src="wallpaper/1x1.jpeg" alt="" id="wallpaper-1x1">
+        <img src="wallpaper/4x3.jpeg" id="wallpaper-4x3">
+        <img src="wallpaper/3x4.jpeg" id="wallpaper-3x4">
+        <img src="wallpaper/1x1.jpeg" id="wallpaper-1x1">
     </div>
 
     <div id="content">
@@ -33,14 +33,22 @@
 
         <div id="interface-toggle" onclick="toggleFocus()"></div>
 
+        <div id="popup-close-wrapper">
+            <div id="popup-close" onclick="closeCaption()">
+                <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
+                    <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
+                </svg>
+            </div>
+        </div>
+
         <header id="header">
             <div id="back-button" onclick="backButton()">
-                <!-- <a href="#home"> -->
                 <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 2L3 23L24 44" stroke="" stroke-width="" />
                     <path d="M4 23.0001H50" stroke="" stroke-width="" />
                 </svg>
-                <!-- </a> -->
             </div>
             <div id="nav-button" class="" onclick="toggleMenu()">
                 <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,9 +63,10 @@
         <div id="desktop-content-wrapper">
             <div id="desktop-content">
 
+
                 <nav id="nav-list">
-                    <p id="link-home"><a href="#home"><span class="non-desktop-page">Home</span><span
-                                class="desktop-page">Andrew Szobody</span></a>
+                    <p id="link-home"><a href="#home"><span id="nav-home-label">Home</span><span
+                                id="nav-name-label">Andrew Szobody</span></a>
                     </p>
                     <p id="link-recent"><a href="#recent">Recent works</a></p>
                     <p id="link-less"><a href="#less">Less Recent</a></p>
@@ -72,7 +81,6 @@
                 </main>
 
 
-
                 <main id="recent-main" class="page sleeping">
                     <h1>Recent works</h1>
 
@@ -80,15 +88,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/01.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/01.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -102,15 +103,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/02.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/02.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -124,15 +118,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/03.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/03.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -146,15 +133,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/04.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/04.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -168,15 +148,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/05.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/05.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -190,15 +163,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/06.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/06.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -212,15 +178,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/07.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/07.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -234,15 +193,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/08.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/08.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -256,15 +208,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/09.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/09.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -278,15 +223,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/10.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/10.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -300,15 +238,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/11.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/11.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -322,15 +253,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/12.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/12.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -344,15 +268,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/13.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/13.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -366,15 +283,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/14.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/14.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -388,15 +298,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/recent/15.jpeg" src="" alt="" class="recent-img">
+                                    <img data-src="artwork/recent/15.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -419,15 +322,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/01.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/01.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -441,15 +337,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/02.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/02.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -463,15 +352,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/03.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/03.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -485,15 +367,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/04.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/04.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -507,15 +382,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/05.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/05.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -529,15 +397,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/06.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/06.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -551,15 +412,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/07.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/07.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -573,15 +427,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/08.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/08.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -595,15 +442,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/09.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/09.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -617,15 +457,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/10.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/10.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -639,15 +472,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/11.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/11.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -661,15 +487,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/12.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/12.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -683,15 +502,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/13.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/13.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -705,15 +517,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/14.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/14.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -727,15 +532,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/less/15.jpeg" src="" alt="" class="less-img">
+                                    <img data-src="artwork/less/15.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -757,15 +555,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/01.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/01.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -779,15 +570,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/02.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/02.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -801,15 +585,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/03.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/03.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -823,15 +600,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/04.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/04.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -845,15 +615,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/05.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/05.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -867,15 +630,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/06.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/06.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -889,15 +645,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/07.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/07.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -911,15 +660,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/08.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/08.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -933,15 +675,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/09.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/09.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -955,15 +690,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/10.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/10.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -977,15 +705,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/11.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/11.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -999,15 +720,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/12.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/12.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -1021,15 +735,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/13.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/13.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -1043,15 +750,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/14.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/14.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
@@ -1065,15 +765,8 @@
 
                         <div class="figure-wrapper">
                             <figure>
-                                <div class="popup-close">
-                                    <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                                    </svg>
-                                </div>
                                 <div class="img-container">
-                                    <img data-src="artwork/old/15.jpeg" src="" alt="" class="old-img">
+                                    <img data-src="artwork/old/15.jpeg" src="">
                                 </div>
                                 <figcaption class="">
                                     <div class="fig-title">Title</div>
