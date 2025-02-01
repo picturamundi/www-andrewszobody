@@ -392,7 +392,7 @@ function measureGallery() {
         loadedCount++;
         // if all images loaded…
         if (loadedCount === totalImages) {
-            // console.log('images loaded');
+            console.log('images loaded');
 
             // calculate initial gallery height
             globalThis.galleryClass = '.gallery.' + pageName;
