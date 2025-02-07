@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', function () {
     globalThis.galleryMargin = 30;
     updateDevice();
     route();
+    blockAnimations();
     serveImages();
     galleryOnVisit();
 });
@@ -35,10 +36,10 @@ window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     // console.log('---------- resize!');
     updateDevice();
+    blockAnimations();
     // console.log('device updated');
     galleryOnResize();
 });
-
 
 // ---------------------------------------
 //  DEVICE
@@ -261,7 +262,6 @@ function styleCloseButton() {
     button.style.width = popupWidth + 'px';
 }
 
-
 function closeCaption() {
     document.querySelector('.popup').classList.remove('popup'); // if resize happened while popup was up, gallery was miscalculated
     galleryOnResize();
@@ -273,6 +273,7 @@ function toggleMenu() {
     if (document.body.className.includes('menu-expanded')) {
         collapseMenu();
     } else {
+        enableAnimations();
         expandMenu();
     }
 }
@@ -453,4 +454,26 @@ function checkGalleryHeight() {
     } else {
         // console.log(pageName + ' gallery has 2 columns');
     }
+}
+
+// ---------------------------------------
+// ANIMATIONS
+// ---------------------------------------
+
+
+function blockAnimations() {
+    if (pageName != 'home') {
+        document.getElementById('site-name-container').style.visibility = 'hidden';
+    }
+    if (document.body.classList.contains('mobile')) {
+        document.getElementById('nav-list').style.visibility = 'hidden';
+        document.getElementById('back-button').style.visibility = 'hidden';
+    } else {
+        document.getElementById('nav-list').style.visibility = '';
+    }
+}
+
+function enableAnimations() {
+    document.getElementById('nav-list').style.visibility = '';
+    document.getElementById('back-button').style.visibility = '';
 }
