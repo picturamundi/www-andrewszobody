@@ -120,7 +120,7 @@ In order to add a caption to a new image — or to modify a caption — open th
 
 ```html
 <div class="img-container">
-    <img data-src="artwork/less/04.jpeg" src="" alt="" class="recent-img">
+    <img data-src="artwork/less/04.jpeg" src="">
 </div>
 <figcaption class="">
     <div class="fig-title">Put title here</div>

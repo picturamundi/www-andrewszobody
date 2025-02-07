@@ -165,10 +165,12 @@ function pageVisit() {
     if (main.classList.contains('sleeping')) {
         main.classList.remove('sleeping');
         main.classList.add('first');
+        document.body.classList.add('first');
         // console.log('---------- FIRST VISIT TO PAGE: ' + pageName);
     } else {
         if (main.classList.contains('first')) {
             main.classList.remove('first');
+            document.body.classList.remove('first');
         }
     }
     if (document.body.getAttribute('id') == 'home' || document.body.getAttribute('id') == 'bio') {
@@ -213,9 +215,11 @@ function sourceImages() {
 function revealSourcedImages() {
     document.querySelectorAll('img').forEach(function (img) {
         img.onload = function () {
+            this.classList.remove('inactive');
             this.classList.add('active');
         };
         img.onerror = function () {
+            this.classList.remove('active');
             this.classList.add('inactive');
         };
     })
@@ -326,12 +330,13 @@ function toggleFocus() {
 // ---------------------------------------
 
 // galleryOnVisit figures out if we need to build the gallery when a page is visited
-// We only build the gallery if we’re on desktop
-// For now, gallery is built on every visit because there may have been resizes
+// on desktop, the gallery is built on first page visit or if resize has happened since first visit
 
 function galleryOnVisit() {
     if (window.innerWidth > 700) {
-        measureGallery();
+        if (document.querySelector('main.active').classList.contains('first') || document.querySelector('main.active').classList.contains('resize-gallery')) {
+            measureGallery();
+        }
     } else {
         // this insures that mobile galleries aren’t applying heights calculated on desktop
         const galleryClass = '.gallery.' + pageName;
@@ -345,6 +350,14 @@ function galleryOnVisit() {
 function galleryOnResize() {
     const galleryClass = '.gallery.' + pageName;
     const gallery = document.querySelector(galleryClass);
+    const mainClass = '#' + pageName + '-main';
+    const main = document.querySelector(mainClass);
+
+    // mark all pages except active page as resized
+    document.querySelectorAll('main').forEach(main => {
+        main.classList.add('resize-gallery');
+    });
+    main.classList.remove('resize-gallery');
 
     if (window.innerWidth < 700) {
         gallery.style.height = 'fit-content';
@@ -368,6 +381,9 @@ function galleryOnResize() {
 // then calls the setGalleryHeight function
 
 function measureGallery() {
+
+    // remove resize tag from active gallery since the gallery is now being resized
+    document.querySelector('main.active').classList.remove('resize-gallery');
 
     const images = document.querySelectorAll('img');
     let loadedCount = 0;
@@ -400,6 +416,9 @@ function measureGallery() {
             // calculate initial gallery height
             globalThis.galleryClass = '.gallery.' + pageName;
             globalThis.gallery = document.querySelector(galleryClass);
+
+            // Make sure gallery is in a single column (there may have been previous page visits)
+            gallery.style.height = 'fit-content';
             globalThis.initialHeight = gallery.offsetHeight;
 
             // console.log(pageName + ' gallery single column height: ' + initialHeight);
@@ -454,8 +473,6 @@ function checkGalleryHeight() {
         globalThis.galleryMargin += 5;
         // console.log(pageName + ' gallery height increased by 5px');
         setGalleryHeight();
-    } else {
-        // console.log(pageName + ' gallery has 2 columns');
     }
 }
 
