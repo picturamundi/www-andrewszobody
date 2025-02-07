@@ -1,6 +1,6 @@
 
 // TO DO LIST
-//      - there are a lot of animations and transitions that trigger on initial page loads, creating visual messiness
+//      - empty!
 
 // ---------------------------------------
 //  WINDOW TRIGGERS
@@ -23,6 +23,7 @@ window.addEventListener("hashchange", function () {
     globalThis.galleryMargin = 30;
     document.body.classList.add('nav');
     route();
+    enableAnimations();
     serveImages();
     window.scrollTo(0, 0);
     galleryOnVisit();
@@ -470,10 +471,13 @@ function blockAnimations() {
         document.getElementById('back-button').style.visibility = 'hidden';
     } else {
         document.getElementById('nav-list').style.visibility = '';
+        document.getElementById('nav-list').style.transition = 'padding 0s';
     }
 }
 
 function enableAnimations() {
+    document.getElementById('nav-list').style.transition = 'padding 0.5s opacity 0.4s';
+    document.getElementById('home-main').style.transition = '';
     document.getElementById('nav-list').style.visibility = '';
     document.getElementById('back-button').style.visibility = '';
 }

@@ -154,7 +154,6 @@ main {
     height: fit-content;
     padding-bottom: 7rem;
     overflow: hidden;
-    transition: margin-top var(--page-trans), opacity var(--page-trans);
 }
 
 h1,
@@ -394,6 +393,7 @@ main.page {
     opacity: 0;
     background-color: var(--theme-color-2);
     z-index: 4;
+    transition: margin-top var(--page-trans), opacity var(--page-trans);
 }
 
 main.active.page {
@@ -1017,7 +1017,7 @@ body#bio.menu-expanded #bio-text {
 body#home.menu-collapsed #site-name,
 body#bio.menu-collapsed #bio-text {
     opacity: 1;
-    animation: visVisible var(--focus-trans);
+    animation: visVisible var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
