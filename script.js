@@ -369,7 +369,6 @@ function galleryOnResize() {
                 mainElement.classList.remove('popup');
             });
         }
-        gallery.style.height = 'auto';
         // console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
         measureGallery();
