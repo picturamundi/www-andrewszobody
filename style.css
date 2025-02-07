@@ -686,7 +686,10 @@ body:not(#bio) #bio-text {
     -webkit-animation: forwards;
 }
 
-body#home.nav #site-name,
+body#home.nav #site-name {
+    opacity: 1;
+}
+
 body#bio.nav #bio-text {
     opacity: 1;
     animation: visVisible var(--menu-trans);
@@ -1023,14 +1026,20 @@ ANIMATIONS AND FILTERS
     transition: opacity var(--menu-trans);
 }
 
-body#home.menu-expanded #site-name,
+body#home.menu-expanded #site-name {
+    opacity: 0;
+}
+
 body#bio.menu-expanded #bio-text {
     opacity: 0;
     animation: visHidden var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
 }
 
-body#home.menu-collapsed #site-name,
+body#home.menu-collapsed #site-name {
+    opacity: 1;
+}
+
 body#bio.menu-collapsed #bio-text {
     opacity: 1;
     animation: visVisible var(--menu-trans);
