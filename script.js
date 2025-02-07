@@ -10,11 +10,11 @@
 //page load trigger
 window.addEventListener('DOMContentLoaded', function () {
     globalThis.galleryMargin = 30;
+    blockAnimations();
     updateDevice();
     route();
     serveImages();
     galleryOnVisit();
-    blockAnimations();
 });
 
 
@@ -38,7 +38,6 @@ window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     // console.log('---------- resize!');
     updateDevice();
-    // blockAnimations();
     // console.log('device updated');
     galleryOnResize();
 });
