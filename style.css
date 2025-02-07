@@ -204,12 +204,23 @@ figure {
 }
 
 figure img {
+    /* images are hidden until javascript shows the sourced ones */
+    display: none;
     width: 100%;
     border-radius: 1px;
 }
 
-figure:has(img.inactive) {
+figure img.active {
+    /* images are hidden until javascript shows the sourced ones */
+    display: block;
+}
+
+.figure-wrapper {
     display: none;
+}
+
+.figure-wrapper:has(img.active) {
+    display: block;
 }
 
 figcaption {

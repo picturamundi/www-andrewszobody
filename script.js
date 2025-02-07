@@ -207,12 +207,11 @@ function revealSourcedImages() {
     var lazyImgs = document.querySelectorAll(imgClass);
 
     lazyImgs.forEach(function (image) {
-        image.style.display = 'block';
-        image.classList.remove('inactive');
+        image.classList.add('active');
     });
     document.querySelectorAll('img').forEach(function (img) {
         img.onerror = function () {
-            this.style.display = 'none';
+            this.classList.remove('active');
             this.classList.add('inactive');
         };
     })
