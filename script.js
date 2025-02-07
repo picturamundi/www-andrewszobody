@@ -283,6 +283,7 @@ function expandMenu() {
     var menu = document.getElementById('nav-button');
     var body = document.body;
 
+    document.getElementById('interface-toggle').style.display = 'none';
     menu.classList.add('cross');
     body.classList.remove('menu-collapsed');
     body.classList.add('menu-expanded');
@@ -292,6 +293,10 @@ function expandMenu() {
 function collapseMenu() {
     var menu = document.getElementById('nav-button');
     var body = document.body;
+
+    if (body.classList.contains('mobile')) {
+        document.getElementById('interface-toggle').style.display = 'block';
+    }
 
     menu.classList.remove('cross');
     body.classList.remove('menu-expanded');

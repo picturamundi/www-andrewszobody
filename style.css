@@ -392,7 +392,6 @@ main.page {
     min-height: calc(100vh - var(--desktop-main-margin));
     opacity: 0;
     background-color: var(--theme-color-2);
-    z-index: 4;
     transition: margin-top var(--page-trans), opacity var(--page-trans);
 }
 
@@ -401,6 +400,7 @@ main.active.page {
     height: fit-content;
     padding-bottom: 7rem;
     overflow: hidden;
+    z-index: 4;
 }
 
 /* mobile pages */
@@ -933,8 +933,7 @@ body.mobile #social {
     bottom: 0;
     width: var(--header-height);
     margin: var(--header-height);
-    z-index: 3;
-    transition: opacity var(--menu-trans);
+    z-index: 6;
 }
 
 body.mobile #social svg {
