@@ -43,7 +43,7 @@ VARIABLES ETC.
     --glass-blur-desktop: blur(15px);
     --transparent: rgba(0, 0, 0, 0);
 
-    --font-primary: 'custom-1';
+    --font-primary: 'custom-1', sans-serif;
     --default-font-size: 14px;
     --heading-font-size: 24px;
     --font-weight-primary: 200;
@@ -51,7 +51,7 @@ VARIABLES ETC.
     --font-weight-bold: 600;
 
     --name-case: capitalize;
-    --name-font: 'custom-1';
+    --name-font: 'custom-1', sans-serif;
     --name-font-size: 3rem;
     --header-height: 2.1rem;
     --icon-weight: 3px;
@@ -87,13 +87,8 @@ VARIABLES ETC.
 
 @font-face {
     font-family: 'custom-1';
-    src: url('fonts/montserrat/Montserrat-VariableFont_wght.ttf');
-    /* src: url('assets/font/Pictura-Regular.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Pictura-Regular.woff2') format('woff2'),
-        url('assets/font/Pictura-Regular.woff') format('woff'),
-        url('assets/font/Pictura-Regular.ttf') format('truetype'),
-        url('assets/font/Pictura-Regular.svg#Pictura-Regular') format('svg'); */
-    /* font-weight: var(--font-weight-headings); */
+    src: url('fonts/montserrat/montserrat.woff2') format('woff2'),
+        url('fonts/montserrat/montserrat.ttf') format('truetype');
     font-style: normal;
     font-display: swap;
 }
