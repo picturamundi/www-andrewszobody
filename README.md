@@ -156,7 +156,7 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
     --etc.
 ```
 
-… as well as the `theme-color` meta element in the HTML head: 
+… as well as the `theme-color` meta element in the HTML head (at the top of the document): 
 
 ```html
 <head>

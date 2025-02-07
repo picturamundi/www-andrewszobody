@@ -1,6 +1,6 @@
 
 // TO DO LIST
-//      - empty!
+//      - there are a lot of animations and transitions that trigger on initial page loads, creating visual messiness
 
 // ---------------------------------------
 //  WINDOW TRIGGERS
@@ -56,11 +56,10 @@ function updateDevice() {
     } else {
         // Apply 'desktop' class if the screen width is 700px or more
         if (document.body.classList.contains('mobile')) {
-            document.body.classList.add('desktop');
-            document.body.classList.remove('mobile');
             document.body.classList.add('desktop-switch');
-            console.log('WE LEFT MOBILE');
         }
+        document.body.classList.remove('mobile');
+        document.body.classList.add('desktop');
     }
 }
 
