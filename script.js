@@ -200,19 +200,15 @@ function sourceImages() {
     });
 }
 
-// show images on current page, hide those with invalid sources
+// show images with valid sources
 
 function revealSourcedImages() {
     var imgClass = '#' + pageName + '-main img';
     var lazyImgs = document.querySelectorAll(imgClass);
 
-    lazyImgs.forEach(function (image) {
-        image.classList.add('active');
-    });
-    document.querySelectorAll('img').forEach(function (img) {
-        img.onerror = function () {
-            this.classList.remove('active');
-            this.classList.add('inactive');
+    lazyImgs.forEach(function (img) {
+        img.onload = function () {
+            this.classList.add('active');
         };
     })
 }
