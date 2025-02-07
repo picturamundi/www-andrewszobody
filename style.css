@@ -679,7 +679,10 @@ body.desktop #site-name {
     font-size: 1.3rem;
 }
 
-body:not(#home) #site-name,
+body:not(#home) #site-name {
+    opacity: 0;
+}
+
 body:not(#bio) #bio-text {
     opacity: 0;
     animation: visHidden var(--menu-trans);
