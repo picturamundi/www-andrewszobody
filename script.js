@@ -2,6 +2,16 @@
 // TO DO LIST
 //      - empty!
 
+
+// CONTENTS
+//
+// - Window triggers
+// - Device
+// - Pseudo pages
+// - User interface
+// - Animations
+
+
 // ---------------------------------------
 //  WINDOW TRIGGERS
 // ---------------------------------------
@@ -16,8 +26,6 @@ window.addEventListener('DOMContentLoaded', function () {
     serveImages();
     galleryOnVisit();
 });
-
-
 
 // url change trigger
 window.addEventListener("hashchange", function () {
@@ -203,12 +211,12 @@ function sourceImages() {
 // show images with valid sources
 
 function revealSourcedImages() {
-    var imgClass = '#' + pageName + '-main img';
-    var lazyImgs = document.querySelectorAll(imgClass);
-
-    lazyImgs.forEach(function (img) {
+    document.querySelectorAll('img').forEach(function (img) {
         img.onload = function () {
             this.classList.add('active');
+        };
+        img.onerror = function () {
+            this.classList.add('inactive');
         };
     })
 }
@@ -316,7 +324,6 @@ function toggleFocus() {
 // ---------------------------------------
 // BUILD DESKTOP GALLERIES
 // ---------------------------------------
-
 
 // galleryOnVisit figures out if we need to build the gallery when a page is visited
 // We only build the gallery if we’re on desktop
@@ -452,10 +459,10 @@ function checkGalleryHeight() {
     }
 }
 
+
 // ---------------------------------------
 // ANIMATIONS
 // ---------------------------------------
-
 
 function blockAnimations() {
     addEventListener('click', (event) => {

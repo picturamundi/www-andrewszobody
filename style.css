@@ -107,11 +107,11 @@ VARIABLES ETC.
 }
 
 @keyframes visVisible {
-    0% {}
-
-    100% {
+    0% {
         visibility: visible;
     }
+
+    100% {}
 }
 
 
@@ -198,6 +198,16 @@ body#bio #nav-list #link-bio a {
     font-weight: var(--font-weight-bold);
 }
 
+figure img,
+img.inactive {
+    display: none;
+}
+
+img.active {
+    /* images are hidden until javascript shows the sourced ones */
+    display: block;
+}
+
 figure {
     margin: 0px;
     padding: 0px 0px;
@@ -205,14 +215,8 @@ figure {
 
 figure img {
     /* images are hidden until javascript shows the sourced ones */
-    display: none;
     width: 100%;
     border-radius: 1px;
-}
-
-figure img.active {
-    /* images are hidden until javascript shows the sourced ones */
-    display: block;
 }
 
 .figure-wrapper {
@@ -286,6 +290,7 @@ img#wallpaper-4x3 {
     position: absolute;
     height: 100%;
     width: auto;
+    overflow: hidden;
 }
 
 @media (min-aspect-ratio: 4/3) {
