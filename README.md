@@ -11,7 +11,7 @@ while others are in <strong>bold</strong>.</p>
 <button>
     Here is a button…
     <button>
-        With another button inside of it.
+        With another button inside of it for some reason.
     </button>
 </button>
 ```
@@ -34,7 +34,7 @@ button {
 }
 ```
 
-In the example above, `var(--text-color-primary)` refers to a variable. All such variables are defined at the top of the CSS document: 
+In the example above, `var(--text-color-primary)` refers to a variable. You can create whatever variables you want at the top of the CSS document: 
 
 ```css
 :root {
@@ -47,7 +47,7 @@ In the example above, `var(--text-color-primary)` refers to a variable. All such
 
 By modifying these variables, you modify everything that is styled using them, which is practical in that you don’t have to make a bunch of identical edits.
 
-The third core file type used to display a website is javascript, usually called `script.js`. While HTML adds content and CSS styles it, javascript uses logic to manipulate that content dynamically — javascript is the biggest difference between a webpage and a Word document.
+The third core file type used to display a website is javascript, usually called `script.js`. While HTML adds content and CSS styles it, javascript uses logic to manipulate that content dynamically — you could think of javascript as the biggest difference between a webpage and a Word document.
 
 It’s javascript that allows us to say: "When I click this image of a back arrow, check and see if there is a previous entry in our website history. If there is, navigate back to it. If there isn’t, go to the home page."
 
@@ -68,7 +68,7 @@ There are other files in the repository, like images and fonts, and but they’r
 
 ## Editing files on Github
 
-You can edit files directly from this page by navigating the list of repository contents above, then hitting the edit button on the top-right. When you save (or "commit") changes you’ll be prompted for a commit message, e.g., "update CSS color variables".
+You can edit files directly from this page by navigating the list of repository contents above, then hitting the edit button on the top-right. When you save changes (or "commit"), you’ll be prompted for a commit message, e.g., "update CSS color variables".
 
 You can add new files just by dragging and dropping.
 
@@ -156,7 +156,7 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
     --etc.
 ```
 
-… as well as the `theme-color` meta element in the HTML head (at the top of the document): 
+… as well as the content of the `theme-color` meta element in the HTML head (at the very top of the document): 
 
 ```html
 <head>
@@ -167,7 +167,7 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
     <etc.>
 ```
 
-The CSS variable `theme-color-1` is used for the home screen body background, which is revealed when scrolling bounces or when you refresh on mobile (see below), while the HTML `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
+The CSS variable `theme-color-1` is used for the home screen body background color, which is behind the wallpaper image. It’s revealed when scrolling bounces or when you refresh on mobile (see below). The HTML `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
 
 ![color matching](readme/color-matching-1.png)
 
