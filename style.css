@@ -860,7 +860,8 @@ MOBILE ONLY
 }
 
 body.desktop #interface-toggle,
-body:not(#home) #interface-toggle {
+body:not(#home) #interface-toggle,
+body.menu-expanded #interface-toggle {
     display: none;
 }
 
@@ -1068,4 +1069,20 @@ body#home.focus-name #social,
 #nav-button.cross svg path+path+path:not(path+path+path+path) {
     opacity: 1;
     rotate: -45deg;
+}
+
+/* block animations on initial load */
+
+body.load.mobile nav#nav-list {
+    visibility: hidden;
+}
+
+body.load:not(#home) #site-name-container,
+body.load.mobile nav#nav-list,
+body#home.load.mobile #back-button {
+    visibility: hidden;
+}
+
+body.desktop.load #nav-list {
+    transition: padding 0s;
 }

@@ -12,15 +12,16 @@ window.addEventListener('DOMContentLoaded', function () {
     globalThis.galleryMargin = 30;
     updateDevice();
     route();
-    blockAnimations();
     serveImages();
     galleryOnVisit();
+    blockAnimations();
 });
+
+
 
 // url change trigger
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
-    enableAnimations();
     globalThis.galleryMargin = 30;
     document.body.classList.add('nav');
     route();
@@ -37,10 +38,11 @@ window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     // console.log('---------- resize!');
     updateDevice();
-    blockAnimations();
+    // blockAnimations();
     // console.log('device updated');
     galleryOnResize();
 });
+
 
 // ---------------------------------------
 //  DEVICE
@@ -274,7 +276,6 @@ function toggleMenu() {
     if (document.body.className.includes('menu-expanded')) {
         collapseMenu();
     } else {
-        enableAnimations();
         expandMenu();
     }
 }
@@ -283,7 +284,6 @@ function expandMenu() {
     var menu = document.getElementById('nav-button');
     var body = document.body;
 
-    document.getElementById('interface-toggle').style.display = 'none';
     menu.classList.add('cross');
     body.classList.remove('menu-collapsed');
     body.classList.add('menu-expanded');
@@ -293,10 +293,6 @@ function expandMenu() {
 function collapseMenu() {
     var menu = document.getElementById('nav-button');
     var body = document.body;
-
-    if (body.classList.contains('mobile')) {
-        document.getElementById('interface-toggle').style.display = 'block';
-    }
 
     menu.classList.remove('cross');
     body.classList.remove('menu-expanded');
@@ -468,21 +464,8 @@ function checkGalleryHeight() {
 
 
 function blockAnimations() {
-    if (pageName != 'home') {
-        document.getElementById('site-name-container').style.visibility = 'hidden';
-    }
-    if (document.body.classList.contains('mobile')) {
-        document.getElementById('nav-list').style.visibility = 'hidden';
-        document.getElementById('back-button').style.visibility = 'hidden';
-    } else {
-        document.getElementById('nav-list').style.visibility = '';
-        document.getElementById('nav-list').style.transition = 'padding 0s';
-    }
-}
-
-function enableAnimations() {
-    document.getElementById('nav-list').style.transition = 'padding 0.5s, opacity 0.4s';
-    document.getElementById('home-main').style.transition = '';
-    document.getElementById('nav-list').style.visibility = '';
-    document.getElementById('back-button').style.visibility = '';
+    addEventListener('click', (event) => {
+        console.log('click');
+        document.body.classList.remove('load');
+    });
 }
