@@ -20,10 +20,10 @@ window.addEventListener('DOMContentLoaded', function () {
 // url change trigger
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
+    enableAnimations();
     globalThis.galleryMargin = 30;
     document.body.classList.add('nav');
     route();
-    enableAnimations();
     serveImages();
     window.scrollTo(0, 0);
     galleryOnVisit();
@@ -476,7 +476,7 @@ function blockAnimations() {
 }
 
 function enableAnimations() {
-    document.getElementById('nav-list').style.transition = 'padding 0.5s opacity 0.4s';
+    document.getElementById('nav-list').style.transition = 'padding 0.5s, opacity 0.4s';
     document.getElementById('home-main').style.transition = '';
     document.getElementById('nav-list').style.visibility = '';
     document.getElementById('back-button').style.visibility = '';
