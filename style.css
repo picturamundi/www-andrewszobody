@@ -65,6 +65,8 @@ VARIABLES ETC.
     --desktop-gallery-padding: 12vw;
     --desktop-gallery-width: calc(var(--desktop-main-width) - (var(--desktop-gallery-padding) * 2));
     --desktop-main-margin: 20px;
+
+    --mobile-slidedown-height: 30rem;
 }
 
 @media only screen and (max-width: 1050px) {
@@ -185,11 +187,7 @@ body.page.menu-expanded svg rect {
     transition: stroke var(--menu-trans);
 }
 
-body#home #nav-list #link-home a,
-body#recent #nav-list #link-recent a,
-body#less #nav-list #link-less a,
-body#old #nav-list #link-old a,
-body#bio #nav-list #link-bio a {
+nav p.active a {
     font-weight: var(--font-weight-bold);
 }
 
@@ -449,7 +447,7 @@ body.mobile.page #glass {
 }
 
 body.page.menu-expanded.mobile main.page.active {
-    margin-top: 30rem;
+    margin-top: var(--mobile-slidedown-height);
 }
 
 /* desktop pages */
@@ -475,9 +473,7 @@ body.desktop main#bio-main {
     margin-top: 30vh;
 }
 
-body#recent.desktop main#recent-main,
-body#less.desktop main#less-main,
-body#old.desktop main#old-main {
+body.desktop main.active {
     opacity: 1;
     margin-top: var(--desktop-main-margin);
     max-height: fit-content;

@@ -139,6 +139,14 @@ function old() {
     pageVisit();
 }
 
+function g4() {
+    globalThis.pageName = 'g4';
+    document.body.setAttribute('id', 'g4');
+
+    markActivePage();
+    pageVisit();
+}
+
 function bio() {
     globalThis.pageName = 'bio';
     document.body.setAttribute('id', 'bio');
@@ -149,12 +157,19 @@ function bio() {
 
 function markActivePage() {
     var mainId = '#' + pageName + '-main';
+    var linkId = '#' + 'link-' + pageName;
     var main = document.querySelector(mainId);
+    var link = document.querySelector(linkId);
 
     document.querySelectorAll('main').forEach(mainElement => {
         mainElement.classList.remove('active');
     });
+    document.querySelectorAll('.menu-item').forEach(mainElement => {
+        mainElement.classList.remove('active');
+    });
+
     main.classList.add('active');
+    link.classList.add('active');
 }
 
 // pageVisit lets us track navigation with CSS by applying tags to stuff

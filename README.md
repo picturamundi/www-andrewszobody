@@ -153,7 +153,7 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
     /* theme-color-1 is used for the home page background */
     --theme-color-2: rgb(230, 237, 226);
     /* theme-color-2 is used for the gallery background */
-    --etc.
+    …
 ```
 
 … as well as the content of the `theme-color` meta element in the HTML head (at the very top of the document): 
@@ -164,7 +164,7 @@ When swapping wallpapers, it’s a good idea to update the `theme-color-1` varia
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Szobody</title>
     <meta name="theme-color" content="rgba(200, 187, 170, 1)">
-    <etc.>
+    …
 ```
 
 The CSS variable `theme-color-1` is used for the home screen body background color, which is behind the wallpaper image. It’s revealed when scrolling bounces or when you refresh on mobile (see below). The HTML `theme-color` is used by browsers to tint some of their ui elements. Safari in iOS uses it for the status bar: 
@@ -173,3 +173,50 @@ The CSS variable `theme-color-1` is used for the home screen body background col
 
 ![color matching](readme/color-matching-2.png)
 
+
+## Changing page names
+
+To rename a page, search for its current name in the html file. You should get two results: the menu link to that page, and then the heading on the page itself.
+
+The menu links look like this: 
+
+```html
+<nav id="nav-list">
+    <p id="link-recent" class="menu-item"><a href="#recent">Recent works</a></p>
+    <p id="link-less" class="menu-item"><a href="#less">Less recent</a></p>
+    […]
+</nav>
+```
+
+And page headings look like this: 
+
+```html 
+<main id="less-main" class="page sleeping">
+    <h1>Less recent works</h1>
+    […]
+</main>
+```
+
+Just retype whatever name you want in these two places, between the tags that they’re wrapped in. Don’t update anything else, like IDs or whatnot, since a bunch of stuff in the CSS and javascript files are tied to them. They’ll just have to not match.
+
+
+## Adding a gallery
+
+There’s an extra gallery already created that you could use if you need it. In the list of menu items, there’s a hidden link to it that you can activate to make it accessible:
+
+```html
+<nav id="nav-list">
+    […]
+    <p id="link-old" class="menu-item"><a href="#old">Old works</a></p>
+    <!-- <p id="link-g4" class="menu-item"><a href="#g4">Gallery 4</a></p> -->
+    <p id="link-bio" class="menu-item"><a href="#bio">About/Contact</a></p>
+</nav>
+```
+
+The link with the text "Gallery 4" is wrapped in comment syntax, `<--` and ` -->`, which turns it into a note that’s not taken into account on the rendered page. Remove that comment syntax and the link will then appear in the navigation menu.
+
+Adding another link to the menu means that pages need to slide down a little further on mobile so that the menu isn’t cramped. The `--mobile-slidedown-height` variable in the CSS file will need to be adjusted from `30rem` to something like `34rem`.
+
+To add works to the new gallery, just create a `g4` subfolder in the `artwork` folder. Or, if you want to match this subfolder’s name to your new gallery name, you can do that but you’ll just need to update the path for the gallery images in the html file. Search `/g4/` in the html file, make sure this returns 15 results, then replace all 15 with `/your-new-folder-name/`.
+
+That should be it!
