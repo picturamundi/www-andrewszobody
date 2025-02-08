@@ -215,8 +215,8 @@ There’s an extra gallery already created that you could use if you need it. In
 
 The link with the text "Gallery 4" is wrapped in comment syntax, `<--` and ` -->`, which turns it into a note that’s not taken into account on the rendered page. Remove that comment syntax and the link will then appear in the navigation menu.
 
-Adding another link to the menu means that pages need to slide down a little further on mobile so that the menu isn’t cramped. The `--mobile-slidedown-height` variable in the CSS file will need to be adjusted from `30rem` to something like `34rem`.
+Adding another link to the menu means that pages need to slide down a little further on mobile for the menu not to be cramped. The `--mobile-slidedown-height` variable in the CSS file will need to be adjusted from `30rem` to something like `34rem`.
 
-To add works to the new gallery, just create a `g4` subfolder in the `artwork` folder. Or, if you want to match this subfolder’s name to your new gallery name, you can do that but you’ll just need to update the path for the gallery images in the html file. Search `/g4/` in the html file, make sure this returns 15 results, then replace all 15 with `/your-new-folder-name/`.
+To add works to the new gallery, just create a `g4` subfolder in the `artwork` folder. Or, if you would rather match this subfolder’s name to your new gallery name, you can do that but you’ll just need to update the path for the gallery images in the html file. Search `/g4/` in the html file, make sure this returns 15 results, then replace all 15 with `/your-new-folder-name/`.
 
 That should be it!
