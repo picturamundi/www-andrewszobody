@@ -1104,10 +1104,14 @@ body#home.focus-name #social,
 
 /* block animations on initial load */
 
-body.load #nav-list,
+body.load nav#nav-list,
+body.load p#link-home,
+body.load span#nav-name-label,
+body.load span#nav-home-label,
+body.load #nav-list a,
 body.load #back-button svg,
 body.load main.active,
 body.load #site-name,
 body.load #bio-text {
-    transition: none;
+    transition: none !important;
 }
