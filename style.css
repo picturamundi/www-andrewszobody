@@ -149,6 +149,7 @@ header,
 main {
     position: absolute;
     height: fit-content;
+    min-height: 50vh;
     padding-bottom: 7rem;
     overflow: hidden;
 }
@@ -323,6 +324,11 @@ img#wallpaper-1x1 {
 
 /* frosted glass */
 
+body.mobile.page #wallpaper-wrapper,
+body.mobile.page #glass {
+    position: fixed;
+}
+
 #glass {
     position: absolute;
     top: 0;
@@ -385,6 +391,11 @@ body.desktop main#bio-main {
     top: 0;
 }
 
+main.active,
+main.page.active {
+    opacity: 1;
+}
+
 /* gallery pages */
 
 body.page #content {
@@ -419,7 +430,6 @@ body.mobile #content {
 }
 
 body.mobile main {
-    transition: margin var(--page-trans), opacity var(--page-trans);
     width: 100%;
 }
 
@@ -430,20 +440,15 @@ body.mobile main {
 }
 
 body.mobile main.page {
-    margin-top: 140%;
     border-radius: 7px 7px 0px 0px;
 }
 
-body.mobile main.page.active {
-    position: relative;
-    opacity: 1;
+main.page {
     margin-top: calc(var(--header-height) * 3);
-    overflow: hidden;
 }
 
-body.mobile.page #wallpaper-wrapper,
-body.mobile.page #glass {
-    position: fixed;
+body.mobile main.page:not(.active) {
+    margin-top: var(--mobile-slidedown-height);
 }
 
 body.page.menu-expanded.mobile main.page.active {
@@ -474,7 +479,6 @@ body.desktop main#bio-main {
 }
 
 body.desktop main.active {
-    opacity: 1;
     margin-top: var(--desktop-main-margin);
     max-height: fit-content;
 }
@@ -484,16 +488,19 @@ body.desktop main.active {
 NAV MENU
 ---------------------------------- */
 
-nav#nav-list {
+#nav-list {
     padding: var(--header-height);
+    padding-left: 10vw;
+    padding-top: 30vh;
     flex-direction: column;
+    opacity: 0;
 }
 
-nav#nav-list a {
+#nav-list a {
     font-size: calc(var(--default-font-size) * 1.7);
     color: var(--ui-color);
     border-bottom: 1px solid var(--ui-color);
-    transition: border var(--menu-trans), color var(--menu-trans);
+    transition: font-weight var(--menu-trans);
 }
 
 nav#nav-list p {
@@ -515,7 +522,11 @@ span#nav-name-label {
     top: 0;
 }
 
-body.desktop nav#nav-list {
+body.mobile #nav-list {
+    padding: var(--header-height);
+}
+
+body.desktop #nav-list {
     padding-right: 0px;
     z-index: 6;
 }
@@ -528,7 +539,6 @@ body.desktop.page #nav-list {
     left: 0;
     text-align: left;
     margin: 0px;
-    padding-left: 5%;
     display: flex;
     justify-content: center;
     transition: padding 0.5s;
@@ -536,11 +546,16 @@ body.desktop.page #nav-list {
     opacity: 1;
 }
 
-body#home.desktop #nav-list,
-body#bio.desktop #nav-list {
-    padding-left: 10%;
-    padding-top: 30vh;
+body.desktop.page #nav-list {
+    padding-left: 5%;
+    padding-top: 0px;
 }
+
+/* body#home.desktop #nav-list,
+body#bio.desktop #nav-list {
+    padding-left: 10vw;
+    padding-top: 30vh;
+} */
 
 body.desktop #nav-list a {
     font-size: calc(var(--default-font-size) * 1.5);
@@ -548,6 +563,15 @@ body.desktop #nav-list a {
 
 body.desktop #nav-list p {
     position: relative;
+}
+
+p#link-home {
+    margin-top: 2rem;
+    transition: margin var(--menu-trans);
+}
+
+body.mobile p#link-home {
+    margin-top: 0px;
 }
 
 body.desktop.page p#link-home {
@@ -563,11 +587,6 @@ body.desktop.page h1,
 body.desktop.page p#link-home {
     margin-top: 8rem;
     margin-bottom: 6rem;
-}
-
-body.desktop p#link-home {
-    margin-top: 2rem;
-    transition: margin 0.5s;
 }
 
 body.desktop.page span#nav-name-label {
@@ -586,10 +605,8 @@ body.mobile nav#nav-list {
     width: 100%;
     text-align: center;
     z-index: 3;
-    opacity: 0;
     transition: opacity var(--menu-trans);
 }
-
 
 body.mobile.menu-expanded nav#nav-list {
     opacity: 1;
@@ -648,6 +665,7 @@ body.desktop #site-name {
     font-size: var(--name-font-size);
     text-align: center;
     text-transform: var(--name-case);
+    opacity: 0;
 }
 
 #site-name,
@@ -670,18 +688,10 @@ body.desktop #site-name {
     font-size: 1.3rem;
 }
 
-body:not(#home) #site-name {
-    opacity: 0;
-}
-
 body:not(#bio) #bio-text {
     opacity: 0;
     animation: visHidden var(--menu-trans);
     -webkit-animation: forwards;
-}
-
-body#home.nav #site-name {
-    opacity: 1;
 }
 
 body#bio.nav #bio-text {
@@ -917,7 +927,7 @@ body.mobile #back-button svg {
 
 /* back button */
 
-body.mobile#home #back-button svg {
+#back-button svg {
     opacity: 0;
     animation: visHidden var(--menu-trans);
     -webkit-animation-fill-mode: forwards;
@@ -1058,10 +1068,18 @@ body#home.focus-name #social,
 
 /* menu button animations */
 
-#nav-button.hamburger svg path {
+#nav-button.hamburger svg path,
+#nav-button.cross svg path {
     transform-origin: 50% 50%;
     transition: rotate var(--menu-trans), opacity var(--menu-trans);
+}
+
+#nav-button.hamburger svg path {
     opacity: 1;
+}
+
+#nav-button.cross svg path {
+    opacity: 0;
 }
 
 #nav-button.hamburger svg path+path:not(path+path+path+path, path+path+path) {
@@ -1072,12 +1090,6 @@ body#home.focus-name #social,
 #nav-button.hamburger svg path+path+path:not(path+path+path+path) {
     opacity: 1;
     rotate: 0deg;
-}
-
-#nav-button.cross svg path {
-    transform-origin: 50% 50%;
-    transition: rotate var(--menu-trans), opacity var(--menu-trans);
-    opacity: 0;
 }
 
 #nav-button.cross svg path+path:not(path+path+path+path, path+path+path) {
@@ -1092,16 +1104,10 @@ body#home.focus-name #social,
 
 /* block animations on initial load */
 
-body.load.mobile nav#nav-list {
-    visibility: hidden;
-}
-
-body.load:not(#home) #site-name-container,
-body.load.mobile nav#nav-list,
-body#home.load.mobile #back-button {
-    visibility: hidden;
-}
-
-body.desktop.load #nav-list {
-    transition: padding 0s;
+body.load #nav-list,
+body.load #back-button svg,
+body.load main.active,
+body.load #site-name,
+body.load #bio-text {
+    transition: none;
 }
