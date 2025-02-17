@@ -75,26 +75,26 @@ You can add new files by dragging and dropping.
 
 ## Editing files locally
 
-If you want to be able to make changes to the website while 1] being able to view those changes before they go live and 2] avoid inadvertently causing issues with your edits, you’ll need to install a couple of things.
+If you want to be able to make changes to the website while 1] being able to view those changes before they go live and therefore 2] catch issues you might have inadvertently caused with your edits before they’re public, you’ll need to install a couple of things.
 
 #### 1. Github desktop app
 
-[Here](https://youtu.be/PvUexC0-D2s) is a short and straightforward guide for setting up the Github desktop app. The app allows you to work on a local copy of the website files. Once you want your edits to go live, you sync your copy with Github.
+[Here](https://youtu.be/PvUexC0-D2s) is a short and straightforward guide for setting up the Github desktop app. The app allows you to work on a local copy of the website files. Once you’re sure everything works and you want your edits to go live, you sync your copy with Github.
 
 #### 2. Text editor
 
 Once you have your local copy of the website files, you’ll need a text editor to edit them. [Sumblime Text](https://www.sublimetext.com/) is a lightweight and free option.
 
-Say you want to edit css variables in order modify the gallery background color. Locate the `style.css` file in the, right click on it, and select `Open With > Sublime Text`. 
+Say you want to edit css variables in order modify the gallery background color. Locate the `style.css` file in the repository folder, right click on it, and select `Open With > Sublime Text`. 
 
-In order to preview how your edits to the text files effect the webpage, open `index.html` (it should open in your default browser). To continue seeing changes as you add edits, just remember to hit save in your text-editor, then refresh in the browser.
+In order to preview how your edits to the text files effect the webpage, open `index.html` (it should open in your browser by default). To continue seeing changes as you add edits, just remember to hit save in your text editor, then refresh in the browser.
 
 
 ## Managing image file size
 
-The largest files your website has to load are the images. Every additional megabyte of images could add over a second of load time to the page it’s on. It’s probably a good idea to try and keep images below 500KB a piece whenever you can.
+The largest files your website has to load are the images. Every additional megabyte of images could add over a second of load time to the page it’s on. It’s probably a good idea to try and keep images below 500 kilobytes a piece whenever you can.
 
-You can reduce file size either by shrinking the image dimensions (resolution) or by increasing compression. Here’s how to do both on a mac:
+You can reduce file size either by shrinking the image’s pixel dimensions (resolution) or by increasing compression. Here’s how to do both on a mac:
 
 In Apple Preview, hitting Cmd-0 will zoom the open image to 100% which can give you an idea of how much resolution you have and if you can sacrifice some to decrease file size. Hit `Tools > Adjust Size…` to decrease the dimensions of the image.
 
