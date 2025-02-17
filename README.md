@@ -5,7 +5,7 @@ At the bare minimum, every website is at least a single HTML file, usually calle
 ```html
 <h1>Here is a heading</h1>
 
-<p>Here is a paragraph of text. Some words are in <em>italics<em>
+<p>Here is a paragraph of text. Some words are in <em>italics</em>
 while others are in <strong>bold</strong>.</p>
 
 <button>
