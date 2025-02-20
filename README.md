@@ -5,7 +5,7 @@ At the bare minimum, every website is at least a single HTML file, usually calle
 ```html
 <h1>Here is a heading</h1>
 
-<p>Here is a paragraph of text. Some words are in <em>italics<em>
+<p>Here is a paragraph of text. Some words are in <em>italics</em>
 while others are in <strong>bold</strong>.</p>
 
 <button>
@@ -96,7 +96,7 @@ The largest files your website has to load are the images. Every additional mega
 
 You can reduce file size either by shrinking the image’s pixel dimensions (resolution) or by increasing compression. Here’s how to do both on a mac:
 
-In Apple Preview, hitting Cmd-0 will zoom the open image to 100% which can give you an idea of how much resolution you have and if you can sacrifice some to decrease file size. Hit `Tools > Adjust Size…` to decrease the dimensions of the image.
+In Apple Preview, hitting `Cmd-0` will zoom the open image to 100% which can give you an idea of how much resolution you have and if you can sacrifice some to decrease file size. Hit `Tools > Adjust Size…` to decrease the dimensions of the image.
 
 To increase compression, hit `File > Export…`, select `JPEG` as the format and use the `Quality` slider to target different file sizes. Once the image is exported, check it to make sure there aren't super visible [compression artifacts](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftechterms.com%2Fimg%2Fxl%2Fartifact_1543.png&f=1&nofb=1&ipt=7cee300beb5f2a79c7ab6bc4e254e57e9dd81e4b977887cb6b0cd73c5ccc8d3e&ipo=images) (compression artifacts aren't the same thing as pixelation; you can have a high-res image with bad artifacting).
 
@@ -116,7 +116,7 @@ Dropping `.jpeg` files into these subfolders with the following naming conventio
 
 By default, galleries are set up for 15 images, but more could be added.
 
-In order to add a caption to a new image — or to modify a caption — open the html document and search for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct work. Just under the image path, fill out `fig-title`, `fig-medium`, and `fig-dimensions`:
+In order to add a caption to a new image — or to modify a caption — open the html document and search (`Cmd-f`) for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct work. Just under the image path, fill out `fig-title`, `fig-medium`, and `fig-dimensions`:
 
 ```html
 <div class="img-container">
@@ -199,7 +199,7 @@ And page headings look like this:
 </main>
 ```
 
-Just retype whatever name you want in these two text fields, between the tags. Don’t update anything else, like IDs or whatnot, since a bunch of stuff in the css and javascript files are tied to them. They’ll just have to not match.
+Just retype whatever name you want in these two text fields, between the tags. Don’t rename anything else, like IDs or whatnot, since a bunch of stuff in the css and javascript files are tied to them. They’ll just have to not match.
 
 
 ## Adding a gallery
