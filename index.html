@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Szobody</title>
+    <meta name="theme-color" content="rgb(200, 187, 170)"> <!--Match this to page background color-->
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="manifest" href="favicons/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffdf83">
+</head>
+
+<body id="home" class="menu-collapsed load">
+
+    <div id="content">
+
+        <div id="wallpaper-wrapper">
+            <img src="wallpaper/4x3.jpeg" id="wallpaper-4x3">
+            <img src="wallpaper/3x4.jpeg" id="wallpaper-3x4">
+            <img src="wallpaper/1x1.jpeg" id="wallpaper-1x1">
+        </div>
+
+        <div id="glass" class=""></div>
+
+        <div id="interface-toggle" onclick="toggleFocus()"></div>
+
+        <div id="popup-close-wrapper">
+            <div id="popup-close" onclick="closeCaption()">
+                <svg width="" height="" viewBox="0 0 50 46" fill="none" onclick="closeCaption()"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
+                    <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
+                </svg>
+            </div>
+        </div>
+
+        <header id="header">
+            <div id="back-button" onclick="backButton()">
+                <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 2L3 23L24 44" stroke="" stroke-width="" />
+                    <path d="M4 23.0001H50" stroke="" stroke-width="" />
+                </svg>
+            </div>
+            <div id="nav-button" class="" onclick="toggleMenu()">
+                <svg viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 2H50" stroke="" stroke-width="" />
+                    <path d="M0 23H50" stroke="" stroke-width="" />
+                    <path d="M0 23H50" stroke="" stroke-width="" />
+                    <path d="M0 44H50" stroke="" stroke-width="" />
+                </svg>
+            </div>
+        </header>
+
+
+
+
+        <div id="desktop-content-wrapper">
+            <div id="desktop-content">
+
+                <nav id="nav-list">
+                    <p id="link-home" class="menu-item"><a href="#home"><span id="nav-home-label">Home</span><span
+                                id="nav-name-label">Andrew Szobody</span></a></p>
+                    <p id="link-recent" class="menu-item"><a href="#recent">Recent</a></p>
+                    <p id="link-less" class="menu-item"><a href="#less">Less Recent</a></p>
+                    <p id="link-old" class="menu-item"><a href="#old">Old</a></p>
+                    <!-- <p id="link-g4" class="menu-item"><a href="#g4">Gallery 4</a></p> -->
+                    <p id="link-bio" class="menu-item"><a href="#bio">About/Contact</a></p>
+                </nav>
+
+
+
+
+                <main id="home-main" class="sleeping">
+                    <div id="site-name-container">
+                        <div id="site-name" class="">andrew szobody</div>
+                    </div>
+                </main>
+
+
+
+
+                <main id="recent-main" class="page sleeping">
+                    <h1>Recent</h1>
+
+                    <div class="gallery recent">
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/01.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (Two Shrubs), 2025</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Mixed media on paper laid to canvas, </div>
+                                        <div class="fig-dimensions">10.5 x 11.5 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/02.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (Winter Landscape), 2025</div>
+                                    <div class="fig-details">
+<<<<<<< HEAD
+                                        <div class="fig-medium"> Ink, colored pencil, and graphite on gessoed paper 
+                                        laid to canvas, </div>
+=======
+                                        <div class="fig-medium">Ink, colored pencil, and graphite on gessoed paper
+                                            laid to canvas, </div>
+>>>>>>> 86c629eb78f11ce054c92f7e62c36061e49f5b87
+                                        <div class="fig-dimensions">12 x 11 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/03.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (a wind), 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink, graphite, egg tempera on paper mounted to board,
+                                        </div>
+                                        <div class="fig-dimensions">12 x 12 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/04.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (on the grass), 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink and graphite on paper laid to canvas, </div>
+                                        <div class="fig-dimensions">11 x 15 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/05.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (red and blue), 2024</div>
+                                    <div class="fig-details">
+<<<<<<< HEAD
+                                        <div class="fig-medium"> Watercolor, ink, colored pencil and pastel on paper laid to linen, </div>
+=======
+                                        <div class="fig-medium">Watercolor, ink, colored pencil and pastel on paper laid
+                                            to linen, </div>
+>>>>>>> 86c629eb78f11ce054c92f7e62c36061e49f5b87
+                                        <div class="fig-dimensions">9 x 11 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/06.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled, 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink and watercolor on paper laid to canvas, </div>
+                                        <div class="fig-dimensions">10 x 14 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/07.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (travel advertisement), 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink, graphite, and colored pencil on paper laid to
+                                            canvas, </div>
+                                        <div class="fig-dimensions">11 x 9 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/08.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (travel advertisement 2), 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink graphite, and colored pencil on paper laid to
+                                            canvas, </div>
+                                        <div class="fig-dimensions">11 x 9 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/09.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled (yellow and gray), 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink and watercolor on paper laid to canvas, </div>
+                                        <div class="fig-dimensions">12 x 14 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/10.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untited (the flight of fancy), 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Mixed media on paper, </div>
+                                        <div class="fig-dimensions">5 x 7 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/11.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled, 2024</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink, pastel, and graphit on paper, </div>
+                                        <div class="fig-dimensions">6 x 9 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/12.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled, 2023</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Graphite, ink, and egg tempera on paper, </div>
+                                        <div class="fig-dimensions">12 x 14 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/13.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Untitled, 2023</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Ink, charcoal, and pastel on paper, </div>
+                                        <div class="fig-dimensions">12 x 14 in</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/14.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/recent/15.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                    </div>
+                </main>
+
+
+
+
+                <main id="less-main" class="page sleeping">
+                    <h1>Less Recent</h1>
+
+                    <div class="gallery less">
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/01.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/02.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/03.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/04.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/05.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/06.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/07.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/08.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/09.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/10.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/11.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/12.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/13.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/14.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/less/15.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                    </div>
+                </main>
+
+
+
+
+                <main id="old-main" class="page sleeping">
+                    <h1>Old</h1>
+
+                    <div class="gallery old">
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/01.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/02.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/03.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/04.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/05.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/06.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/07.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/08.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/09.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/10.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/11.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/12.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/13.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/14.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/old/15.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                    </div>
+                </main>
+
+
+
+
+                <main id="g4-main" class="page sleeping">
+                    <h1>Gallery 4</h1>
+
+                    <div class="gallery g4">
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/01.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/02.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/03.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/04.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/05.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/06.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/07.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/08.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/09.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/10.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/11.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/12.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/13.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/14.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="figure-wrapper">
+                            <figure>
+                                <div class="img-container">
+                                    <img data-src="artwork/g4/15.jpeg" src="">
+                                </div>
+                                <figcaption class="">
+                                    <div class="fig-title">Title</div>
+                                    <div class="fig-details">
+                                        <div class="fig-medium">Medium, </div>
+                                        <div class="fig-dimensions">Dimensions</div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                    </div>
+                </main>
+
+
+
+
+                <main id="bio-main" class="sleeping">
+                    <div id="bio-container">
+                        <div id="bio-text" class="">
+                            <p>Andrew lives and works in Queens, NY.<br> His work has been shown at Norte Maar and
+                                Brooklyn
+                                Fireproof.</p>
+                            <p>Contact: <a href="mailto: andrew@szobody.com">andrew@szobody.com</a></p>
+                            <p id="instagram-link">Instagram: <a
+                                    href="https://www.instagram.com/andrewszzb/">andrewszzb</a></p>
+                        </div>
+                    </div>
+                </main>
+
+
+
+
+            </div>
+        </div>
+
+        <footer>
+            <a href="https://www.instagram.com/andrewszzb/" id="social">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="44" height="44" rx="11" stroke="black" stroke-width="4" />
+                    <rect x="13.4783" y="13.4783" width="21.0435" height="21.0435" rx="10.5217" stroke="black"
+                        stroke-width="4" />
+                    <rect x="34.4348" y="8.34778" width="5.21739" height="5.21739" rx="2.6087" fill="black" />
+                </svg>
+            </a>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
