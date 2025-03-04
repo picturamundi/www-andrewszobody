@@ -468,24 +468,29 @@ function setGalleryHeight() {
 function checkGalleryHeight() {
     const galleryClass = '.gallery.' + pageName;
     const gallery = document.querySelector(galleryClass);
-
     const parent = gallery.parentElement;
 
-    // Get the width of the gallery (including padding) and its parent element
-    const galleryWidth = gallery.offsetWidth; // Includes padding
-    // console.log('Gallery width is: ' + galleryWidth);
-    const parentWidth = parent.offsetWidth; // Width of the parent (main element)
-    // console.log('Page width is: ' + parentWidth);
+    // // Get the width of the gallery (including padding) and its parent element
+    // const galleryWidth = gallery.offsetWidth; // Includes padding
+    // // console.log('Gallery width is: ' + galleryWidth);
+    // const parentWidth = parent.offsetWidth; // Width of the parent (main element)
+    // // console.log('Page width is: ' + parentWidth);
 
-    // Get the margin on the gallery
-    const galleryMarginLeft = parseFloat(window.getComputedStyle(gallery).marginLeft);
-    // console.log('Gallery margin width is: ' + galleryMarginLeft);
+    // // Get the margin on the gallery
+    // const galleryMarginLeft = parseFloat(window.getComputedStyle(gallery).marginLeft);
+    // // console.log('Gallery margin width is: ' + galleryMarginLeft);
 
-    // Compare the content width of the gallery to the parent's width minus the margin
-    if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
-        // console.log(pageName + ' gallery has too many columns');
+    // // Compare the content width of the gallery to the parent's width minus the margin
+    // if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
+    //     // console.log(pageName + ' gallery has too many columns');
+    //     globalThis.galleryMargin += 5;
+    //     // console.log(pageName + ' gallery height increased by 5px');
+    //     setGalleryHeight();
+    // }
+
+    if (gallery.scrollWidth > gallery.clientWidth) {
         globalThis.galleryMargin += 5;
-        // console.log(pageName + ' gallery height increased by 5px');
+        console.log(pageName + ' gallery height increased by 5px');
         setGalleryHeight();
     }
 }

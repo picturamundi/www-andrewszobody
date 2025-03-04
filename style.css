@@ -48,7 +48,7 @@ VARIABLES ETC.
     --heading-font-size: 24px;
     --font-weight-primary: 200;
     --font-weight-headings: 200;
-    --font-weight-bold: 600;
+    --font-weight-bold: 500;
 
     --name-case: capitalize;
     --name-font: 'custom-1', sans-serif;
@@ -727,11 +727,16 @@ body.mobile .popup figcaption {
     margin-bottom: 6rem;
 }
 
+.img-container {
+    display: flex;
+    justify-content: center;
+}
+
 /* desktop gallery */
 
 body.desktop div.gallery {
     display: flex;
-    width: fit-content;
+    width: var(--desktop-gallery-width);
     margin-left: var(--desktop-gallery-padding);
     flex-wrap: wrap;
     gap: 1rem;
