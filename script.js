@@ -48,6 +48,7 @@ window.addEventListener('resize', function () {
     updateDevice();
     // console.log('device updated');
     galleryOnResize();
+    tailorPopupUI();
 });
 
 
@@ -269,11 +270,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (img) {
             img.addEventListener('click', function (event) { // For some reason clicks register on the img, not the parent figure
                 // Change class
-                if (figure.classList.contains('popup')) {
-                    figure.classList.remove('popup');
+                if (figure.classList.contains('popup-origin')) {
+                    figure.classList.remove('popup-origin');
                 } else {
-                    figure.classList.add('popup');
-                    styleCloseButton();
+                    figure.classList.add('popup-origin');
+                    if (document.body.classList.contains('desktop')) {
+                        // document.getElementById('desktop-content').appendChild(figure);
+                        const popupCopy = figure.cloneNode(true);
+                        document.getElementById('desktop-content').appendChild(popupCopy);
+                        popupCopy.classList.add('popup');
+                        styleCloseButton();
+                    }
                 }
             });
         }
@@ -281,14 +288,39 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function styleCloseButton() {
-    var button = document.getElementById('popup-close');
-    var popupWidth = document.querySelector('.popup figure').offsetWidth
-    button.style.width = popupWidth + 'px';
+    var button = document.getElementById('popup-close-wrapper');
+    var popupFigure = document.querySelector('.popup figure');
+
+    const buttonCopy = button.cloneNode(true);
+    popupFigure.insertBefore(buttonCopy, popupFigure.firstChild);
+    // insert the close button in the relevant figure;
+    tailorPopupUI();
 }
 
+function tailorPopupUI() {
+    var caption = document.querySelector('.popup figcaption');
+    var img = document.querySelector('.popup figure .img-container img');
+
+    // Make sure popup image is loaded before adapting the UI
+    if (img.complete) {
+        var imgWidth = img.offsetWidth;
+        document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
+        caption.style.width = imgWidth + 'px';
+    } else {
+        img.addEventListener('load', function () {
+            var imgWidth = img.offsetWidth;
+            document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
+            caption.style.width = imgWidth + 'px';
+        });
+    }
+}
+
+
+
 function closeCaption() {
-    document.querySelector('.popup').classList.remove('popup'); // if resize happened while popup was up, gallery was miscalculated
-    galleryOnResize();
+    document.querySelector('.popup').remove();
+    document.querySelector('.popup-origin').classList.remove('popup-origin');
+    // galleryOnResize(); // if resize happened while popup was up, gallery was miscalculated
 }
 
 // toggle menu

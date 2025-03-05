@@ -5,6 +5,9 @@
 TO DO LIST
 
 - figure out why pages disappear with no transition on mobile
+- dimensions need to have non-breaking spaces
+- disable scroll when popup is open
+- fix mobile gallery
 
 
 CONTENTS
@@ -207,7 +210,8 @@ figure {
     padding: 0px 0px;
 }
 
-figure img {
+body.mobile .figure-wrapper figure img,
+body.desktop .figure-wrapper:not(.popup) figure img {
     /* images are hidden until javascript shows the sourced ones */
     width: 100%;
     border-radius: 1px;
@@ -238,11 +242,6 @@ figcaption .fig-title,
 figcaption .fig-details {
     transition: opacity var(--menu-trans), margin var(--menu-trans), height var(--menu-trans);
     text-align: center;
-}
-
-figcaption .fig-medium,
-figcaption .fig-dimensions {
-    display: inline-block;
 }
 
 .popup figcaption .fig-title,
@@ -700,6 +699,16 @@ body#bio.nav #bio-text {
     -webkit-animation-fill-mode: forwards;
 }
 
+/* gallery */
+
+figcaption {
+    padding: 0px 20px;
+}
+
+.fig-dimensions {
+    white-space: nowrap;
+}
+
 /* mobile gallery */
 
 body.mobile .gallery {
@@ -713,7 +722,8 @@ body.mobile figure {
     padding: 0px 0px;
 }
 
-body.mobile figure img {
+body.mobile figure img,
+body.mobile figcaption {
     max-width: 420px;
 }
 
@@ -723,13 +733,23 @@ body.mobile figcaption .fig-details {
     text-align: center;
 }
 
+.mobile figcaption .fig-medium,
+.mobile figcaption .fig-dimensions {
+    display: inline-block;
+}
+
 body.mobile .popup figcaption {
-    margin-bottom: 6rem;
+    margin-bottom: 10rem;
+}
+
+body.mobile figcaption {
+    max-width: 100%;
 }
 
 .img-container {
     display: flex;
     justify-content: center;
+    object-fit: contain;
 }
 
 /* desktop gallery */
@@ -766,21 +786,20 @@ body.desktop div.popup {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
+    z-index: 6;
     top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
 }
 
 body.desktop div.popup figure {
     position: relative;
-    max-width: 75vw;
+    max-width: 85vw;
     width: fit-content;
-    height: 90vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -790,13 +809,11 @@ body.desktop div.popup figure {
 
 body.desktop div.popup .img-container {
     position: relative;
-    max-height: 100%;
     max-width: 100%;
-    height: 70vh;
+    max-height: 75vh;
     width: fit-content;
     display: flex;
     justify-content: center;
-    padding-top: calc(var(--header-height) + 2rem)
 }
 
 body.desktop div.popup .img-container img {
@@ -810,17 +827,25 @@ body.desktop div.popup figcaption {
     display: block;
     font-size: 1.3rem;
     height: fit-content;
-    width: 100%;
+    max-height: 7rem;
+    max-width: 100%;
     margin-bottom: 0px;
+    overflow: scroll;
+    color: var(--ui-color);
 }
 
 body.desktop div.popup figcaption .fig-title,
 body.desktop div.popup figcaption .fig-details {
-    text-align: left;
+    text-align: center;
 }
 
 body.desktop .fig-title {
     margin-top: 1.5rem;
+}
+
+.desktop figcaption .fig-medium,
+.desktop figcaption .fig-dimensions {
+    display: inline;
 }
 
 body.desktop:has(div.popup) #nav-list,
@@ -846,32 +871,31 @@ body.desktop .popup figcaption div.fig-title {
     margin-top: 1.5rem;
 }
 
-div.popup-close,
+#popup-close,
 #popup-close-wrapper {
     display: none;
 }
 
-body.desktop:has(.popup) #popup-close {
-    display: flex;
-}
-
-body.desktop:has(.popup) #popup-close-wrapper {
-    position: fixed;
-    width: 100vw;
+body.desktop .popup #popup-close-wrapper {
+    box-sizing: content-box;
+    position: relative;
+    width: 100%;
     height: var(--header-height);
     display: flex;
-    justify-content: center;
-    bottom: calc(85vh + 2rem);
-    z-index: 6;
-}
-
-body.desktop #popup-close {
     justify-content: right;
-    height: 100%;
+    z-index: 6;
+    padding-bottom: var(--header-height);
 }
 
-body.desktop #popup-close svg {
+body.desktop .popup #popup-close {
+    display: flex;
+    justify-content: right;
+    height: var(--header-height);
+}
+
+body.desktop .popup #popup-close svg {
     width: var(--header-height);
+    height: var(--header-height);
 }
 
 /* ----------------------------------
