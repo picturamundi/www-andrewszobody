@@ -39,8 +39,8 @@ VARIABLES ETC.
     --text-color-primary: var(--theme-color-3);
     /* change text-color-primary to white for darker gallery backgrounds */
     --glass-color: rgba(171, 154, 129, 0.5);
-    --glass-blur-mobile: blur(10px);
-    --glass-blur-desktop: blur(15px);
+    --glass-blur-mobile: blur(8px);
+    --glass-blur-desktop: blur(12px);
     --transparent: rgba(0, 0, 0, 0);
 
     --font-primary: 'custom-1', sans-serif;
@@ -264,13 +264,21 @@ BACKGROUNDS
 /* wallpaper */
 
 #wallpaper-wrapper {
-    min-height: 100vh;
-    min-width: 100vw;
+    min-height: 105vh;
+    min-width: 105vw;
+    margin-left: -2.5vw;
+    margin-top: -2.5vw;
     z-index: -1;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    filter: var(--glass-blur-mobile) brightness(1);
+    transition: filter var(--focus-trans);
+}
+
+body.focus-work #wallpaper-wrapper {
+    filter: none;
 }
 
 body.desktop #wallpaper-wrapper {
@@ -336,7 +344,6 @@ body.mobile.page #glass {
     height: 100vh;
     width: 100vw;
     background-color: var(--glass-color);
-    backdrop-filter: var(--glass-blur-mobile);
     z-index: 0;
     transition: opacity var(--focus-trans);
 }

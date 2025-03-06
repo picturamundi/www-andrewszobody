@@ -430,14 +430,6 @@ function galleryOnResize() {
         console.log('gallery resized for desktop');
         // close popups when switching devices
         if (document.body.classList.contains('desktop-switch')) {
-            // console.log('SWITCHED DEVICE');
-            // document.body.classList.remove('popup-mode');
-            // document.querySelectorAll('.popup').forEach(mainElement => {
-            //     mainElement.classList.remove('popup');
-            // });
-            // document.querySelectorAll('.popup-origin').forEach(mainElement => {
-            //     mainElement.classList.remove('popup-origin');
-            // });
             closeCaption();
         }
         // console.log(pageName + ' gallery height was reset');
