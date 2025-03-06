@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', function () {
 window.addEventListener("hashchange", function () {
     // body class 'nav' lets CSS know this is not an initial page load
     globalThis.galleryMargin = 30;
+    // body class 'nav' lets CSS know this is not an initial page load
     document.body.classList.add('nav');
     route();
     serveImages();
@@ -42,11 +43,8 @@ window.addEventListener("hashchange", function () {
 
 //window resize trigger
 window.addEventListener('resize', function () {
-    // body class 'nav' lets CSS know this is not an initial page load
     globalThis.galleryMargin = 30;
-    // console.log('---------- resize!');
     updateDevice();
-    // console.log('device updated');
     galleryOnResize();
     tailorPopupUI();
 });
@@ -60,9 +58,13 @@ function updateDevice() {
     // Check if the screen width is less than 700px
 
     document.body.classList.remove('desktop-switch');
+    document.body.classList.remove('mobile-switch');
 
     if (window.innerWidth < 700) {
         // Apply 'mobile' class if the screen width is less than 700px
+        if (document.body.classList.contains('desktop')) {
+            document.body.classList.add('mobile-switch');
+        }
         document.body.classList.add('mobile');
         document.body.classList.remove('desktop');
     } else {
@@ -181,8 +183,8 @@ function pageVisit() {
     if (main.classList.contains('sleeping')) {
         main.classList.remove('sleeping');
         main.classList.add('first');
+        // adding 'first' to the main classlist lets us know this is a first visit to the page
         document.body.classList.add('first');
-        // console.log('---------- FIRST VISIT TO PAGE: ' + pageName);
     } else {
         if (main.classList.contains('first')) {
             main.classList.remove('first');
@@ -274,10 +276,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     figure.classList.remove('popup-origin');
                 } else {
                     figure.classList.add('popup-origin');
+                    document.body.classList.add('popup-mode');
                     if (document.body.classList.contains('desktop')) {
-                        // document.getElementById('desktop-content').appendChild(figure);
                         const popupCopy = figure.cloneNode(true);
-                        document.getElementById('desktop-content').appendChild(popupCopy);
+                        document.getElementById('desktop-content').appendChild(popupCopy)
+                        popupCopy.classList.remove('popup-origin');
                         popupCopy.classList.add('popup');
                         styleCloseButton();
                     }
@@ -300,27 +303,31 @@ function styleCloseButton() {
 function tailorPopupUI() {
     var caption = document.querySelector('.popup figcaption');
     var img = document.querySelector('.popup figure .img-container img');
+    var popupFigure = document.querySelector('.popup figure');
 
     // Make sure popup image is loaded before adapting the UI
-    if (img.complete) {
-        var imgWidth = img.offsetWidth;
-        document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
-        caption.style.width = imgWidth + 'px';
-    } else {
-        img.addEventListener('load', function () {
+    if (document.body.classList.contains('popup-mode')) {
+        if (img.complete) {
             var imgWidth = img.offsetWidth;
+            popupFigure.classList.add('loaded');
             document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
             caption.style.width = imgWidth + 'px';
-        });
+        } else {
+            popupFigure.classList.remove('loaded');
+            img.addEventListener('load', function () {
+                var imgWidth = img.offsetWidth;
+                popupFigure.classList.add('loaded');
+                document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
+                caption.style.width = imgWidth + 'px';
+            });
+        }
     }
 }
 
-
-
 function closeCaption() {
-    document.querySelector('.popup').remove();
+    document.body.classList.remove('popup-mode');
     document.querySelector('.popup-origin').classList.remove('popup-origin');
-    // galleryOnResize(); // if resize happened while popup was up, gallery was miscalculated
+    document.querySelector('.popup').remove();
 }
 
 // toggle menu
@@ -380,7 +387,7 @@ function toggleFocus() {
 // on desktop, the gallery is built on first page visit or if resize has happened since first visit
 
 function galleryOnVisit() {
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 699) {
         if (document.querySelector('main.active').classList.contains('first') || document.querySelector('main.active').classList.contains('resize-gallery')) {
             measureGallery();
         }
@@ -410,11 +417,18 @@ function galleryOnResize() {
         gallery.style.height = 'fit-content';
         // console.log('gallery resized for mobile');
     } else {
-        // close popups when switching to desktop
+        console.log('gallery resized for desktop');
+        // close popups when switching devices
         if (document.body.classList.contains('desktop-switch')) {
-            document.querySelectorAll('.popup').forEach(mainElement => {
-                mainElement.classList.remove('popup');
-            });
+            // console.log('SWITCHED DEVICE');
+            // document.body.classList.remove('popup-mode');
+            // document.querySelectorAll('.popup').forEach(mainElement => {
+            //     mainElement.classList.remove('popup');
+            // });
+            // document.querySelectorAll('.popup-origin').forEach(mainElement => {
+            //     mainElement.classList.remove('popup-origin');
+            // });
+            closeCaption();
         }
         // console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
@@ -501,24 +515,6 @@ function checkGalleryHeight() {
     const galleryClass = '.gallery.' + pageName;
     const gallery = document.querySelector(galleryClass);
     const parent = gallery.parentElement;
-
-    // // Get the width of the gallery (including padding) and its parent element
-    // const galleryWidth = gallery.offsetWidth; // Includes padding
-    // // console.log('Gallery width is: ' + galleryWidth);
-    // const parentWidth = parent.offsetWidth; // Width of the parent (main element)
-    // // console.log('Page width is: ' + parentWidth);
-
-    // // Get the margin on the gallery
-    // const galleryMarginLeft = parseFloat(window.getComputedStyle(gallery).marginLeft);
-    // // console.log('Gallery margin width is: ' + galleryMarginLeft);
-
-    // // Compare the content width of the gallery to the parent's width minus the margin
-    // if (galleryWidth > (parentWidth - galleryMarginLeft - galleryMarginLeft + 2)) {
-    //     // console.log(pageName + ' gallery has too many columns');
-    //     globalThis.galleryMargin += 5;
-    //     // console.log(pageName + ' gallery height increased by 5px');
-    //     setGalleryHeight();
-    // }
 
     if (gallery.scrollWidth > gallery.clientWidth) {
         globalThis.galleryMargin += 5;

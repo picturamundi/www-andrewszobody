@@ -5,9 +5,6 @@
 TO DO LIST
 
 - figure out why pages disappear with no transition on mobile
-- dimensions need to have non-breaking spaces
-- disable scroll when popup is open
-- fix mobile gallery
 
 
 CONTENTS
@@ -221,7 +218,7 @@ body.desktop .figure-wrapper:not(.popup) figure img {
     display: none;
 }
 
-.figure-wrapper:has(img.active) {
+.gallery .figure-wrapper:has(img.active) {
     display: block;
 }
 
@@ -240,13 +237,18 @@ figcaption .fig-details {
 figcaption,
 figcaption .fig-title,
 figcaption .fig-details {
-    transition: opacity var(--menu-trans), margin var(--menu-trans), height var(--menu-trans);
     text-align: center;
 }
 
-.popup figcaption .fig-title,
-.popup figcaption .fig-details {
+body.mobile.popup-mode .popup-origin .fig-details,
+body.mobile.popup-mode .popup-origin .fig-title {
     opacity: 1;
+}
+
+body.popup-mode .popup figcaption .fig-title,
+body.popup-mode .popup figcaption .fig-details,
+body.mobile .popup-origin figcaption .fig-title,
+body.mobile .popup-origin figcaption .fig-details {
     margin-top: 10px;
 }
 
@@ -730,6 +732,7 @@ body.mobile figcaption {
 body.mobile figcaption,
 body.mobile figcaption .fig-title,
 body.mobile figcaption .fig-details {
+    transition: opacity var(--menu-trans), margin var(--menu-trans), height var(--menu-trans);
     text-align: center;
 }
 
@@ -738,12 +741,8 @@ body.mobile figcaption .fig-details {
     display: inline-block;
 }
 
-body.mobile .popup figcaption {
+body.mobile.popup-mode .popup-origin figcaption {
     margin-bottom: 10rem;
-}
-
-body.mobile figcaption {
-    max-width: 100%;
 }
 
 .img-container {
@@ -782,7 +781,15 @@ body.desktop figcaption {
 
 /* desktop popup */
 
-body.desktop div.popup {
+body.desktop.popup-mode {
+    overflow: hidden;
+}
+
+body div.popup {
+    display: none;
+}
+
+body.desktop.popup-mode div.popup {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -822,6 +829,11 @@ body.desktop div.popup .img-container img {
     object-fit: contain;
 }
 
+body.desktop div.popup figure.loaded .fig-title,
+body.desktop div.popup figure.loaded .fig-details {
+    opacity: 1;
+}
+
 body.desktop div.popup figcaption {
     position: relative;
     display: block;
@@ -848,22 +860,22 @@ body.desktop .fig-title {
     display: inline;
 }
 
-body.desktop:has(div.popup) #nav-list,
-body.desktop:has(div.popup) main.active .figure-wrapper:not(.popup),
-body.desktop:has(div.popup) main.active h1 {
+body.desktop.popup-mode #nav-list,
+body.desktop.popup-mode main.active .figure-wrapper:not(.popup),
+body.desktop.popup-mode main.active h1 {
     opacity: 0;
 }
 
-body.desktop:has(div.popup) main.active {
+body.desktop.popup-mode main.active {
     background-color: var(--transparent);
 }
 
-body.desktop:has(div.popup) main div.popup {
+body.desktop.popup-mode main div.popup {
     opacity: 1;
     background-color: var(--transparent);
 }
 
-body.desktop:has(div.popup) main div.popup figcaption div {
+body.desktop.popup-mode main div.popup figcaption div {
     color: var(--ui-color);
 }
 
@@ -887,10 +899,8 @@ body.desktop .popup #popup-close-wrapper {
     padding-bottom: var(--header-height);
 }
 
-body.desktop .popup #popup-close {
+body.desktop .popup .loaded #popup-close {
     display: flex;
-    justify-content: right;
-    height: var(--header-height);
 }
 
 body.desktop .popup #popup-close svg {
