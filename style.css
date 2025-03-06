@@ -273,7 +273,7 @@ BACKGROUNDS
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: var(--glass-blur-mobile) brightness(1);
+    filter: var(--glass-blur-mobile);
     transition: filter var(--focus-trans);
 }
 
@@ -357,8 +357,8 @@ body.mobile.focus-work #glass {
 }
 
 @media screen and (min-width: 700px) {
-    #glass {
-        backdrop-filter: var(--glass-blur-desktop);
+    #wallpaper-wrapper {
+        filter: var(--glass-blur-desktop);
     }
 }
 
