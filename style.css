@@ -65,6 +65,8 @@ VARIABLES ETC.
     --desktop-gallery-padding: 12vw;
     --desktop-gallery-width: calc(var(--desktop-main-width) - (var(--desktop-gallery-padding) * 2));
     --desktop-main-margin: 20px;
+    --popup-image-height: 75vh;
+    /*75vh = 75% of screen height*/
 
     --mobile-slidedown-height: 30rem;
 }
@@ -86,6 +88,21 @@ VARIABLES ETC.
         --default-font-size: 14px;
     }
 }
+
+@media only screen and (max-height: 800px) {
+    :root {
+        --default-font-size: 10px;
+        --popup-image-height: 70vh;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    :root {
+        --default-font-size: 10px;
+        --popup-image-height: 67vh;
+    }
+}
+
 
 @font-face {
     font-family: 'custom-1';
@@ -824,7 +841,7 @@ body.desktop div.popup figure {
 body.desktop div.popup .img-container {
     position: relative;
     max-width: 100%;
-    max-height: 75vh;
+    max-height: var(--popup-image-height);
     width: fit-content;
     display: flex;
     justify-content: center;
