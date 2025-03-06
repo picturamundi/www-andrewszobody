@@ -324,6 +324,16 @@ function tailorPopupUI() {
     }
 }
 
+// use escape key to close caption
+
+document.addEventListener("keydown", handleEscapeKey);
+
+function handleEscapeKey(event) {
+    if (event.key === "Escape") {
+        closeCaption();
+    }
+}
+
 function closeCaption() {
     document.body.classList.remove('popup-mode');
     document.querySelector('.popup-origin').classList.remove('popup-origin');

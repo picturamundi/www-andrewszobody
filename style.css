@@ -891,7 +891,7 @@ body.desktop .popup figcaption div.fig-title {
 body.desktop .popup #popup-close-wrapper {
     box-sizing: content-box;
     position: relative;
-    height: var(--header-height);
+    height: calc(var(--header-height) * 0.75);
     display: flex;
     justify-content: right;
     z-index: 6;
