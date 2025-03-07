@@ -93,13 +93,15 @@ VARIABLES ETC.
     :root {
         --default-font-size: 10px;
         --popup-image-height: 70vh;
+        --header-height: 2rem;
     }
 }
 
 @media only screen and (max-height: 600px) {
     :root {
         --default-font-size: 10px;
-        --popup-image-height: 67vh;
+        --popup-image-height: 65vh;
+        --header-height: 1.8rem;
     }
 }
 

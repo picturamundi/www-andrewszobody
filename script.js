@@ -262,7 +262,9 @@ function backButton() {
 //  USER INTERFACE
 // ---------------------------------------
 
-// toggle caption
+// TOGGLE POPUP
+
+// popups can be called with a click
 
 document.addEventListener("DOMContentLoaded", function () {
     const figures = document.querySelectorAll('.figure-wrapper');
@@ -271,24 +273,37 @@ document.addEventListener("DOMContentLoaded", function () {
         const img = figure.querySelector('.img-container');
         if (img) {
             img.addEventListener('click', function (event) { // For some reason clicks register on the img, not the parent figure
+                // convert the figure ID to a number, store it as a variable, then call the popup
+                var popupIdString = figure.id;
+                console.log(popupIdString);
+                globalThis.popupId = +popupIdString;
+                console.log(popupId);
+                callPopup();
                 // Change class
-                if (figure.classList.contains('popup-origin')) {
-                    figure.classList.remove('popup-origin');
-                } else {
-                    figure.classList.add('popup-origin');
-                    document.body.classList.add('popup-mode');
-                    if (document.body.classList.contains('desktop')) {
-                        const popupCopy = figure.cloneNode(true);
-                        document.getElementById('desktop-content').appendChild(popupCopy)
-                        popupCopy.classList.remove('popup-origin');
-                        popupCopy.classList.add('popup');
-                        styleCloseButton();
-                    }
-                }
             });
         }
     });
 });
+
+// calling a popup clones the relevant figure and assigns the right classes to it
+
+function callPopup() {
+    const figure = document.getElementById(popupId);
+
+    if (figure.classList.contains('popup-origin')) {
+        figure.classList.remove('popup-origin');
+    } else {
+        figure.classList.add('popup-origin');
+        document.body.classList.add('popup-mode');
+        if (document.body.classList.contains('desktop')) {
+            const popupCopy = figure.cloneNode(true);
+            document.getElementById('desktop-content').appendChild(popupCopy)
+            popupCopy.classList.remove('popup-origin');
+            popupCopy.classList.add('popup');
+            styleCloseButton();
+        }
+    }
+}
 
 function styleCloseButton() {
     var button = document.getElementById('popup-close-wrapper');
@@ -336,9 +351,25 @@ function handleEscapeKey(event) {
 
 function closeCaption() {
     document.body.classList.remove('popup-mode');
-    document.querySelector('.popup-origin').classList.remove('popup-origin');
-    document.querySelector('.popup').remove();
+    if (document.body.classList.contains('popup-mode')) {
+        document.querySelector('.popup-origin').classList.remove('popup-origin');
+        document.querySelector('.popup').remove();
+    }
 }
+
+// navigate popups
+
+function nextPopup() {
+    console.log('called next popup');
+    popupId += 1;
+    callPopup();
+}
+
+function previousPopup() {
+    popupId -= 1;
+    callPopup();
+}
+
 
 // toggle menu
 
@@ -427,7 +458,6 @@ function galleryOnResize() {
         gallery.style.height = 'fit-content';
         // console.log('gallery resized for mobile');
     } else {
-        console.log('gallery resized for desktop');
         // close popups when switching devices
         if (document.body.classList.contains('desktop-switch')) {
             closeCaption();
@@ -435,6 +465,7 @@ function galleryOnResize() {
         // console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
         measureGallery();
+        // console.log('gallery resized for desktop');
     }
 }
 
