@@ -350,10 +350,10 @@ function handleEscapeKey(event) {
 }
 
 function closeCaption() {
-    document.body.classList.remove('popup-mode');
     if (document.body.classList.contains('popup-mode')) {
+        document.body.classList.remove('popup-mode');
         document.querySelector('.popup-origin').classList.remove('popup-origin');
-        document.querySelector('.popup').remove();
+        document.querySelector('.figure-wrapper.popup').remove();
     }
 }
 
