@@ -829,7 +829,7 @@ body.desktop.popup-mode #popup {
 }
 
 body.desktop #popup-main {
-    height: calc(100vh - (var(--header-height) * 9));
+    height: calc(100vh - (var(--header-height) * 10));
     display: flex;
     justify-content: center;
     justify-content: center;
@@ -838,19 +838,23 @@ body.desktop #popup-main {
 #popup-footer,
 #popup-header {
     box-sizing: border-box;
-    height: calc(var(--header-height) * 5);
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: var(--header-height) 0px;
 }
 
+#popup-footer {
+    height: calc(var(--header-height) * 6);
+    align-items: start;
+}
+
 #popup-header {
-    height: var(--header-height);
+    height: calc(var(--header-height) * 4);
     align-items: center;
     justify-content: right;
     padding: calc(var(--header-height) * 2);
+    align-items: center;
 }
 
 body.desktop #popup-footer figcaption,
@@ -862,6 +866,10 @@ body.desktop #popup .fig-details {
     color: var(--ui-color);
     font-size: 1.3rem;
     text-align: center;
+}
+
+body.desktop #popup .fig-details {
+    margin-top: 10px;
 }
 
 /* body.desktop .img-container.popup {
