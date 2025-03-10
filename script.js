@@ -18,35 +18,38 @@
 
 
 //page load trigger
+
 window.addEventListener('DOMContentLoaded', function () {
     globalThis.galleryMargin = 30;
     blockAnimations();
     updateDevice();
     route();
-    serveImages();
+    revealSourcedImages();
     galleryOnVisit();
 });
 
 // url change trigger
+
 window.addEventListener("hashchange", function () {
-    // body class 'nav' lets CSS know this is not an initial page load
     globalThis.galleryMargin = 30;
     // body class 'nav' lets CSS know this is not an initial page load
     document.body.classList.add('nav');
     route();
-    serveImages();
     window.scrollTo(0, 0);
     galleryOnVisit();
-    // update device so that device switching updates
     updateDevice();
+    // can’t remember why we need to update the device here…
 });
 
 //window resize trigger
+
 window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     updateDevice();
     galleryOnResize();
-    tailorPopupUI();
+    if (document.body.classList.contains('popup-mode')) {
+        tailorPopupUI();
+    }
 });
 
 
@@ -55,20 +58,17 @@ window.addEventListener('resize', function () {
 // ---------------------------------------
 
 function updateDevice() {
-    // Check if the screen width is less than 700px
 
     document.body.classList.remove('desktop-switch');
     document.body.classList.remove('mobile-switch');
 
     if (window.innerWidth < 700) {
-        // Apply 'mobile' class if the screen width is less than 700px
         if (document.body.classList.contains('desktop')) {
             document.body.classList.add('mobile-switch');
         }
-        document.body.classList.add('mobile');
         document.body.classList.remove('desktop');
+        document.body.classList.add('mobile');
     } else {
-        // Apply 'desktop' class if the screen width is 700px or more
         if (document.body.classList.contains('mobile')) {
             document.body.classList.add('desktop-switch');
         }
@@ -82,7 +82,8 @@ function updateDevice() {
 //  PSEUDO PAGES
 // ---------------------------------------
 
-// route() decides which page to load based off of the URL
+// find the right page based off of the URL
+
 function route() {
 
     // collapse the menu when loading pages
@@ -100,63 +101,15 @@ function route() {
     // remove the # symbol
     var functionName = hash.substring(1);
 
-    // call the corresponding function
-    if (typeof window[functionName] === "function") {
-        window[functionName]();
-    } else {
-        console.log("function not found");
-    }
-}
-
-// route() calls one of these page functions
-
-function home() {
-    globalThis.pageName = 'home';
-    document.body.setAttribute('id', 'home');
-
+    // name the document body
+    globalThis.pageName = functionName;
+    console.log('pageName is now ' + functionName);
+    document.body.setAttribute('id', pageName);
     markActivePage();
     pageVisit();
 }
 
-function recent() {
-    globalThis.pageName = 'recent';
-    document.body.setAttribute('id', 'recent');
-
-    markActivePage();
-    pageVisit();
-}
-
-function less() {
-    globalThis.pageName = 'less';
-    document.body.setAttribute('id', 'less');
-
-    markActivePage();
-    pageVisit();
-}
-
-function old() {
-    globalThis.pageName = 'old';
-    document.body.setAttribute('id', 'old');
-
-    markActivePage();
-    pageVisit();
-}
-
-function g4() {
-    globalThis.pageName = 'g4';
-    document.body.setAttribute('id', 'g4');
-
-    markActivePage();
-    pageVisit();
-}
-
-function bio() {
-    globalThis.pageName = 'bio';
-    document.body.setAttribute('id', 'bio');
-
-    markActivePage();
-    pageVisit();
-}
+// activate the relevant page main
 
 function markActivePage() {
     var mainId = '#' + pageName + '-main';
@@ -175,7 +128,7 @@ function markActivePage() {
     link.classList.add('active');
 }
 
-// pageVisit lets us track navigation with CSS by applying tags to stuff
+// track navigation with classes
 
 function pageVisit() {
     var main = document.querySelector('main.active');
@@ -206,31 +159,10 @@ function pageVisit() {
     }
 }
 
-// load img-sources on current page
-
-function serveImages() {
-    sourceImages();
-    revealSourcedImages();
-}
-
-// activate source for images on current page
-
-function sourceImages() {
-    var imgClass = '#' + pageName + '-main img';
-    var lazyImgs = document.querySelectorAll(imgClass);
-
-    // Loop through each element
-    lazyImgs.forEach(function (image) {
-        // Get the value of the 'data-src' attribute
-        var dataSrc = image.getAttribute('data-src');
-        // Set the 'src' attribute to the value of 'data-src'
-        image.setAttribute('src', dataSrc);
-    });
-}
-
-// show images with valid sources
+// only show images with valid sources
 
 function revealSourcedImages() {
+
     document.querySelectorAll('img').forEach(function (img) {
         img.onload = function () {
             this.classList.remove('inactive');
@@ -241,6 +173,33 @@ function revealSourcedImages() {
             this.classList.add('inactive');
         };
     })
+}
+
+// activate sources for gallery images on current page
+// only show images with valid sources
+// log number of valid images to galleryImgCount variable
+
+function sourceImages() {
+    var imgClass = '#' + pageName + '-main img';
+    var lazyImgs = document.querySelectorAll(imgClass);
+    globalThis.galleryImgCount = 0;
+
+    // Loop through each element
+    lazyImgs.forEach(function (image) {
+        // Get the value of the 'data-src' attribute
+        var dataSrc = image.getAttribute('data-src');
+        // Set the 'src' attribute to the value of 'data-src'
+        image.setAttribute('src', dataSrc);
+        image.onload = function () {
+            this.classList.remove('inactive');
+            this.classList.add('active');
+            globalThis.galleryImgCount += 1;
+        };
+        image.onerror = function () {
+            this.classList.remove('active');
+            this.classList.add('inactive');
+        };
+    });
 }
 
 // back button
@@ -264,7 +223,7 @@ function backButton() {
 
 // TOGGLE POPUP
 
-// popups can be called with a click
+// call figure popup on click, log the image number
 
 document.addEventListener("DOMContentLoaded", function () {
     const figures = document.querySelectorAll('.figure-wrapper');
@@ -275,9 +234,12 @@ document.addEventListener("DOMContentLoaded", function () {
             img.addEventListener('click', function (event) { // For some reason clicks register on the img, not the parent figure
                 // convert the figure ID to a number, store it as a variable, then call the popup
                 var popupIdString = figure.id;
-                console.log(popupIdString);
+                // console.log(popupIdString);
                 globalThis.popupId = +popupIdString;
-                console.log(popupId);
+
+                var figureNumber = popupIdString.substring(1);
+                globalThis.figNum = +figureNumber;
+
                 callPopup();
                 // Change class
             });
@@ -285,93 +247,144 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// calling a popup clones the relevant figure and assigns the right classes to it
+// toggle figcaption for called figure (mobile) or clone it (desktop)
 
 function callPopup() {
     const figure = document.getElementById(popupId);
+    const popupImg = figure.querySelector('.img-container');
+    const popupCap = figure.querySelector('figcaption');
+    const popupMain = document.getElementById('popup-main');
+    const popupFooter = document.getElementById('popup-footer');
+    const leftArrow = document.getElementById('previous-img');
+    const img = document.querySelector('#popup .img-container img');
+    const popup = document.getElementById('popup');
 
-    if (figure.classList.contains('popup-origin')) {
+    // on mobile, callPopup() works as a toggle for .popup-origin
+    if (document.body.classList.contains('mobile') && figure.classList.contains('popup-origin')) {
         figure.classList.remove('popup-origin');
     } else {
         figure.classList.add('popup-origin');
         document.body.classList.add('popup-mode');
+
+        // on desktop, .popup-origin is cloned as .popup
         if (document.body.classList.contains('desktop')) {
-            const popupCopy = figure.cloneNode(true);
-            document.getElementById('desktop-content').appendChild(popupCopy)
-            popupCopy.classList.remove('popup-origin');
-            popupCopy.classList.add('popup');
-            styleCloseButton();
+            const imgCopy = popupImg.cloneNode(true);
+            popupMain.insertBefore(imgCopy, leftArrow.nextSibling);
+            imgCopy.classList.remove('popup-origin');
+            imgCopy.classList.add('popup');
+            const capCopy = popupCap.cloneNode(true);
+            popupFooter.appendChild(capCopy);
         }
+        tailorPopupUI();
     }
 }
 
-function styleCloseButton() {
-    var button = document.getElementById('popup-close-wrapper');
-    var popupFigure = document.querySelector('.popup figure');
+// clone the button div into the cloned figure popup
 
-    const buttonCopy = button.cloneNode(true);
-    popupFigure.insertBefore(buttonCopy, popupFigure.firstChild);
-    // insert the close button in the relevant figure;
-    tailorPopupUI();
-}
+// function callCloseButton() {
+//     // var closeButton = document.getElementById('popup-header');
+//     // var arrowButton = document.getElementById('previous');
+//     // var arrowButton2 = document.getElementById('next');
+//     // var popupFigure = document.querySelector('.popup figure');
+//     // var popupFigureWrap = document.querySelector('.figure-wrapper.popup')
+
+//     // const closeButtonCopy = closeButton.cloneNode(true);
+//     // popupFigure.insertBefore(closeButtonCopy, popupFigure.firstChild);
+//     // const arrowButtonCopy = arrowButton.cloneNode(true);
+//     // const arrowButton2Copy = arrowButton2.cloneNode(true);
+//     // popupFigureWrap.insertBefore(arrowButtonCopy, popupFigureWrap.firstChild);
+//     // popupFigureWrap.appendChild(arrowButton2Copy, popupFigureWrap.firstChild);
+//     // insert the close button in the relevant figure;
+//     tailorPopupUI();
+// }
+
+// give .popup UI same width as popup image
 
 function tailorPopupUI() {
-    var caption = document.querySelector('.popup figcaption');
-    var img = document.querySelector('.popup figure .img-container img');
-    var popupFigure = document.querySelector('.popup figure');
+    var popup = document.getElementById('popup');
 
-    // Make sure popup image is loaded before adapting the UI
-    if (document.body.classList.contains('popup-mode')) {
-        if (img.complete) {
-            var imgWidth = img.offsetWidth;
-            popupFigure.classList.add('loaded');
-            document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
-            caption.style.width = imgWidth + 'px';
-        } else {
-            popupFigure.classList.remove('loaded');
-            img.addEventListener('load', function () {
-                var imgWidth = img.offsetWidth;
-                popupFigure.classList.add('loaded');
-                document.querySelector('.popup #popup-close-wrapper').style.width = imgWidth + 'px';
-                caption.style.width = imgWidth + 'px';
-            });
-        }
+    // // Make sure popup image is loaded before adapting the UI
+    // if (document.body.classList.contains('popup-mode')) {
+    //     if (img.complete) {
+    //         var imgWidth = img.offsetWidth;
+    //         popupClose.style.width = imgWidth + 'px';
+    //         popup.classList.add('loaded');
+    //     } else {
+    //         popup.classList.remove('loaded');
+    //         img.addEventListener('load', function () {
+    //             var imgWidth = img.offsetWidth;
+    //             popupClose.style.width = imgWidth + 'px';
+    //             popup.classList.add('loaded');
+    //         });
+    //     }
+
+    if (figNum == galleryImgCount) {
+        popup.classList.add('last');
+    } else if (popup.classList.contains('last')) {
+        popup.classList.remove('last');
+    }
+    if (figNum == 1) {
+        popup.classList.add('first');
+    } else if (popup.classList.contains('first')) {
+        popup.classList.remove('first');
     }
 }
 
-// use escape key to close caption
 
-document.addEventListener("keydown", handleEscapeKey);
-
-function handleEscapeKey(event) {
-    if (event.key === "Escape") {
-        closeCaption();
-    }
-}
+// close popup
 
 function closeCaption() {
     if (document.body.classList.contains('popup-mode')) {
         document.body.classList.remove('popup-mode');
         document.querySelector('.popup-origin').classList.remove('popup-origin');
-        document.querySelector('.figure-wrapper.popup').remove();
+        removePopup();
+    }
+}
+
+function removePopup() {
+    document.querySelector('#popup-main .img-container').remove();
+    document.querySelector('#popup-footer figcaption').remove();
+    if (document.body.classList.contains('popup-mode')) {
+        document.querySelector('.popup-origin').classList.remove('popup-origin');
     }
 }
 
 // navigate popups
 
 function nextPopup() {
-    console.log('called next popup');
-    popupId += 1;
-    callPopup();
+    if (figNum < galleryImgCount) {
+        removePopup();
+        globalThis.popupId += 1;
+        globalThis.figNum += 1;
+        callPopup();
+    }
 }
 
 function previousPopup() {
-    popupId -= 1;
-    callPopup();
+    if (figNum > 1) {
+        removePopup();
+        globalThis.popupId -= 1;
+        globalThis.figNum -= 1;
+        callPopup();
+    }
+}
+
+// popup keybindings
+
+document.addEventListener("keydown", handleKeys);
+
+function handleKeys(event) {
+    if (event.key === "Escape") {
+        closeCaption();
+    } else if (event.key === "ArrowRight") {
+        nextPopup();
+    } else if (event.key === "ArrowLeft") {
+        previousPopup();
+    }
 }
 
 
-// toggle menu
+// TOGGLE MENU
 
 function toggleMenu() {
     if (document.body.className.includes('menu-expanded')) {
@@ -401,7 +414,7 @@ function collapseMenu() {
     body.classList.add('menu-collapsed');
 }
 
-// toggle focus
+// TOGGLE FOCUS
 
 function toggleFocus() {
     var glass = document.getElementById('glass');
@@ -424,23 +437,26 @@ function toggleFocus() {
 // BUILD DESKTOP GALLERIES
 // ---------------------------------------
 
-// galleryOnVisit figures out if we need to build the gallery when a page is visited
-// on desktop, the gallery is built on first page visit or if resize has happened since first visit
+// figure out if we need to build the gallery when a page is visited
+// on desktop, build on first page visit or if resize has happened since first visit
 
 function galleryOnVisit() {
+    if (document.querySelector('main.active').classList.contains('first')) {
+        sourceImages();
+    }
     if (window.innerWidth > 699) {
         if (document.querySelector('main.active').classList.contains('first') || document.querySelector('main.active').classList.contains('resize-gallery')) {
             measureGallery();
         }
     } else {
-        // this insures that mobile galleries aren’t applying heights calculated on desktop
+        // this insures that mobile galleries aren’t applying heights calculated on desktop before device switch
         const galleryClass = '.gallery.' + pageName;
         const gallery = document.querySelector(galleryClass);
         gallery.style.height = 'fit-content';
     }
 }
 
-// Other than page visits, window resizing is the only other thing that calls measureGallery()
+// decide whether a resize means rebuilding the gallery or not
 
 function galleryOnResize() {
     const galleryClass = '.gallery.' + pageName;
@@ -456,11 +472,14 @@ function galleryOnResize() {
 
     if (window.innerWidth < 700) {
         gallery.style.height = 'fit-content';
-        // console.log('gallery resized for mobile');
+        if (document.body.classList.contains('mobile-switch')) {
+            closeCaption();
+        }
     } else {
         // close popups when switching devices
         if (document.body.classList.contains('desktop-switch')) {
             closeCaption();
+            measureGallery();
         }
         // console.log(pageName + ' gallery height was reset');
         globalThis.galleryMargin = 30;
@@ -469,9 +488,9 @@ function galleryOnResize() {
     }
 }
 
-// measureGallery() waits for all images to be loaded
-// then calculates initial single-column gallery height
-// then calls the setGalleryHeight function
+// wait for all images to be loaded
+// then calculate initial single-column gallery height
+// then call the setGalleryHeight function
 
 function measureGallery() {
 
@@ -485,7 +504,7 @@ function measureGallery() {
     if (totalImages === 0) {
         // If no images are on the page, immediately call the callback
         setGalleryHeight();
-        console.log('there were no images');
+        // console.log('there were no images');
         return;
     }
 
@@ -504,7 +523,7 @@ function measureGallery() {
         loadedCount++;
         // if all images loaded…
         if (loadedCount === totalImages) {
-            console.log('images loaded');
+            // console.log('images loaded');
 
             // calculate initial gallery height
             globalThis.galleryClass = '.gallery.' + pageName;
@@ -526,8 +545,8 @@ function measureGallery() {
     }
 }
 
-// setGalleryHeight approximates the needed height for a 2-col gallery
-// then calls checkGalleryHeight to check if the height meets needs
+// approximate the needed height for a 2-col gallery
+// then call checkGalleryHeight to check if the height meets needs
 
 function setGalleryHeight() {
 
@@ -536,13 +555,13 @@ function setGalleryHeight() {
 
     // Apply the new height to the gallery
     gallery.style.setProperty('height', `${galleryHeight}px`);
-    console.log(pageName + " gallery height set to:", galleryHeight);
+    // console.log(pageName + " gallery height set to:", galleryHeight);
 
     // Check if this height works
     checkGalleryHeight();
 }
 
-// Check if gallery has two columns or nor
+// check if gallery has two columns or nor
 
 function checkGalleryHeight() {
     const galleryClass = '.gallery.' + pageName;
@@ -551,7 +570,7 @@ function checkGalleryHeight() {
 
     if (gallery.scrollWidth > gallery.clientWidth) {
         globalThis.galleryMargin += 5;
-        console.log(pageName + ' gallery height increased by 5px');
+        // console.log(pageName + ' gallery height increased by 5px');
         setGalleryHeight();
     }
 }
@@ -563,7 +582,7 @@ function checkGalleryHeight() {
 
 function blockAnimations() {
     addEventListener('click', (event) => {
-        console.log('click');
+        // console.log('click');
         document.body.classList.remove('load');
     });
 }

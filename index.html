@@ -33,12 +33,28 @@
 
         <div id="interface-toggle" onclick="toggleFocus()"></div>
 
-        <div id="popup-close-wrapper">
-            <div id="popup-close" onclick="closeCaption()">
-                <svg viewBox="0 0 50 46" fill="none" onclick="closeCaption()" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
-                    <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
-                </svg>
+        <div id="popup">
+            <div id="popup-header">
+                <div id="popup-close" onclick="closeCaption()">
+                    <svg viewBox="0 0 50 46" fill="none" onclick="closeCaption()" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 1.5L48 44.5" stroke="" stroke-width="4" />
+                        <path d="M48 1.5L2 44.5" stroke="" stroke-width="4" />
+                    </svg>
+                </div>
+            </div>
+            <div id="popup-main">
+                <div id="previous-img" class="arrow-btn" onclick="previousPopup()">
+                    <svg viewBox="0 0 30 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L27 26.809L2 50" stroke="" stroke-width="4" />
+                    </svg>
+                </div>
+                <div id="next-img" class="arrow-btn" onclick="nextPopup()">
+                    <svg viewBox="0 0 30 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L27 26.809L2 50" stroke="" stroke-width="4" />
+                    </svg>
+                </div>
+            </div>
+            <div id="popup-footer">
             </div>
         </div>
 
@@ -1041,8 +1057,7 @@
                     <div id="bio-container">
                         <div id="bio-text" class="">
                             <p>Andrew lives and works in Queens, NY.<br> His work has been shown at Norte Maar and
-                                Brooklyn
-                                Fireproof.</p>
+                                Brooklyn Fireproof.</p>
                             <p>Contact: <a href="mailto: andrew@szobody.com">andrew@szobody.com</a></p>
                             <p id="instagram-link">Instagram: <a
                                     href="https://www.instagram.com/andrewszzb/">andrewszzb</a>
