@@ -4,6 +4,7 @@
 
 TO DO LIST
 
+- can we get rid of the desktop content div? It’s confusing
 - figure out why pages disappear with no transition on mobile
 
 
@@ -161,7 +162,10 @@ body {
 
 #nav-list,
 header,
-#site-name {
+#site-name,
+img,
+.img-container,
+#popup-header {
     user-select: none;
 }
 
@@ -265,8 +269,8 @@ body.mobile.popup-mode .popup-origin .fig-title {
     opacity: 1;
 }
 
-body.popup-mode .popup figcaption .fig-title,
-body.popup-mode .popup figcaption .fig-details,
+body.popup-mode #popup figcaption .fig-title,
+body.popup-mode #popup figcaption .fig-details,
 body.mobile .popup-origin figcaption .fig-title,
 body.mobile .popup-origin figcaption .fig-details {
     margin-top: 10px;
@@ -805,177 +809,6 @@ body.desktop figcaption {
     display: none;
 }
 
-/* desktop popup */
-
-body.desktop.popup-mode {
-    overflow: hidden;
-}
-
-body #popup {
-    display: none;
-}
-
-body.desktop.popup-mode #popup {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 6;
-    top: 0;
-    left: 0;
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-body.desktop #popup-main {
-    height: calc(100vh - (var(--header-height) * 10));
-    display: flex;
-    justify-content: center;
-    justify-content: center;
-}
-
-#popup-footer,
-#popup-header {
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: var(--header-height) 0px;
-}
-
-#popup-footer {
-    height: calc(var(--header-height) * 6);
-    align-items: start;
-}
-
-#popup-header {
-    height: calc(var(--header-height) * 4);
-    align-items: center;
-    justify-content: right;
-    padding: calc(var(--header-height) * 2);
-    align-items: center;
-}
-
-body.desktop #popup-footer figcaption,
-body.desktop #popup .fig-title,
-body.desktop #popup .fig-details {
-    opacity: 1;
-    display: block;
-    height: fit-content;
-    color: var(--ui-color);
-    font-size: 1.3rem;
-    text-align: center;
-}
-
-body.desktop #popup .fig-details {
-    margin-top: 10px;
-}
-
-/* body.desktop .img-container.popup {
-    position: relative;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-} */
-
-body.desktop #popup .img-container {
-    width: calc(72vw - (var(--header-height) * 2));
-}
-
-body.desktop #popup .img-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-body.desktop div.popup figcaption {
-    position: relative;
-    display: block;
-    font-size: 1.3rem;
-    height: fit-content;
-    max-height: 7.2rem;
-    max-width: 100%;
-    margin-bottom: 0px;
-    color: var(--ui-color);
-}
-
-.desktop figcaption .fig-medium,
-.desktop figcaption .fig-dimensions {
-    display: inline;
-}
-
-body.desktop.popup-mode #nav-list,
-body.desktop.popup-mode main.active .figure-wrapper:not(.popup),
-body.desktop.popup-mode main.active h1 {
-    opacity: 0;
-    z-index: 0;
-}
-
-body.desktop.popup-mode main.active {
-    background-color: var(--transparent);
-}
-
-body.desktop.popup-mode main div.popup {
-    opacity: 1;
-    background-color: var(--transparent);
-}
-
-body.desktop.popup-mode main #popup figcaption div {
-    color: var(--ui-color);
-}
-
-/* body.desktop #popup.loaded #popup-header {
-    box-sizing: content-box;
-    position: relative;
-    height: calc(var(--header-height) * 0.75);
-    display: flex;
-    justify-content: right;
-    z-index: 6;
-    padding-bottom: var(--header-height);
-} */
-
-body.desktop #popup .arrow-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-body.desktop #popup #popup-close {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-
-}
-
-body.desktop #popup-close svg {
-    width: calc(var(--header-height) * 1);
-    height: calc(var(--header-height) * 1);
-}
-
-#previous-img {
-    transform: scaleX(-1);
-}
-
-#popup.first #previous-img {
-    opacity: 0.5;
-}
-
-#popup.last #next-img {
-    opacity: 0.5;
-}
-
-
-.arrow-btn {
-    padding: 0px 7vw;
-}
-
-.arrow-btn svg {
-    /* display: none; */
-    width: calc(var(--header-height) * 1);
-    height: calc(var(--header-height) * 1);
-}
-
 /* ----------------------------------
 MOBILE ONLY
 ---------------------------------- */
@@ -1110,6 +943,136 @@ body.desktop #desktop-content-wrapper {
 body.desktop #desktop-content {
     width: 100%;
     height: fit-content;
+}
+
+/* desktop popup */
+
+body.desktop.popup-mode {
+    overflow: hidden;
+}
+
+#popup {
+    display: none;
+}
+
+body.desktop.popup-mode #nav-list,
+body.desktop.popup-mode main.active .figure-wrapper:not(.popup),
+body.desktop.popup-mode main.active h1 {
+    opacity: 0;
+    z-index: 0;
+}
+
+body.desktop.popup-mode main.active {
+    background-color: var(--transparent);
+}
+
+body.desktop.popup-mode #popup {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.desktop #popup-main {
+    height: calc(100vh - (var(--header-height) * 10));
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+}
+
+body.desktop #popup .img-container {
+    width: calc(72vw - (var(--header-height) * 2));
+}
+
+body.desktop #popup .img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+body.desktop #popup .arrow-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 7vw;
+}
+
+.arrow-btn svg {
+    /* display: none; */
+    width: calc(var(--header-height) * 1);
+    height: calc(var(--header-height) * 1);
+}
+
+#previous-img {
+    transform: scaleX(-1);
+}
+
+#popup.first #previous-img {
+    opacity: 0.5;
+}
+
+#popup.last #next-img {
+    opacity: 0.5;
+}
+
+#popup-footer,
+#popup-header {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--header-height) 0px;
+}
+
+#popup-footer {
+    height: calc(var(--header-height) * 6);
+    align-items: start;
+    justify-content: center;
+}
+
+#popup-header {
+    height: calc(var(--header-height) * 4);
+    align-items: center;
+    justify-content: right;
+    padding: calc(var(--header-height) * 2);
+    align-items: center;
+}
+
+body.desktop #popup #popup-close {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+}
+
+body.desktop #popup-close svg {
+    width: calc(var(--header-height) * 1);
+    height: calc(var(--header-height) * 1);
+}
+
+body.desktop #popup-footer figcaption,
+body.desktop #popup .fig-title,
+body.desktop #popup .fig-details {
+    opacity: 1;
+    display: block;
+    height: fit-content;
+    color: var(--ui-color);
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+body.desktop #popup .fig-details {
+    margin-top: 10px;
+}
+
+.desktop figcaption .fig-medium,
+.desktop figcaption .fig-dimensions {
+    display: inline;
 }
 
 
