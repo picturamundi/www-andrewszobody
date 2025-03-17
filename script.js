@@ -232,22 +232,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const img = figure.querySelector('.img-container');
         if (img) {
             img.addEventListener('click', function (event) { // For some reason clicks register on the img, not the parent figure
-                // convert the figure ID to a number, store it as a variable, then call the popup
+                // convert the figure ID to a number, store it as a variable (e.g. 105)
                 var popupIdString = figure.id;
-                // console.log(popupIdString);
                 globalThis.popupId = +popupIdString;
-
-                var figureNumber = popupIdString.substring(1);
-                globalThis.figNum = +figureNumber;
-
+                // figNum is the same as popupID but without the first digit (e.g. 05)
+                var figNumString = popupIdString.substring(1);
+                globalThis.figNum = +figNumString;
                 callPopup();
-                // Change class
             });
         }
     });
 });
 
-// toggle figcaption for called figure (mobile) or clone it (desktop)
+// toggle figcaption for clicked figure (mobile) or clone figure (desktop)
 
 function callPopup() {
     const figure = document.getElementById(popupId);
@@ -256,8 +253,6 @@ function callPopup() {
     const popupMain = document.getElementById('popup-main');
     const popupFooter = document.getElementById('popup-footer');
     const leftArrow = document.getElementById('previous-img');
-    const img = document.querySelector('#popup .img-container img');
-    const popup = document.getElementById('popup');
 
     // on mobile, callPopup() works as a toggle for .popup-origin
     if (document.body.classList.contains('mobile') && figure.classList.contains('popup-origin')) {
@@ -279,44 +274,10 @@ function callPopup() {
     }
 }
 
-// clone the button div into the cloned figure popup
-
-// function callCloseButton() {
-//     // var closeButton = document.getElementById('popup-header');
-//     // var arrowButton = document.getElementById('previous');
-//     // var arrowButton2 = document.getElementById('next');
-//     // var popupFigure = document.querySelector('.popup figure');
-//     // var popupFigureWrap = document.querySelector('.figure-wrapper.popup')
-
-//     // const closeButtonCopy = closeButton.cloneNode(true);
-//     // popupFigure.insertBefore(closeButtonCopy, popupFigure.firstChild);
-//     // const arrowButtonCopy = arrowButton.cloneNode(true);
-//     // const arrowButton2Copy = arrowButton2.cloneNode(true);
-//     // popupFigureWrap.insertBefore(arrowButtonCopy, popupFigureWrap.firstChild);
-//     // popupFigureWrap.appendChild(arrowButton2Copy, popupFigureWrap.firstChild);
-//     // insert the close button in the relevant figure;
-//     tailorPopupUI();
-// }
-
-// give .popup UI same width as popup image
+// fade popup buttons for first and last image
 
 function tailorPopupUI() {
     var popup = document.getElementById('popup');
-
-    // // Make sure popup image is loaded before adapting the UI
-    // if (document.body.classList.contains('popup-mode')) {
-    //     if (img.complete) {
-    //         var imgWidth = img.offsetWidth;
-    //         popupClose.style.width = imgWidth + 'px';
-    //         popup.classList.add('loaded');
-    //     } else {
-    //         popup.classList.remove('loaded');
-    //         img.addEventListener('load', function () {
-    //             var imgWidth = img.offsetWidth;
-    //             popupClose.style.width = imgWidth + 'px';
-    //             popup.classList.add('loaded');
-    //         });
-    //     }
 
     if (figNum == galleryImgCount) {
         popup.classList.add('last');
@@ -340,6 +301,8 @@ function closeCaption() {
         removePopup();
     }
 }
+
+// remove popup is kept separate from closeCaption since it is also used for cycling through imgs
 
 function removePopup() {
     document.querySelector('#popup-main .img-container').remove();
