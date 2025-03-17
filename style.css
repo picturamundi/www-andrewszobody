@@ -425,6 +425,7 @@ body.desktop main#bio-main {
 
 main.active,
 main.page.active {
+    animation: visVisible var(--menu-trans);
     opacity: 1;
 }
 
@@ -789,7 +790,6 @@ body.desktop div.gallery {
     margin-left: var(--desktop-gallery-padding);
     flex-wrap: wrap;
     gap: 1rem;
-    /* modify .gallery figure width along with gallery gap */
     align-items: center;
     justify-content: start;
     flex-direction: column;
@@ -957,13 +957,10 @@ body.desktop.popup-mode {
 
 body.desktop.popup-mode #nav-list,
 body.desktop.popup-mode main.active .figure-wrapper:not(.popup),
-body.desktop.popup-mode main.active h1 {
-    opacity: 0;
-    z-index: 0;
-}
-
+body.desktop.popup-mode main.active h1,
 body.desktop.popup-mode main.active {
-    background-color: var(--transparent);
+    opacity: 0;
+    visibility: hidden;
 }
 
 body.desktop.popup-mode #popup {
