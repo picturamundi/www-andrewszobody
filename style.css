@@ -58,6 +58,7 @@ VARIABLES ETC.
     --icon-weight: 3px;
     --insta-opacity: 0.7;
 
+    --quick-trans: 0.3s;
     --menu-trans: 0.4s;
     --focus-trans: 1s;
     --page-trans: 0.5s;
@@ -128,7 +129,9 @@ VARIABLES ETC.
         visibility: visible;
     }
 
-    100% {}
+    100% {
+        visibility: visible;
+    }
 }
 
 
@@ -805,6 +808,30 @@ body.desktop div.gallery figure {
     padding: 0 !important;
 }
 
+body.desktop .gallery .figure-wrapper img,
+#popup-close svg,
+#next-img svg,
+#previous-img svg {
+    transition: scale var(--quick-trans);
+}
+
+body.desktop div.gallery .figure-wrapper img:hover,
+#popup-close svg:hover,
+#next-img svg:hover,
+#previous-img svg:hover {
+    cursor: pointer;
+}
+
+body.desktop div.gallery .figure-wrapper img:hover {
+    scale: 1;
+}
+
+#popup-close svg:hover,
+#next-img svg:hover,
+#previous-img svg:hover {
+    scale: 1.3;
+}
+
 body.desktop figcaption {
     display: none;
 }
@@ -952,7 +979,10 @@ body.desktop.popup-mode {
 }
 
 #popup {
-    display: none;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity var(--menu-trans);
 }
 
 body.desktop.popup-mode #nav-list,
@@ -964,16 +994,16 @@ body.desktop.popup-mode main.active {
 }
 
 body.desktop.popup-mode #popup {
-    position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 6;
     top: 0;
     left: 0;
     display: block;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    animation: visVisible var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
+    opacity: 1;
 }
 
 body.desktop #popup-main {
