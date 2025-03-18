@@ -1006,6 +1006,20 @@ body.desktop.popup-mode #popup {
     opacity: 1;
 }
 
+body.desktop.popup-mode #popup .img-container {
+    transition: opacity var(--menu-trans);
+}
+
+body.desktop.popup-mode #popup:not(.loaded) .img-container {
+    opacity: 0;
+}
+
+body.desktop.popup-mode #popup.loaded .img-container {
+    animation: visVisible var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
+    opacity: 1;
+}
+
 body.desktop #popup-main {
     height: calc(100vh - (var(--header-height) * 10));
     display: flex;

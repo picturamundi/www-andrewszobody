@@ -103,7 +103,7 @@ function route() {
 
     // name the document body
     globalThis.pageName = functionName;
-    console.log('pageName is now ' + functionName);
+    // console.log('pageName is now ' + functionName);
     document.body.setAttribute('id', pageName);
     markActivePage();
     pageVisit();
@@ -177,12 +177,12 @@ function revealSourcedImages() {
 
 // activate sources for gallery images on current page
 // only show images with valid sources
-// log number of valid images to galleryImgCount variable
+// log number of valid images to pageImgCount variable
 
 function sourceImages() {
     var imgClass = '#' + pageName + '-main img';
     var lazyImgs = document.querySelectorAll(imgClass);
-    globalThis.galleryImgCount = 0;
+    globalThis[globalThis.pageName + 'ImgCount'] = 0;
 
     // Loop through each element
     lazyImgs.forEach(function (image) {
@@ -193,7 +193,7 @@ function sourceImages() {
         image.onload = function () {
             this.classList.remove('inactive');
             this.classList.add('active');
-            globalThis.galleryImgCount += 1;
+            globalThis[globalThis.pageName + 'ImgCount'] += 1;
         };
         image.onerror = function () {
             this.classList.remove('active');
@@ -250,6 +250,7 @@ function callPopup() {
     const figure = document.getElementById(popupId);
     const popupImg = figure.querySelector('.img-container');
     const popupCap = figure.querySelector('figcaption');
+    const popup = document.getElementById('popup');
     const popupMain = document.getElementById('popup-main');
     const popupFooter = document.getElementById('popup-footer');
     const leftArrow = document.getElementById('previous-img');
@@ -263,14 +264,22 @@ function callPopup() {
 
         // on desktop, .popup-origin is cloned as .popup
         if (document.body.classList.contains('desktop')) {
+            popup.classList.remove('loaded');
             const imgCopy = popupImg.cloneNode(true);
             popupMain.insertBefore(imgCopy, leftArrow.nextSibling);
             imgCopy.classList.remove('popup-origin');
             imgCopy.classList.add('popup');
             const capCopy = popupCap.cloneNode(true);
             popupFooter.appendChild(capCopy);
+
+            const imgFile = document.querySelector('#popup img')
+            imgFile.onload = function () {
+                // console.log("Image is loaded successfully!");
+                popup.classList.add('loaded');
+            }
+
+            tailorPopupUI();
         }
-        tailorPopupUI();
     }
 }
 
@@ -279,7 +288,7 @@ function callPopup() {
 function tailorPopupUI() {
     var popup = document.getElementById('popup');
 
-    if (figNum == galleryImgCount) {
+    if (figNum == globalThis[globalThis.pageName + 'ImgCount']) {
         popup.classList.add('last');
     } else if (popup.classList.contains('last')) {
         popup.classList.remove('last');
@@ -297,6 +306,7 @@ function tailorPopupUI() {
 function closeCaption() {
     if (document.body.classList.contains('popup-mode')) {
         document.body.classList.remove('popup-mode');
+        document.getElementById('popup').classList.remove('loaded');
         document.querySelector('.popup-origin').classList.remove('popup-origin');
         removePopup();
     }
@@ -305,6 +315,7 @@ function closeCaption() {
 // remove popup is kept separate from closeCaption since it is also used for cycling through imgs
 
 function removePopup() {
+    // console.log('remove popup fired');
     document.querySelector('#popup-main .img-container').remove();
     document.querySelector('#popup-footer figcaption').remove();
     if (document.body.classList.contains('popup-mode')) {
@@ -315,7 +326,7 @@ function removePopup() {
 // navigate popups
 
 function nextPopup() {
-    if (figNum < galleryImgCount) {
+    if (figNum < globalThis[globalThis.pageName + 'ImgCount']) {
         removePopup();
         globalThis.popupId += 1;
         globalThis.figNum += 1;
