@@ -253,7 +253,7 @@ function callPopup() {
     const popup = document.getElementById('popup');
     const popupMain = document.getElementById('popup-main');
     const popupFooter = document.getElementById('popup-footer');
-    const leftArrow = document.getElementById('previous-img');
+    const imgContainer = document.getElementById('img-container');
 
     // on mobile, callPopup() works as a toggle for .popup-origin
     if (document.body.classList.contains('mobile') && figure.classList.contains('popup-origin')) {
@@ -266,13 +266,13 @@ function callPopup() {
         if (document.body.classList.contains('desktop')) {
             popup.classList.remove('loaded');
             const imgCopy = popupImg.cloneNode(true);
-            popupMain.insertBefore(imgCopy, leftArrow.nextSibling);
+            imgContainer.appendChild(imgCopy);
             imgCopy.classList.remove('popup-origin');
             imgCopy.classList.add('popup');
             const capCopy = popupCap.cloneNode(true);
             popupFooter.appendChild(capCopy);
 
-            const imgFile = document.querySelector('#popup img')
+            const imgFile = document.querySelector('#img-container .popup img')
             imgFile.onload = function () {
                 // console.log("Image is loaded successfully!");
                 popup.classList.add('loaded');
@@ -308,7 +308,14 @@ function closeCaption() {
         document.body.classList.remove('popup-mode');
         document.getElementById('popup').classList.remove('loaded');
         document.querySelector('.popup-origin').classList.remove('popup-origin');
-        removePopup();
+        // everything below is a duplicate of removePopup but without the timeout
+        if (document.body.classList.contains('popup-mode')) {
+            document.querySelector('.popup-origin').classList.remove('popup-origin');
+        }
+        document.querySelector('#popup-footer figcaption').remove();
+        document.querySelector('#popup-main .img-container.popup').classList.add('removed');
+        document.querySelector('#popup-main .img-container.popup').classList.remove('popup');
+        document.querySelector('#popup-main #img-container .img-container.removed').remove();
     }
 }
 
@@ -316,29 +323,35 @@ function closeCaption() {
 
 function removePopup() {
     // console.log('remove popup fired');
-    document.querySelector('#popup-main .img-container').remove();
-    document.querySelector('#popup-footer figcaption').remove();
     if (document.body.classList.contains('popup-mode')) {
         document.querySelector('.popup-origin').classList.remove('popup-origin');
     }
+    document.querySelector('#popup-footer figcaption').remove();
+    document.querySelector('#popup-main .img-container.popup').classList.add('removed');
+    document.querySelector('#popup-main .img-container.popup').classList.remove('popup');
+    setTimeout(function () {
+        document.querySelector('#popup-main #img-container .img-container.removed').remove();
+    }, 500);
 }
 
 // navigate popups
 
 function nextPopup() {
     if (figNum < globalThis[globalThis.pageName + 'ImgCount']) {
-        removePopup();
+        document.querySelector('#popup-main .img-container.popup').classList.add('next');
         globalThis.popupId += 1;
         globalThis.figNum += 1;
+        removePopup();
         callPopup();
     }
 }
 
 function previousPopup() {
     if (figNum > 1) {
-        removePopup();
+        document.querySelector('#popup-main .img-container.popup').classList.add('previous');
         globalThis.popupId -= 1;
         globalThis.figNum -= 1;
+        removePopup();
         callPopup();
     }
 }
@@ -556,7 +569,6 @@ function checkGalleryHeight() {
 
 function blockAnimations() {
     addEventListener('click', (event) => {
-        // console.log('click');
         document.body.classList.remove('load');
-    });
+    }, { once: true });
 }

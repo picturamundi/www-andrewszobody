@@ -39,14 +39,14 @@ VARIABLES ETC.
     /* --ui-color is used for menus, buttons, headers and footers */
     --text-color-primary: var(--theme-color-3);
     /* change text-color-primary to white for darker gallery backgrounds */
-    --glass-color: rgba(171, 154, 129, 0.5);
+    --glass-color: rgba(152, 137, 114, 0.5);
     --glass-blur-mobile: blur(8px);
     --glass-blur-desktop: blur(12px);
     --transparent: rgba(0, 0, 0, 0);
 
     --font-primary: 'custom-1', sans-serif;
-    --default-font-size: 14px;
-    --heading-font-size: 24px;
+    --default-font-size: 12px;
+    --heading-font-size: calc(var(--default-font-size) * 2);
     --font-weight-primary: 200;
     --font-weight-headings: 200;
     --font-weight-bold: 500;
@@ -58,7 +58,7 @@ VARIABLES ETC.
     --icon-weight: 3px;
     --insta-opacity: 0.7;
 
-    --quick-trans: 0.3s;
+    --quick-trans: 0.2s;
     --menu-trans: 0.4s;
     --focus-trans: 1s;
     --page-trans: 0.5s;
@@ -101,7 +101,7 @@ VARIABLES ETC.
 
 @media only screen and (max-height: 600px) and (min-width: 800px) {
     :root {
-        --default-font-size: 10px;
+        --default-font-size: 09px;
         --popup-image-height: 65vh;
         --header-height: 1.8rem;
     }
@@ -168,7 +168,8 @@ header,
 #site-name,
 img,
 .img-container,
-#popup-header {
+#popup-header,
+figcaption {
     user-select: none;
 }
 
@@ -238,11 +239,12 @@ body.mobile .figure-wrapper figure img,
 body.desktop .figure-wrapper:not(.popup) figure img {
     /* images are hidden until javascript shows the sourced ones */
     width: 100%;
-    border-radius: 1px;
+    border-radius: 2px;
 }
 
 .figure-wrapper {
     display: none;
+    overflow: hidden;
 }
 
 .gallery .figure-wrapper:has(img.active) {
@@ -578,7 +580,7 @@ body.desktop.page #nav-list {
     display: flex;
     justify-content: center;
     transition: padding 0.5s, opacity var(--menu-trans);
-    width: 25rem;
+    width: calc(20vw + 80px);
     opacity: 1;
 }
 
@@ -595,6 +597,12 @@ body#bio.desktop #nav-list {
 
 body.desktop #nav-list a {
     font-size: calc(var(--default-font-size) * 1.5);
+    transition: font-weight var(--quick-trans), opacity var(--quick-trans);
+}
+
+body.desktop #nav-list a:hover {
+    /* font-weight: 500; */
+    opacity: 0.5;
 }
 
 body.desktop #nav-list p {
@@ -808,28 +816,58 @@ body.desktop div.gallery figure {
     padding: 0 !important;
 }
 
+#next-img,
+#previous-img {
+    z-index: 6;
+}
+
 body.desktop .gallery .figure-wrapper img,
 #popup-close svg,
 #next-img svg,
-#previous-img svg {
-    transition: scale var(--quick-trans), opacity var(--quick-trans);
+#previous-img svg,
+#popup-close svg path,
+#next-img svg path,
+#previous-img svg path {
+    transition: scale var(--quick-trans), opacity var(--quick-trans), stroke-width var(--quick-trans);
 }
 
-body.desktop div.gallery .figure-wrapper img:hover,
+div.gallery .figure-wrapper img:hover,
 #popup-close svg:hover,
+#popup-close:hover,
 #next-img svg:hover,
 #previous-img svg:hover {
     cursor: pointer;
 }
 
-body.desktop div.gallery .figure-wrapper img:hover {
-    opacity: 0.7;
-}
-
 #popup-close svg:hover,
 #next-img svg:hover,
 #previous-img svg:hover {
+    scale: 1.1;
+    /* opacity: 0.5; */
+}
+
+#popup-close svg:hover path,
+#next-img svg:hover path,
+#previous-img svg:hover path {
+    stroke-width: calc(var(--icon-weight) * 2);
+}
+
+#popup.first #previous-img svg:hover,
+#popup.last #next-img svg:hover {
+    cursor: default;
     scale: 1;
+}
+
+#popup.first #previous-img svg:hover path,
+#popup.last #next-img svg:hover path {
+    cursor: default;
+    scale: 1;
+    stroke-width: var(--icon-weight);
+}
+
+body.desktop div.gallery .figure-wrapper img:hover {
+    opacity: 0.8;
+    scale: 1.02;
 }
 
 body.desktop figcaption {
@@ -1006,20 +1044,6 @@ body.desktop.popup-mode #popup {
     opacity: 1;
 }
 
-body.desktop.popup-mode #popup .img-container {
-    transition: opacity var(--menu-trans);
-}
-
-body.desktop.popup-mode #popup:not(.loaded) .img-container {
-    opacity: 0;
-}
-
-body.desktop.popup-mode #popup.loaded .img-container {
-    animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
-    opacity: 1;
-}
-
 body.desktop #popup-main {
     height: calc(100vh - (var(--header-height) * 10));
     display: flex;
@@ -1027,14 +1051,53 @@ body.desktop #popup-main {
     justify-content: center;
 }
 
-body.desktop #popup .img-container {
+body.desktop.popup-mode #popup #popup-main #img-container {
+    position: relative;
     width: calc(72vw - (var(--header-height) * 2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.desktop.popup-mode #popup .img-container {
+    transition: opacity var(--quick-trans), transform var(--quick-trans);
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: -0px;
+}
+
+body.desktop.popup-mode #popup .img-container img {
+    transition: opacity var(--quick-trans);
+    border-radius: 4px;
+}
+
+body.desktop.popup-mode #popup .img-container {
+    opacity: 0;
+}
+
+body.desktop.popup-mode #popup.loaded .img-container {
+    animation: visVisible var(--quick-trans);
+    -webkit-animation-fill-mode: forwards;
+    opacity: 1;
 }
 
 body.desktop #popup .img-container img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+}
+
+body.desktop.popup-mode #popup .img-container.removed.next {
+    /* transform: scale(1.2); */
+    opacity: 0;
+}
+
+body.desktop.popup-mode #popup .img-container.removed.previous {
+    /* transform: scale(0.85); */
+    /* transform: translateX(100px); */
+    opacity: 0;
 }
 
 body.desktop #popup .arrow-btn {
@@ -1054,12 +1117,9 @@ body.desktop #popup .arrow-btn {
     transform: scaleX(-1);
 }
 
-#popup.first #previous-img {
-    opacity: 0.5;
-}
-
+#popup.first #previous-img,
 #popup.last #next-img {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 #popup-footer,
@@ -1067,13 +1127,13 @@ body.desktop #popup .arrow-btn {
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    padding: var(--header-height) 0px;
 }
 
 #popup-footer {
     height: calc(var(--header-height) * 6);
     align-items: start;
     justify-content: center;
+    padding: var(--header-height) 0px;
 }
 
 #popup-header {
@@ -1081,6 +1141,7 @@ body.desktop #popup .arrow-btn {
     align-items: center;
     justify-content: right;
     padding: calc(var(--header-height) * 2);
+    padding-bottom: var(--header-height);
     align-items: center;
 }
 
@@ -1219,7 +1280,7 @@ body.load nav#nav-list,
 body.load p#link-home,
 body.load span#nav-name-label,
 body.load span#nav-home-label,
-body.load #nav-list a,
+/* body.load #nav-list a, */
 body.load #back-button svg,
 body.load main.active,
 body.load #site-name,
