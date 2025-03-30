@@ -134,6 +134,20 @@ VARIABLES ETC.
     }
 }
 
+@keyframes oops {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.02;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
 
 /* ----------------------------------
 UNIVERSAL
@@ -1078,7 +1092,7 @@ body.desktop.popup-mode #popup .img-container {
 }
 
 body.desktop.popup-mode #popup.loaded .img-container {
-    animation: visVisible var(--quick-trans);
+    /* animation: visVisible var(--quick-trans); */
     -webkit-animation-fill-mode: forwards;
     opacity: 1;
 }
@@ -1099,6 +1113,11 @@ body.desktop.popup-mode #popup .img-container.removed.previous {
     /* transform: translateX(100px); */
     opacity: 0;
 }
+
+/* body.desktop.popup-mode #popup .img-container.oops {
+    animation: oops var(--menu-trans);
+    -webkit-animation-fill-mode: forwards;
+} */
 
 body.desktop #popup .arrow-btn {
     display: flex;

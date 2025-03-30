@@ -337,23 +337,37 @@ function removePopup() {
 // navigate popups
 
 function nextPopup() {
+    // popupImg.classList.remove('oops');
+
     if (figNum < globalThis[globalThis.pageName + 'ImgCount']) {
         document.querySelector('#popup-main .img-container.popup').classList.add('next');
         globalThis.popupId += 1;
         globalThis.figNum += 1;
         removePopup();
         callPopup();
+    } else {
+        oops();
     }
 }
 
 function previousPopup() {
+
     if (figNum > 1) {
         document.querySelector('#popup-main .img-container.popup').classList.add('previous');
         globalThis.popupId -= 1;
         globalThis.figNum -= 1;
         removePopup();
         callPopup();
+    } else {
+        oops();
     }
+}
+
+function oops() {
+    const popupImg = document.querySelector('#popup-main .img-container.popup');
+    popupImg.style.animation = ""; // Remove the animation
+    popupImg.offsetHeight; // Trigger reflow to restart the animation
+    popupImg.style.animation = "oops 0.3s"; // Reapply the animation    }
 }
 
 // popup keybindings
