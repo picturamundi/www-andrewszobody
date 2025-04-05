@@ -286,6 +286,10 @@ figcaption .fig-title {
     font-style: italic;
 }
 
+figcaption .fig-medium:after {
+    content: ", ";
+}
+
 body.popup-mode #popup figcaption .fig-title,
 body.popup-mode #popup figcaption .fig-details,
 body.mobile .popup-origin figcaption .fig-title,

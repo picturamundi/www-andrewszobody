@@ -23,11 +23,10 @@ window.addEventListener('DOMContentLoaded', function () {
     globalThis.galleryMargin = 30;
     blockAnimations();
     determineDevice();
+    populateCaptions();
     route();
-    revealSourcedImages();
     galleryOnVisit();
     addPopupListener();
-    // galleryOnVisit();
 });
 
 // url change trigger
@@ -40,7 +39,6 @@ window.addEventListener("hashchange", function () {
     determineDevice();
     route();
     galleryOnVisit();
-    // galleryOnVisit();
     refreshPopupListener();
     // can’t remember why we need to update the device here…
 });
@@ -56,7 +54,6 @@ window.addEventListener('resize', function () {
         tailorPopupUI();
     }
 });
-
 
 // ---------------------------------------
 //  DEVICE
@@ -164,41 +161,6 @@ function pageVisit() {
     }
 }
 
-// only show images with valid sources
-
-function revealSourcedImages() { }
-
-// activate sources for gallery images on current page
-// only show images with valid sources
-// log number of valid images to pageImgCount variable
-
-// function sourceImages() {
-//     // console.log('sourced images!');
-
-//     var imgClass = '#' + pageName + '-main img';
-//     var lazyImgs = document.querySelectorAll(imgClass);
-//     imgCount = 0;
-//     imgError = 0;
-
-//     // Loop through each element
-//     lazyImgs.forEach(function (image) {
-//         imgCount++;
-//         // Get the value of the 'data-src' attribute
-//         var dataSrc = image.getAttribute('data-src');
-//         // Set the 'src' attribute to the value of 'data-src'
-//         image.setAttribute('src', dataSrc);
-//         image.onerror = function () {
-//             this.classList.add('inactive');
-//             imgError++;
-//             // console.log('found an inactive image');
-//         };
-//     });
-
-//     pageImgCount = imgCount - imgError;
-//     globalThis[globalThis.pageName + 'ImgCount'] = pageImgCount / 2;
-// }
-
-
 // source images is using a system of promises to ensure all images are loaded before math is executed
 
 function sourceImages() {
@@ -266,48 +228,6 @@ function backButton() {
 
 // TOGGLE POPUP
 
-// call figure popup on click, log the image number
-
-// function PopupListener() {
-//     const figures = document.querySelectorAll('main.active .figure-wrapper');
-
-//     figures.forEach(function (figure) {
-//         const img = figure.querySelector('.img-container');
-//         if (img) {
-//             img.addEventListener('click', function (event) { // For some reason clicks register on the img, not the parent figure
-//                 // convert the figure ID to a number, store it as a variable (e.g. 105)
-//                 var popupIdString = figure.id;
-//                 globalThis.popupId = +popupIdString;
-//                 // figNum is the same as popupID but without the first digit (e.g. 05)
-//                 var figNumString = popupIdString.substring(1);
-//                 globalThis.figNum = +figNumString;
-//                 callPopup();
-//             });
-//         }
-//     });
-// }
-
-// function popupListener() {
-//     console.log('listening!');
-//     const popupImg = document.querySelectorAll('.gallery img');
-
-//     // Loop through each image and add a click event listener
-//     popupImg.forEach(image => {
-//         image.addEventListener('click', function () {
-//             // get the id of the clicked figure
-//             var popupIdString = this.closest('.figure-wrapper').id;
-//             // store it as a number
-//             globalThis.popupId = +popupIdString;
-//             // chop off the first digit of the ID…
-//             var figNumString = popupIdString.substring(1);
-//             // …and store it as a number
-//             globalThis.figNum = +figNumString;
-//             // console.log(figNum);
-//             callPopup();
-//         });
-//     });
-// }
-
 function refreshPopupListener() {
     removePopupListener();
     addPopupListener();
@@ -338,8 +258,9 @@ function removePopupListener() {
 function choosePopup(event) {
     // console.log('popup clicked!');
     var popupIdString = this.closest('.figure-wrapper').id;
-    globalThis.popupId = +popupIdString;
-    var figNumString = popupIdString.substring(1);
+    var popupIdNum = popupIdString.substring(1);
+    globalThis.popupId = +popupIdNum;
+    var figNumString = popupIdString.substring(2);
     globalThis.figNum = +figNumString;
     callPopup();
 }
@@ -349,7 +270,7 @@ function choosePopup(event) {
 // toggle figcaption for clicked figure (mobile) or clone figure (desktop)
 
 function callPopup() {
-    const figure = document.getElementById(popupId);
+    const figure = document.getElementById('a' + popupId);
     const popupImg = figure.querySelector('.img-container');
     const popupCap = figure.querySelector('figcaption');
     const popup = document.getElementById('popup');
@@ -541,8 +462,33 @@ function toggleFocus() {
 
 
 // ---------------------------------------
-// BUILD DESKTOP GALLERIES
+// GALLERIES
 // ---------------------------------------
+
+function populateCaptions() {
+    Object.keys(captions).forEach(group => {
+        const groupData = captions[group];
+
+        Object.keys(groupData).forEach(figureId => {
+            const captionData = groupData[figureId];
+
+            const titleElement = document.querySelector(`#${figureId} .fig-title`);
+            const mediumElement = document.querySelector(`#${figureId} .fig-medium`);
+            const dimensionsElement = document.querySelector(`#${figureId} .fig-dimensions`);
+
+            // Populate each element with data from the captions JSON
+            if (titleElement) {
+                titleElement.innerText = captionData['title'];
+            }
+            if (mediumElement) {
+                mediumElement.innerText = captionData['medium'];
+            }
+            if (dimensionsElement) {
+                dimensionsElement.innerText = captionData['dimensions'];
+            }
+        });
+    });
+}
 
 function galleryOnVisit() {
     const gallery = document.querySelector('main.active .gallery');
@@ -554,7 +500,7 @@ function galleryOnVisit() {
         destroyGallery();
     }
 
-    if (gallery.classList.contains('first') || body.classList.contains('desktop-switch')) {
+    if (gallery.classList.contains('first') || document.body.classList.contains('desktop-switch')) {
         if (window.innerWidth > 699) {
             buildGallery();
             sourceImages();
@@ -577,7 +523,8 @@ function buildGallery() {
 
     figs.forEach(fig => {
         // Check if the div ID is a number and if it's odd or even
-        const idNumber = parseInt(fig.id, 10);
+        const idName = fig.id;
+        const idNumber = idName.substring(1);
 
         if (!isNaN(idNumber)) {
             if (idNumber % 2 === 0) {
@@ -590,13 +537,6 @@ function buildGallery() {
         }
     });
     document.querySelector('main.active .gallery').classList.remove('first');
-    // setImgCount();
-    // else {
-    // this insures that mobile galleries aren’t applying heights calculated on desktop before device switch
-    // const galleryClass = '.gallery.' + pageName;
-    // const gallery = document.querySelector(galleryClass);
-    // gallery.style.height = 'fit-content';
-    // }
 }
 
 function destroyGallery() {
@@ -606,41 +546,8 @@ function destroyGallery() {
     });
 }
 
-// figure out if we need to build the gallery when a page is visited
-// on desktop, build on first page visit or if resize has happened since first visit
-
-// function galleryOnVisit() {
-//     if (document.querySelector('main.active').classList.contains('first')) {
-//         sourceImages();
-//     }
-//     if (window.innerWidth > 699) {
-//         if (document.querySelector('main.active').classList.contains('first') || document.querySelector('main.active').classList.contains('resize-gallery')) {
-//             measureGallery();
-//         }
-//     } else {
-//         // this insures that mobile galleries aren’t applying heights calculated on desktop before device switch
-//         const galleryClass = '.gallery.' + pageName;
-//         const gallery = document.querySelector(galleryClass);
-//         gallery.style.height = 'fit-content';
-//     }
-// }
-
-// decide whether a resize means rebuilding the gallery or not
 
 function galleryOnResize() {
-    //     const galleryClass = '.gallery.' + pageName;
-    //     const gallery = document.querySelector(galleryClass);
-    //     const mainClass = '#' + pageName + '-main';
-    //     const main = document.querySelector(mainClass);
-
-    // mark all pages except active page as resized
-    // document.querySelectorAll('main').forEach(main => {
-    //     main.classList.add('resize-gallery');
-    // });
-    // main.classList.remove('resize-gallery');
-
-    // if (window.innerWidth < 700) {
-    //     gallery.style.height = 'fit-content';
 
     if (document.body.classList.contains('mobile-switch')) {
         closeCaption();
@@ -657,101 +564,7 @@ function galleryOnResize() {
         galleryOnVisit();
         refreshPopupListener();
     }
-    // console.log(pageName + ' gallery height was reset');
-    // globalThis.galleryMargin = 30;
-    // measureGallery();
-    // buildGallery();
-    // console.log('gallery resized for desktop');
-    //     }
 }
-
-// wait for all images to be loaded
-// then calculate initial single-column gallery height
-// then call the setGalleryHeight function
-
-// function measureGallery() {
-
-//     // remove resize tag from active gallery since the gallery is now being resized
-//     document.querySelector('main.active').classList.remove('resize-gallery');
-
-//     const images = document.querySelectorAll('img');
-//     let loadedCount = 0;
-//     const totalImages = images.length;
-
-//     if (totalImages === 0) {
-//         // If no images are on the page, immediately call the callback
-//         setGalleryHeight();
-//         // console.log('there were no images');
-//         return;
-//     }
-
-//     images.forEach(img => {
-//         if (img.complete) {
-//             // If the image is already loaded, increment the count
-//             checkImageLoad();
-//         } else {
-//             // Otherwise, listen for the load event
-//             img.addEventListener('load', checkImageLoad);
-//             img.addEventListener('error', checkImageLoad); // Optional: handle failed images
-//         }
-//     });
-
-//     function checkImageLoad() {
-//         loadedCount++;
-//         // if all images loaded…
-//         if (loadedCount === totalImages) {
-//             // console.log('images loaded');
-
-//             // calculate initial gallery height
-//             globalThis.galleryClass = '.gallery.' + pageName;
-//             globalThis.gallery = document.querySelector(galleryClass);
-
-//             // Make sure gallery is in a single column (there may have been previous page visits)
-//             gallery.style.height = 'fit-content';
-//             globalThis.initialHeight = gallery.offsetHeight;
-
-//             // console.log(pageName + ' gallery single column height: ' + initialHeight);
-
-//             if (!gallery) {
-//                 console.error(pageName + ' gallery element not found');
-//                 return; // Exit if the gallery element isn't found
-//             }
-
-//             setGalleryHeight();
-//         }
-//     }
-// }
-
-// approximate the needed height for a 2-col gallery
-// then call galleryOnVisitHeight to check if the height meets needs
-
-// function setGalleryHeight() {
-
-//     // Calculate the desired height when in two columns
-//     const galleryHeight = initialHeight / 2 + galleryMargin;  // Divide by 2 for two columns
-
-//     // Apply the new height to the gallery
-//     gallery.style.setProperty('height', `${galleryHeight}px`);
-//     // console.log(pageName + " gallery height set to:", galleryHeight);
-
-//     // Check if this height works
-//     galleryOnVisitHeight();
-// }
-
-// check if gallery has two columns or nor
-
-// function galleryOnVisitHeight() {
-//     const galleryClass = '.gallery.' + pageName;
-//     const gallery = document.querySelector(galleryClass);
-//     const parent = gallery.parentElement;
-
-//     if (gallery.scrollWidth > gallery.clientWidth) {
-//         globalThis.galleryMargin += 5;
-//         // console.log(pageName + ' gallery height increased by 5px');
-//         setGalleryHeight();
-//     }
-// }
-
 
 // ---------------------------------------
 // ANIMATIONS
