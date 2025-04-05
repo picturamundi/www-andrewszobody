@@ -234,7 +234,6 @@ nav p.active a {
     font-weight: var(--font-weight-bold);
 }
 
-figure img,
 img.inactive {
     display: none;
 }
@@ -283,9 +282,8 @@ figcaption .fig-details {
     text-align: center;
 }
 
-body.mobile.popup-mode .popup-origin .fig-details,
-body.mobile.popup-mode .popup-origin .fig-title {
-    opacity: 1;
+figcaption .fig-title {
+    font-style: italic;
 }
 
 body.popup-mode #popup figcaption .fig-title,
@@ -293,10 +291,6 @@ body.popup-mode #popup figcaption .fig-details,
 body.mobile .popup-origin figcaption .fig-title,
 body.mobile .popup-origin figcaption .fig-details {
     margin-top: 10px;
-}
-
-figcaption .fig-title {
-    font-style: italic;
 }
 
 
@@ -777,6 +771,15 @@ body.mobile .gallery {
     gap: 20px;
 }
 
+body.mobile .gallery .gal-col-1,
+body.mobile .gallery .gal-col-2 {
+    display: none;
+}
+
+body.mobile .active .gallery .figure-wrapper {
+    display: block;
+}
+
 body.mobile figure {
     padding: 0px 0px;
 }
@@ -784,6 +787,11 @@ body.mobile figure {
 body.mobile figure img,
 body.mobile figcaption {
     max-width: 420px;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
 }
 
 body.mobile figcaption,
@@ -798,13 +806,13 @@ body.mobile figcaption .fig-details {
     display: inline-block;
 }
 
-body.mobile.popup-mode .popup-origin figcaption {
+body.mobile .popup-origin figcaption {
     margin-bottom: 10rem;
 }
 
-.img-container {
-    display: flex;
-    justify-content: center;
+body.mobile .popup-origin .fig-details,
+body.mobile .popup-origin .fig-title {
+    opacity: 1;
 }
 
 /* desktop gallery */
@@ -815,14 +823,28 @@ body.desktop div.gallery {
     margin-left: var(--desktop-gallery-padding);
     flex-wrap: wrap;
     gap: 1rem;
-    align-items: center;
+    align-items: flex-start;
     justify-content: start;
-    flex-direction: column;
+    /* flex-direction: column; */
     overflow: hidden;
     flex: 1 1 var(--default-font-size);
 }
 
-body.desktop div.gallery figure {
+body.desktop div.gallery .gal-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+body.desktop div.gallery .figure-wrapper {
+    display: none;
+}
+
+body.desktop div.gallery .gal-col .figure-wrapper {
+    display: block;
+}
+
+body.desktop div.gallery .gal-col figure {
     box-sizing: border-box;
     position: relative;
     width: calc((var(--desktop-gallery-width) / 2) - 0.5rem);
