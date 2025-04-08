@@ -86,52 +86,52 @@ const captions = {
     // 
     "less": {
         "a201": {
-            "title": "Still-life copies #3",
+            "title": "Still-life copies #3, 2018",
             "medium": "Ink on paper",
             "dimensions": "30 x 22 in"
         },
         "a202": {
-            "title": "Still-life copies #2",
+            "title": "Still-life copies #2, 2018",
             "medium": "Ink on paper",
             "dimensions": "30 x 22 in"
         },
         "a203": {
-            "title": "Iterations of a still life",
+            "title": "Iterations of a still life, 2018",
             "medium": "Ink and laserjet print on paper",
             "dimensions": "11 x 8.5 in (each)"
         },
         "a204": {
-            "title": "Still-life iterations II",
+            "title": "Still-life iterations II, 2018",
             "medium": "Ballpoint pen, inkjet print, and wax on paper",
             "dimensions": "7 x 5 in (each)"
         },
         "a205": {
-            "title": "Phases of a still life #1",
+            "title": "Phases of a still life #1, 2019",
             "medium": "Ink and uv print on paper",
             "dimensions": "22 x 30 in"
         },
         "a206": {
-            "title": "Phases of a still life #2",
+            "title": "Phases of a still life #2, 2019",
             "medium": "Ink and uv print on paper",
             "dimensions": "30 x 22 in"
         },
         "a207": {
-            "title": "Cloud Copy #1",
-            "medium": "Graphite and modified calendar image on paper",
+            "title": "Cloud Copy #1, 2016",
+            "medium": "Graphite and modified calendar image on paper, 2016",
             "dimensions": "14 x 12 in"
         },
         "a208": {
-            "title": "Cloud Copy #4",
+            "title": "Cloud Copy #4, 2017",
             "medium": "Graphite and modified calendar image on paper",
             "dimensions": "14 x 12 in"
         },
         "a209": {
-            "title": "Cloud Copy #6",
+            "title": "Cloud Copy #6, 2017",
             "medium": "White pencil and modified calendar image on paper",
             "dimensions": "14 x 12 in"
         },
         "a210": {
-            "title": "Cloud Copy #3",
+            "title": "Cloud Copy #3, 2016",
             "medium": "Graphite and calendar image on paper",
             "dimensions": "14 x 12 in"
         },
@@ -167,59 +167,59 @@ const captions = {
     // 
     "old": {
         "a301": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (Departures), 2014",
+            "medium": "Ink, guache, and graphite on paper",
+            "dimensions": "12 x 14 in"
         },
         "a302": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (Sunset/Horizon), 2015",
+            "medium": "Inkjet transfer, colored pencil, graphite, marker, collage on paper, 2015",
+            "dimensions": "12 x 14 in"
         },
         "a303": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (Slope), 2014",
+            "medium": "Guache, colored pencil, and graphite on paper",
+            "dimensions": "11 x 14 in"
         },
         "a304": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (Lightbulbs), 2015",
+            "medium": "Guache, graphite, and collage on paper",
+            "dimensions": "12 x 14 in"
         },
         "a305": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (rested), 2014",
+            "medium": "Guache and block stamp on paper",
+            "dimensions": "14 x 11 in"
         },
         "a306": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled, 2014",
+            "medium": "Guache, graphite, and collage on paper",
+            "dimensions": "14 x 12 in"
         },
         "a307": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (double impact), 2013",
+            "medium": "Graphite on paper",
+            "dimensions": "14 x 12 in (each)"
         },
         "a308": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (you), 2012",
+            "medium": "Graphite on paper",
+            "dimensions": "5 x 7 in (each)"
         },
         "a309": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (circle on square), 2013",
+            "medium": "Graphite on paper",
+            "dimensions": "14 x 12 in (each)"
         },
         "a310": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (tilted plane), 2013",
+            "medium": "Ink on paper",
+            "dimensions": "24 x 18 in"
         },
         "a311": {
-            "title": "",
-            "medium": "",
-            "dimensions": ""
+            "title": "Untitled (many things traced), 2012",
+            "medium": "Ballpoint pen on paper",
+            "dimensions": "24 x 19 in"
         },
         "a312": {
             "title": "",
