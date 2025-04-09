@@ -167,22 +167,22 @@ const captions = {
     // 
     "old": {
         "a301": {
-            "title": "Untitled (Departures), 2014",
+            "title": "Untitled (departures), 2014",
             "medium": "Ink, guache, and graphite on paper",
             "dimensions": "12 x 14 in"
         },
         "a302": {
-            "title": "Untitled (Sunset/Horizon), 2015",
+            "title": "Untitled (sunset/horizon), 2015",
             "medium": "Inkjet transfer, colored pencil, graphite, marker, collage on paper, 2015",
             "dimensions": "12 x 14 in"
         },
         "a303": {
-            "title": "Untitled (Slope), 2014",
+            "title": "Untitled (slope), 2014",
             "medium": "Guache, colored pencil, and graphite on paper",
             "dimensions": "11 x 14 in"
         },
         "a304": {
-            "title": "Untitled (Lightbulbs), 2015",
+            "title": "Untitled (lightbulbs), 2015",
             "medium": "Guache, graphite, and collage on paper",
             "dimensions": "12 x 14 in"
         },
