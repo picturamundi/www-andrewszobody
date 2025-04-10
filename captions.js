@@ -217,7 +217,7 @@ const captions = {
             "dimensions": "24 x 18 in"
         },
         "a311": {
-            "title": "Untitled (many things traced), 2012",
+            "title": "Untitled, 2012",
             "medium": "Ballpoint pen on paper",
             "dimensions": "24 x 19 in"
         },
