@@ -96,7 +96,7 @@ const captions = {
             "dimensions": "30 x 22 in"
         },
         "a203": {
-            "title": "Iterations of a still life, 2018",
+            "title": "Iterations of a still-life, 2018",
             "medium": "Ink and laserjet print on paper",
             "dimensions": "11 x 8.5 in (each)"
         },
@@ -106,12 +106,12 @@ const captions = {
             "dimensions": "7 x 5 in (each)"
         },
         "a205": {
-            "title": "Phases of a still life #1, 2019",
+            "title": "Phases of a still-life #1, 2019",
             "medium": "Ink and uv print on paper",
             "dimensions": "22 x 30 in"
         },
         "a206": {
-            "title": "Phases of a still life #2, 2019",
+            "title": "Phases of a still-life #2, 2019",
             "medium": "Ink and uv print on paper",
             "dimensions": "30 x 22 in"
         },
@@ -132,7 +132,7 @@ const captions = {
         },
         "a210": {
             "title": "Cloud Copy #3, 2016",
-            "medium": "Graphite and calendar image on paper",
+            "medium": "Graphite and modified calendar image on paper",
             "dimensions": "14 x 12 in"
         },
         "a211": {
