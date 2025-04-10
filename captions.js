@@ -15,14 +15,14 @@ const captions = {
             "dimensions": "12 x 11 in"
         },
         "a103": {
-            "title": "Untitled (a wind), 2024",
-            "medium": "Ink, graphite, egg tempera on paper mounted to board",
-            "dimensions": "12 x 12 in"
-        },
-        "a104": {
             "title": "Untitled (on the grass), 2024",
             "medium": "Ink and graphite on paper laid to canvas",
             "dimensions": "11 x 15 in"
+        },
+        "a104": {
+            "title": "Untitled (a wind), 2024",
+            "medium": "Ink, graphite, egg tempera, and colored pencil on paper mounted to board",
+            "dimensions": "12 x 12 in"
         },
         "a105": {
             "title": "Untitled (red and blue), 2024",
