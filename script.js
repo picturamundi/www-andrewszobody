@@ -16,7 +16,6 @@
 //  WINDOW TRIGGERS
 // ---------------------------------------
 
-
 //page load trigger
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -496,11 +495,15 @@ function galleryOnVisit() {
 
     // switching to mobile removes the desktop gallery (without removal, duplicate IDs cause issues)
 
-    if (body.classList.contains('mobile-switch')) {
+    if (document.body.classList.contains('mobile-switch')) {
         destroyGallery();
     }
 
-    if (gallery.classList.contains('first') || document.body.classList.contains('desktop-switch')) {
+    if (document.body.classList.contains('desktop-switch')) {
+        location.reload();
+    }
+
+    if (document.body.classList.contains('page') && gallery.classList.contains('first')) {
         if (window.innerWidth > 699) {
             buildGallery();
             sourceImages();
