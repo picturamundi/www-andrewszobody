@@ -70,7 +70,7 @@ VARIABLES ETC.
     --popup-image-height: calc(100vh -);
     /*75vh = 75% of screen height*/
 
-    --mobile-slidedown-height: 30rem;
+    --mobile-slidedown-height: 35rem;
 }
 
 @media only screen and (max-width: 1050px) {
