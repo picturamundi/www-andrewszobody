@@ -776,6 +776,14 @@ figcaption {
     white-space: nowrap;
 }
 
+.gallery img {
+    display: none;
+}
+
+.gallery img.active {
+    display: block;
+}
+
 /* mobile gallery */
 
 body.mobile .gallery {
@@ -1336,6 +1344,7 @@ body.load nav#nav-list,
 body.load p#link-home,
 body.load span#nav-name-label,
 body.load span#nav-home-label,
+body.load #social,
 /* body.load #nav-list a, */
 body.load #back-button svg,
 body.load main.active,

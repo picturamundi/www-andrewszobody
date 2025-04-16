@@ -24,6 +24,7 @@ window.addEventListener('DOMContentLoaded', function () {
     determineDevice();
     populateCaptions();
     route();
+    wallpaperOnLoad();
     galleryOnVisit();
     addPopupListener();
 });
@@ -48,11 +49,24 @@ window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     determineDevice();
     galleryOnResize();
-    // buildGallery();
     if (document.body.classList.contains('popup-mode')) {
         tailorPopupUI();
     }
 });
+
+
+function wallpaperOnLoad() {
+    var backgrounds = document.querySelectorAll('#wallpaper-wrapper img');
+
+    // Loop through each element
+    backgrounds.forEach(function (image) {
+
+        // Image failed to load
+        image.onerror = function () {
+            this.classList.add('inactive');
+        };
+    });
+}
 
 // ---------------------------------------
 //  DEVICE
@@ -166,43 +180,49 @@ function sourceImages() {
     var imgClass = '#' + pageName + '-main img';
     var lazyImgs = document.querySelectorAll(imgClass);
     imgCount = 0;
-    imgError = 0;
-    let promises = [];
+    imgLoad = 0;
 
     // Loop through each element
     lazyImgs.forEach(function (image) {
         imgCount++;
 
         // Create a promise to handle each image loading
-        let promise = new Promise((resolve, reject) => {
-            // Get the value of the 'data-src' attribute
-            var dataSrc = image.getAttribute('data-src');
-            // Set the 'src' attribute to the value of 'data-src'
-            image.setAttribute('src', dataSrc);
+        // Get the value of the 'data-src' attribute
+        var dataSrc = image.getAttribute('data-src');
+        // Set the 'src' attribute to the value of 'data-src'
+        image.setAttribute('src', dataSrc);
 
-            // Image loaded successfully
-            image.onload = function () {
-                resolve();
-            };
+        // Image loaded successfully
+        image.onload = function () {
+            this.classList.add('active');
+            imgLoad++;
+            globalThis[globalThis.pageName + 'ImgCount'] = imgLoad;
+        };
 
-            // Image failed to load
-            image.onerror = function () {
-                imgError++;
-                this.classList.add('inactive');
-                resolve(); // Resolve even if there's an error, to continue processing
-            };
-        });
+        // Image failed to load
+        // image.onerror = function () {
+        //     imgError++;
+        //     this.classList.add('inactive');
+        //     console.log('errors: ' + imgError)
+        // };
+
+        // globalVar();
 
         // Add the promise to the array of promises
-        promises.push(promise);
+        // promises.push(promise);
     });
 
+    // function globalVar() {
+    //     globalThis[globalThis.pageName + 'ImgCount'] = imgLoad / 2;
+    //     console.log('in gallery: ' + globalThis[globalThis.pageName + 'ImgCount']);
+    // }
+
     // Once all images are processed, calculate the page image count
-    Promise.all(promises).then(() => {
-        pageImgCount = imgCount - imgError;
-        globalThis[globalThis.pageName + 'ImgCount'] = pageImgCount / 2;
-        // console.log(globalThis[globalThis.pageName + 'ImgCount']);
-    });
+    // Promise.all(promises).then(() => {
+    //     pageImgCount = imgCount - imgError;
+    //     globalThis[globalThis.pageName + 'ImgCount'] = pageImgCount / 2;
+    //     // console.log(globalThis[globalThis.pageName + 'ImgCount']);
+    // });
 }
 
 
@@ -491,12 +511,11 @@ function populateCaptions() {
 
 function galleryOnVisit() {
     const gallery = document.querySelector('main.active .gallery');
-    const body = document.body;
 
     // switching to mobile removes the desktop gallery (without removal, duplicate IDs cause issues)
 
     if (document.body.classList.contains('mobile-switch')) {
-        destroyGallery();
+        location.reload();
     }
 
     if (document.body.classList.contains('desktop-switch')) {
@@ -532,10 +551,11 @@ function buildGallery() {
         if (!isNaN(idNumber)) {
             if (idNumber % 2 === 0) {
                 // If ID number is even, clone to container 2
-                col2.appendChild(fig.cloneNode(true)); // Append cloned version to col2
+                col2.appendChild(fig); // Append cloned version to col2
             } else {
                 // If ID number is odd, clone to container 1
-                col1.appendChild(fig.cloneNode(true)); // Append cloned version to col1
+                col1.appendChild(fig); // Append cloned version to col1
+                // col1.appendChild(fig.cloneNode(true));
             }
         }
     });
