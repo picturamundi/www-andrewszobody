@@ -48,25 +48,8 @@ window.addEventListener("hashchange", function () {
 window.addEventListener('resize', function () {
     globalThis.galleryMargin = 30;
     determineDevice();
-    galleryOnResize();
-    if (document.body.classList.contains('popup-mode')) {
-        tailorPopupUI();
-    }
 });
 
-
-function wallpaperOnLoad() {
-    var backgrounds = document.querySelectorAll('#wallpaper-wrapper img');
-
-    // Loop through each element
-    backgrounds.forEach(function (image) {
-
-        // Image failed to load
-        image.onerror = function () {
-            this.classList.add('inactive');
-        };
-    });
-}
 
 // ---------------------------------------
 //  DEVICE
@@ -80,12 +63,18 @@ function determineDevice() {
     if (window.innerWidth < 700) {
         if (document.body.classList.contains('desktop')) {
             document.body.classList.add('mobile-switch');
+            if (document.body.classList.contains('page')) {
+                location.reload();
+            }
         }
         document.body.classList.remove('desktop');
         document.body.classList.add('mobile');
     } else {
         if (document.body.classList.contains('mobile')) {
             document.body.classList.add('desktop-switch');
+            if (document.body.classList.contains('page')) {
+                location.reload();
+            }
         }
         document.body.classList.remove('mobile');
         document.body.classList.add('desktop');
@@ -162,13 +151,13 @@ function pageVisit() {
     if (document.body.getAttribute('id') == 'home' || document.body.getAttribute('id') == 'bio') {
         // tag body if on a page (white bg)
         document.body.classList.remove('page');
-        window.addEventListener("hashchange", function () {
+        window.addEventListener('hashchange', function () {
             // tag body when we’ve left from the home to page (for animations)
             document.body.classList.add('leave-home');
         });
     } else {
         document.body.classList.add('page');
-        window.addEventListener("hashchange", function () {
+        window.addEventListener('hashchange', function () {
             document.body.classList.remove('leave-home');
         });
     }
@@ -185,44 +174,17 @@ function sourceImages() {
     // Loop through each element
     lazyImgs.forEach(function (image) {
         imgCount++;
-
-        // Create a promise to handle each image loading
         // Get the value of the 'data-src' attribute
         var dataSrc = image.getAttribute('data-src');
         // Set the 'src' attribute to the value of 'data-src'
         image.setAttribute('src', dataSrc);
-
         // Image loaded successfully
         image.onload = function () {
             this.classList.add('active');
             imgLoad++;
             globalThis[globalThis.pageName + 'ImgCount'] = imgLoad;
         };
-
-        // Image failed to load
-        // image.onerror = function () {
-        //     imgError++;
-        //     this.classList.add('inactive');
-        //     console.log('errors: ' + imgError)
-        // };
-
-        // globalVar();
-
-        // Add the promise to the array of promises
-        // promises.push(promise);
     });
-
-    // function globalVar() {
-    //     globalThis[globalThis.pageName + 'ImgCount'] = imgLoad / 2;
-    //     console.log('in gallery: ' + globalThis[globalThis.pageName + 'ImgCount']);
-    // }
-
-    // Once all images are processed, calculate the page image count
-    // Promise.all(promises).then(() => {
-    //     pageImgCount = imgCount - imgError;
-    //     globalThis[globalThis.pageName + 'ImgCount'] = pageImgCount / 2;
-    //     // console.log(globalThis[globalThis.pageName + 'ImgCount']);
-    // });
 }
 
 
@@ -284,8 +246,6 @@ function choosePopup(event) {
     callPopup();
 }
 
-
-
 // toggle figcaption for clicked figure (mobile) or clone figure (desktop)
 
 function callPopup() {
@@ -321,17 +281,16 @@ function callPopup() {
 
         const imgFile = document.querySelector('#img-container .popup img')
         imgFile.onload = function () {
-            // console.log("Image is loaded successfully!");
             popup.classList.add('loaded');
         }
 
-        tailorPopupUI();
+        adjustPopupUI();
     }
 }
 
 // fade popup buttons for first and last image
 
-function tailorPopupUI() {
+function adjustPopupUI() {
     var popup = document.getElementById('popup');
 
     if (figNum == globalThis[globalThis.pageName + 'ImgCount']) {
@@ -346,7 +305,6 @@ function tailorPopupUI() {
     }
 }
 
-
 // close popup
 
 function closeCaption() {
@@ -354,13 +312,10 @@ function closeCaption() {
         document.body.classList.remove('popup-mode');
         document.getElementById('popup').classList.remove('loaded');
         document.querySelector('.popup-origin').classList.remove('popup-origin');
-        // everything below is a duplicate of removePopup but without the timeout
         if (document.body.classList.contains('popup-mode')) {
             document.querySelector('.popup-origin').classList.remove('popup-origin');
         }
         document.querySelector('#popup-footer figcaption').remove();
-        // document.querySelector('#popup-main .img-container.popup').classList.add('removed');
-        // document.querySelector('#popup-main .img-container.popup').classList.remove('popup');
         document.querySelector('#popup-main #img-container .img-container.popup').remove();
     }
 }
@@ -383,7 +338,6 @@ function removePopup() {
 // navigate popups
 
 function nextPopup() {
-    // popupImg.classList.remove('oops');
 
     if (figNum < globalThis[globalThis.pageName + 'ImgCount']) {
         document.querySelector('#popup-main .img-container.popup').classList.add('next');
@@ -411,9 +365,9 @@ function previousPopup() {
 
 function oops() {
     const popupImg = document.querySelector('#popup-main .img-container.popup');
-    popupImg.style.animation = ""; // Remove the animation
+    popupImg.style.animation = ''; // Remove the animation
     popupImg.offsetHeight; // Trigger reflow to restart the animation
-    popupImg.style.animation = "oops 0.3s"; // Reapply the animation    }
+    popupImg.style.animation = 'oops 0.3s'; // Reapply the animation
 }
 
 // popup keybindings
@@ -481,8 +435,22 @@ function toggleFocus() {
 
 
 // ---------------------------------------
-// GALLERIES
+// WALLPAPER AND GALLERIES
 // ---------------------------------------
+
+// Hide inactive wallpapers
+
+function wallpaperOnLoad() {
+    var backgrounds = document.querySelectorAll('#wallpaper-wrapper img');
+
+    backgrounds.forEach(function (image) {
+        image.onerror = function () {
+            this.classList.add('inactive');
+        };
+    });
+}
+
+// Pull captions from captions.js file
 
 function populateCaptions() {
     Object.keys(captions).forEach(group => {
@@ -509,18 +477,12 @@ function populateCaptions() {
     });
 }
 
+// Decides if images need to be sourced and if desktop gallery needs to be built
+
 function galleryOnVisit() {
     const gallery = document.querySelector('main.active .gallery');
 
     // switching to mobile removes the desktop gallery (without removal, duplicate IDs cause issues)
-
-    if (document.body.classList.contains('mobile-switch')) {
-        location.reload();
-    }
-
-    if (document.body.classList.contains('desktop-switch')) {
-        location.reload();
-    }
 
     if (document.body.classList.contains('page') && gallery.classList.contains('first')) {
         if (window.innerWidth > 699) {
@@ -532,14 +494,11 @@ function galleryOnVisit() {
     }
 }
 
-// build gallery only if this is a first visit on desktop
+// build desktop gallery
 
 function buildGallery() {
 
-    // Get all divs in the document
     const figs = document.querySelectorAll('.' + pageName + ' .figure-wrapper');
-
-    // Get the containers where the divs will be cloned
     const col1 = document.querySelector('.' + pageName + ' .gal-col-1'); // Container for odd ID divs
     const col2 = document.querySelector('.' + pageName + ' .gal-col-2'); // Container for odd ID divs
 
@@ -551,43 +510,34 @@ function buildGallery() {
         if (!isNaN(idNumber)) {
             if (idNumber % 2 === 0) {
                 // If ID number is even, clone to container 2
-                col2.appendChild(fig); // Append cloned version to col2
+                col2.appendChild(fig);
             } else {
                 // If ID number is odd, clone to container 1
-                col1.appendChild(fig); // Append cloned version to col1
-                // col1.appendChild(fig.cloneNode(true));
+                col1.appendChild(fig);
             }
         }
     });
     document.querySelector('main.active .gallery').classList.remove('first');
 }
 
-function destroyGallery() {
-    const galCols = document.body.querySelectorAll('.gal-col');
-    galCols.forEach(galCol => {
-        galCol.innerHTML = '';
-    });
-}
+// function galleryOnResize() {
 
+//     if (document.body.classList.contains('mobile-switch')) {
+//         closeCaption();
+//         galleryOnVisit();
+//         refreshPopupListener();
+//     }
+//     if (document.body.classList.contains('desktop-switch')) {
+//         closeCaption();
+//         const galleries = document.querySelectorAll('.page');
 
-function galleryOnResize() {
-
-    if (document.body.classList.contains('mobile-switch')) {
-        closeCaption();
-        galleryOnVisit();
-        refreshPopupListener();
-    }
-    if (document.body.classList.contains('desktop-switch')) {
-        closeCaption();
-        const galleries = document.querySelectorAll('.page');
-
-        galleries.forEach(gallery => {
-            gallery.classList.add('first');
-        });
-        galleryOnVisit();
-        refreshPopupListener();
-    }
-}
+//         galleries.forEach(gallery => {
+//             gallery.classList.add('first');
+//         });
+//         galleryOnVisit();
+//         refreshPopupListener();
+//     }
+// }
 
 // ---------------------------------------
 // ANIMATIONS
