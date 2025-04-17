@@ -9,6 +9,7 @@
 // - Device
 // - Pseudo pages
 // - User interface
+// - Wallpapers and galleries
 // - Animations
 
 
@@ -435,7 +436,7 @@ function toggleFocus() {
 
 
 // ---------------------------------------
-// WALLPAPER AND GALLERIES
+// WALLPAPERS AND GALLERIES
 // ---------------------------------------
 
 // Hide inactive wallpapers

@@ -5,7 +5,7 @@
 TO DO LIST
 
 - can we get rid of the desktop content div? It’s confusing
-- figure out why pages disappear with no transition on mobile
+- figure out why pages sometimes disappear with no transition on mobile
 
 
 CONTENTS
@@ -676,13 +676,13 @@ body.mobile nav#nav-list {
 body.mobile.menu-expanded nav#nav-list {
     opacity: 1;
     animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body.mobile.menu-collapsed nav#nav-list {
     opacity: 0;
     animation: visHidden var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 
@@ -763,7 +763,7 @@ body:not(#bio) #bio-text {
 body#bio.nav #bio-text {
     opacity: 1;
     animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 /* gallery */
@@ -993,13 +993,13 @@ body.mobile #back-button svg {
 #back-button svg {
     opacity: 0;
     animation: visHidden var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body.mobile:not(#home) #back-button svg {
     opacity: 1;
     animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body.mobile #back-button,
@@ -1041,13 +1041,13 @@ body.mobile.page #social {
 body.mobile.page.leave-home #social {
     opacity: 0;
     animation: visHidden var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body.mobile#home.nav #social {
     opacity: 1;
     animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body.mobile #instagram-link {
@@ -1098,7 +1098,7 @@ body.desktop.popup-mode #popup {
     display: block;
     align-items: center;
     animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
     opacity: 1;
 }
 
@@ -1127,7 +1127,6 @@ body.desktop.popup-mode #popup .img-container {
 }
 
 body.desktop.popup-mode #popup .img-container img {
-    transition: opacity var(--quick-trans);
     border-radius: 4px;
 }
 
@@ -1137,13 +1136,13 @@ body.desktop.popup-mode #popup .img-container {
 
 body.desktop.popup-mode #popup.loaded .img-container {
     /* animation: visVisible var(--quick-trans); */
-    -webkit-animation-fill-mode: forwards;
+    /* animation-fill-mode: forwards; */
     opacity: 1;
 }
 
 body.desktop #popup .img-container img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
@@ -1160,7 +1159,7 @@ body.desktop.popup-mode #popup .img-container.removed.previous {
 
 /* body.desktop.popup-mode #popup .img-container.oops {
     animation: oops var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 } */
 
 body.desktop #popup .arrow-btn {
@@ -1273,7 +1272,7 @@ body#home.menu-expanded #site-name {
 body#bio.menu-expanded #bio-text {
     opacity: 0;
     animation: visHidden var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body#home.menu-collapsed #site-name {
@@ -1283,7 +1282,7 @@ body#home.menu-collapsed #site-name {
 body#bio.menu-collapsed #bio-text {
     opacity: 1;
     animation: visVisible var(--menu-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body#home.focus-work #site-name-container,
@@ -1293,7 +1292,7 @@ body#home.focus-work #nav-button {
     filter: blur(5px);
     scale: 1.2;
     animation: visHidden var(--focus-trans);
-    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 body#home.focus-name #site-name-container,
