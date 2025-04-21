@@ -253,6 +253,11 @@ body.mobile .figure-wrapper figure img,
 body.desktop .figure-wrapper:not(.popup) figure img {
     /* images are hidden until javascript shows the sourced ones */
     width: 100%;
+}
+
+body.mobile .figure-wrapper figure img,
+body.desktop .figure-wrapper:not(.popup) figure img,
+body.desktop .gallery .img-container {
     border-radius: 2px;
 }
 
@@ -818,6 +823,7 @@ body.mobile figcaption {
 .img-container {
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 body.mobile figcaption,
@@ -1135,9 +1141,9 @@ body.desktop.popup-mode #popup .img-container {
     margin-left: -0px;
 }
 
-body.desktop.popup-mode #popup .img-container img {
+/* body.desktop.popup-mode #popup .img-container img {
     border-radius: 4px;
-}
+} */
 
 body.desktop.popup-mode #popup .img-container {
     opacity: 0;
