@@ -1,5 +1,5 @@
 // TO DO LIST
-//      - Empty!
+//      - if a page doesn't exist, navigate to home
 
 // CONTENTS
 //
@@ -82,6 +82,19 @@ function route() {
     if (!window.location.hash) {
         window.location.hash = 'home';
     }
+
+    checkNonexistentPage();
+
+    function checkNonexistentPage() {
+        var hash = window.location.hash;
+        var functionName = hash.substring(1);
+
+        if (!document.getElementById('link-' + functionName)) {
+
+            window.location.hash = 'home';
+        }
+    }
+
     // set body ID and pageName var
     var hash = window.location.hash;
     var functionName = hash.substring(1);
