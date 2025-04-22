@@ -61,7 +61,7 @@ function backButton() {
 }
 ```
 
-While you’ll need to edit the html file to add captions to new works in a gallery, and while you’ll need to edit the css file to customize your colors and such, I don’t think you should ever need to edit the javascript.
+While you’ll need to edit the html file if ever you want to rename pages, and while you’ll need to edit the css file to customize your colors and such, I don’t think you should ever need to edit the javascript.
 
 There are other files in the repository, like images and fonts, and but they’re all there to be grabbed and used by those three core documents.
 
