@@ -15,12 +15,12 @@
 //  WINDOW TRIGGERS
 // ---------------------------------------
 
-//page load trigger
+// page load trigger
 
 window.addEventListener('DOMContentLoaded', function () {
-    route(); // take us to the right page
+    route(); // navigate to the right page based on URL
     determineDevice(); // add mobile and desktop classes to body
-    wallpaperOnLoad(); // hide inactive wallpapers
+    chooseWallpaper(); // hide inactive wallpapers
     buildGallery(); // inject gallery for active page
     enableAnimations(); // …after user clicks
 });
@@ -53,18 +53,14 @@ function determineDevice() {
     if (window.innerWidth < 700) {
         if (document.body.classList.contains('desktop')) {
             document.body.classList.add('mobile-switch');
-            if (document.body.classList.contains('page')) {
-                location.reload();
-            }
+            location.reload();
         }
         document.body.classList.remove('desktop');
         document.body.classList.add('mobile');
     } else {
         if (document.body.classList.contains('mobile')) {
             document.body.classList.add('desktop-switch');
-            if (document.body.classList.contains('page')) {
-                location.reload();
-            }
+            location.reload();
         }
         document.body.classList.remove('mobile');
         document.body.classList.add('desktop');
@@ -79,28 +75,20 @@ function determineDevice() {
 // find the right page based off of the URL
 
 function route() {
-
-    // collapse the menu when loading pages
     if (document.body.classList.contains('menu-expanded')) {
         collapseMenu();
     }
-
     // If no hash exists, add #home to the URL (for navigating back)
     if (!window.location.hash) {
         window.location.hash = 'home';
     }
-    // get the hash fragment from the URL
+    // set body ID and pageName var
     var hash = window.location.hash;
-
-    // remove the # symbol
     var functionName = hash.substring(1);
-
-    // name the document body
     globalThis.pageName = functionName;
-    // console.log('pageName is now ' + functionName);
     document.body.setAttribute('id', pageName);
     markActivePage();
-    pageVisit();
+    trackPageVisits();
 }
 
 // activate the relevant page main
@@ -124,7 +112,7 @@ function markActivePage() {
 
 // track navigation with classes
 
-function pageVisit() {
+function trackPageVisits() {
     var main = document.querySelector('main.active');
 
     if (main.classList.contains('sleeping')) {
@@ -139,7 +127,7 @@ function pageVisit() {
         // tag body if on a page (white bg)
         document.body.classList.remove('page');
         window.addEventListener('hashchange', function () {
-            // tag body when we’ve left from the home to page (for animations)
+            // tag body when we’ve left from the home to page (for instagram animation)
             document.body.classList.add('leave-home');
         });
     } else {
@@ -150,35 +138,15 @@ function pageVisit() {
     }
 }
 
-// source images is using a system of promises to ensure all images are loaded before math is executed
-
-function sourceImages() {
-    var lazyImgs = document.querySelectorAll('main.active img');
-    imgCount = 0;
-    imgLoad = 0;
-
-    // Loop through each element
-    lazyImgs.forEach(function (image) {
-        imgCount++;
-        // Image loaded successfully
-        image.onload = function () {
-            this.classList.add('active');
-            imgLoad++;
-            globalThis[globalThis.pageName + 'ImgCount'] = imgLoad;
-        };
-    });
-}
-
-
-// back button
+// navigate back with arrow
 
 function backButton() {
     if (pageName != 'home') {
         if (history.length > 1) {
-            // If there is history to go back to, use history.back()
+            // If there is a history, go back to previous page
             history.back();
         } else {
-            // Otherwise, redirect to the homepage
+            // If no history, redirect to the homepage
             window.location.hash = 'home';
         }
     }
@@ -198,28 +166,21 @@ function refreshPopupListener() {
 
 function addPopupListener() {
     const popupImg = document.querySelectorAll('main.active img');
-
-    // Loop through each image and add the click event listener
     popupImg.forEach(image => {
         image.addEventListener('click', choosePopup);
     });
-    // console.log('added popup listener!');
 }
 
-// Separate function to remove the listeners
 function removePopupListener() {
     const popupImg = document.querySelectorAll('main.active img');
-
-    // Loop through each image and remove the click event listener
     popupImg.forEach(image => {
         image.removeEventListener('click', choosePopup);
     });
-    // console.log('removed popup listener!');
 }
 
-// Define the popup listener function
+// mark the popup chosen via the listener
+
 function choosePopup(event) {
-    // console.log('popup clicked!');
     var popupIdString = this.closest('.figure-wrapper').id;
     var popupIdNum = popupIdString.substring(1);
     globalThis.popupId = +popupIdNum;
@@ -237,8 +198,6 @@ function callPopup() {
     const popup = document.getElementById('popup');
     const popupFooter = document.getElementById('popup-footer');
     const imgContainer = document.getElementById('img-container');
-
-    // console.log('popup ' + popupId + ' called');
 
     // on mobile, callPopup() works as a toggle for .popup-origin
     if (document.body.classList.contains('mobile')) {
@@ -265,12 +224,11 @@ function callPopup() {
         imgFile.onload = function () {
             popup.classList.add('loaded');
         }
-
         adjustPopupUI();
     }
 }
 
-// fade popup buttons for first-img and last-img image
+// fade popup buttons for first-img and last-img
 
 function adjustPopupUI() {
     var popup = document.getElementById('popup');
@@ -302,10 +260,10 @@ function closeCaption() {
     }
 }
 
-// remove popup is kept separate from closeCaption since it is also used for cycling through imgs
+// removePopup is kept separate from closeCaption because it is used for cycling through imgs
+// hence the 500ms timeout (for cross fade animations)
 
 function removePopup() {
-    // console.log('remove popup fired');
     if (document.body.classList.contains('popup-mode')) {
         document.querySelector('.popup-origin').classList.remove('popup-origin');
     }
@@ -345,6 +303,8 @@ function previousPopup() {
     }
 }
 
+// animate first-img and last-img when user tries to navigate beyond
+
 function oops() {
     const popupImg = document.querySelector('#popup-main .img-container.popup');
     popupImg.style.animation = ''; // Remove the animation
@@ -367,7 +327,7 @@ function handleKeys(event) {
 }
 
 
-// TOGGLE MENU
+// TOGGLE MENU (mobile)
 
 function toggleMenu() {
     if (document.body.className.includes('menu-expanded')) {
@@ -381,10 +341,10 @@ function expandMenu() {
     var menu = document.getElementById('nav-button');
     var body = document.body;
 
+    menu.classList.remove('hamburger');
     menu.classList.add('cross');
     body.classList.remove('menu-collapsed');
     body.classList.add('menu-expanded');
-    menu.classList.remove('hamburger');
 }
 
 function collapseMenu() {
@@ -392,26 +352,22 @@ function collapseMenu() {
     var body = document.body;
 
     menu.classList.remove('cross');
-    body.classList.remove('menu-expanded');
     menu.classList.add('hamburger');
+    body.classList.remove('menu-expanded');
     body.classList.add('menu-collapsed');
 }
 
-// TOGGLE FOCUS
+// TOGGLE FOCUS (mobile)
 
 function toggleFocus() {
-    var glass = document.getElementById('glass');
-
-    if (glass.className == 'trans') {
+    if (document.body.classList.contains('focus-work')) {
         // focus name
         document.body.classList.add('focus-name');
         document.body.classList.remove('focus-work');
-        glass.classList.remove('trans');
     } else {
         // focus work
         document.body.classList.remove('focus-name');
         document.body.classList.add('focus-work');
-        glass.classList.add('trans');
     }
 }
 
@@ -420,11 +376,10 @@ function toggleFocus() {
 // WALLPAPERS AND GALLERIES
 // ---------------------------------------
 
-// Hide inactive wallpapers
+// hide inactive wallpapers
 
-function wallpaperOnLoad() {
+function chooseWallpaper() {
     var backgrounds = document.querySelectorAll('#wallpaper-wrapper img');
-
     backgrounds.forEach(function (image) {
         image.onerror = function () {
             this.classList.add('inactive');
@@ -435,7 +390,6 @@ function wallpaperOnLoad() {
 function buildGallery() {
 
     if (document.body.classList.contains('page') && document.querySelector('main.active').classList.contains('first')) {
-
         const main = document.querySelector('main.active')
         const gallery = document.querySelector('main.active div.gallery');
         let galleryNumber;
@@ -473,7 +427,9 @@ function buildGallery() {
         }
 
         gallery.innerHTML += html;
+
         populateCaptions();
+
         if (document.querySelector('main.active').classList.contains('first')) {
             addPopupListener();
         } else {
@@ -481,19 +437,33 @@ function buildGallery() {
         }
 
         // mobile vs desktop
-        if (document.body.classList.contains('page') && main.classList.contains('first')) {
-            if (window.innerWidth > 699) {
-                desktopGallery();
-                sourceImages();
-            } else {
-                sourceImages();
-            }
+        if (window.innerWidth > 699 && document.body.classList.contains('page') && main.classList.contains('first')) {
+            arrangeDesktopGallery();
         }
-
+        activateGalleryImgs();
     }
 }
 
-// Pull captions from captions.js file
+// activate valid gallery images, count them
+
+function activateGalleryImgs() {
+    var lazyImgs = document.querySelectorAll('main.active img');
+    imgCount = 0;
+    imgLoad = 0;
+
+    // Loop through each element
+    lazyImgs.forEach(function (image) {
+        imgCount++;
+        // Image loaded successfully
+        image.onload = function () {
+            this.classList.add('active');
+            imgLoad++;
+            globalThis[globalThis.pageName + 'ImgCount'] = imgLoad;
+        };
+    });
+}
+
+// pull captions from captions.js file
 
 function populateCaptions() {
     Object.keys(captions).forEach(group => {
@@ -520,9 +490,9 @@ function populateCaptions() {
     });
 }
 
-// build desktop gallery
+// arrange gallery images in two columns for desktop
 
-function desktopGallery() {
+function arrangeDesktopGallery() {
 
     const figs = document.querySelectorAll('.' + pageName + ' .figure-wrapper');
     const col1 = document.querySelector('.' + pageName + ' .gal-col-1'); // Container for odd ID divs
