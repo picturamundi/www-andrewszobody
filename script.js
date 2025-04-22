@@ -1,7 +1,5 @@
-
 // TO DO LIST
 //      - Empty!
-
 
 // CONTENTS
 //
@@ -20,34 +18,25 @@
 //page load trigger
 
 window.addEventListener('DOMContentLoaded', function () {
-    globalThis.galleryMargin = 30;
-    blockAnimations();
-    determineDevice();
-    populateCaptions();
-    route();
-    wallpaperOnLoad();
-    galleryOnVisit();
-    addPopupListener();
+    route(); // take us to the right page
+    determineDevice(); // add mobile and desktop classes to body
+    wallpaperOnLoad(); // hide inactive wallpapers
+    buildGallery(); // inject gallery for active page
+    enableAnimations(); // …after user clicks
 });
 
 // url change trigger
 
 window.addEventListener("hashchange", function () {
-    globalThis.galleryMargin = 30;
-    // body class 'nav' lets CSS know this is not an initial page load
     document.body.classList.add('nav');
     window.scrollTo(0, 0);
-    determineDevice();
     route();
-    galleryOnVisit();
-    refreshPopupListener();
-    // can’t remember why we need to update the device here…
+    buildGallery();
 });
 
 //window resize trigger
 
 window.addEventListener('resize', function () {
-    globalThis.galleryMargin = 30;
     determineDevice();
 });
 
@@ -141,12 +130,9 @@ function pageVisit() {
     if (main.classList.contains('sleeping')) {
         main.classList.remove('sleeping');
         main.classList.add('first');
-        // adding 'first' to the main classlist lets us know this is a first visit to the page
-        document.body.classList.add('first');
     } else {
         if (main.classList.contains('first')) {
             main.classList.remove('first');
-            document.body.classList.remove('first');
         }
     }
     if (document.body.getAttribute('id') == 'home' || document.body.getAttribute('id') == 'bio') {
@@ -167,18 +153,13 @@ function pageVisit() {
 // source images is using a system of promises to ensure all images are loaded before math is executed
 
 function sourceImages() {
-    var imgClass = '#' + pageName + '-main img';
-    var lazyImgs = document.querySelectorAll(imgClass);
+    var lazyImgs = document.querySelectorAll('main.active img');
     imgCount = 0;
     imgLoad = 0;
 
     // Loop through each element
     lazyImgs.forEach(function (image) {
         imgCount++;
-        // Get the value of the 'data-src' attribute
-        var dataSrc = image.getAttribute('data-src');
-        // Set the 'src' attribute to the value of 'data-src'
-        image.setAttribute('src', dataSrc);
         // Image loaded successfully
         image.onload = function () {
             this.classList.add('active');
@@ -289,20 +270,20 @@ function callPopup() {
     }
 }
 
-// fade popup buttons for first and last image
+// fade popup buttons for first-img and last-img image
 
 function adjustPopupUI() {
     var popup = document.getElementById('popup');
 
     if (figNum == globalThis[globalThis.pageName + 'ImgCount']) {
-        popup.classList.add('last');
-    } else if (popup.classList.contains('last')) {
-        popup.classList.remove('last');
+        popup.classList.add('last-img');
+    } else if (popup.classList.contains('last-img')) {
+        popup.classList.remove('last-img');
     }
     if (figNum == 1) {
-        popup.classList.add('first');
-    } else if (popup.classList.contains('first')) {
-        popup.classList.remove('first');
+        popup.classList.add('first-img');
+    } else if (popup.classList.contains('first-img')) {
+        popup.classList.remove('first-img');
     }
 }
 
@@ -451,6 +432,67 @@ function wallpaperOnLoad() {
     });
 }
 
+function buildGallery() {
+
+    if (document.body.classList.contains('page') && document.querySelector('main.active').classList.contains('first')) {
+
+        const main = document.querySelector('main.active')
+        const gallery = document.querySelector('main.active div.gallery');
+        let galleryNumber;
+
+        if (pageName == 'recent') {
+            galleryNumber = 1;
+        } else if (pageName == 'less') {
+            galleryNumber = 2;
+        } else if (pageName == 'old') {
+            galleryNumber = 3;
+        } else if (pageName == 'g4') {
+            galleryNumber = 4;
+        }
+
+        let html = '';
+
+        for (let i = 1; i <= 15; i++) {
+            const idNumber = i.toString().padStart(2, '0');
+            html += `
+                <div id="a${galleryNumber}${idNumber}" class="figure-wrapper">
+                    <figure>
+                        <div class="img-container">
+                            <img src="artwork/${pageName}/${idNumber}.jpeg">
+                        </div>
+                        <figcaption>
+                            <div class="fig-title"></div>
+                            <div class="fig-details">
+                                <div class="fig-medium"></div>
+                                <div class="fig-dimensions"></div>
+                            </div>
+                        </figcaption>
+                    </figure>
+
+                </div>`;
+        }
+
+        gallery.innerHTML += html;
+        populateCaptions();
+        if (document.querySelector('main.active').classList.contains('first')) {
+            addPopupListener();
+        } else {
+            refreshPopupListener();
+        }
+
+        // mobile vs desktop
+        if (document.body.classList.contains('page') && main.classList.contains('first')) {
+            if (window.innerWidth > 699) {
+                desktopGallery();
+                sourceImages();
+            } else {
+                sourceImages();
+            }
+        }
+
+    }
+}
+
 // Pull captions from captions.js file
 
 function populateCaptions() {
@@ -460,9 +502,9 @@ function populateCaptions() {
         Object.keys(groupData).forEach(figureId => {
             const captionData = groupData[figureId];
 
-            const titleElement = document.querySelector(`#${figureId} .fig-title`);
-            const mediumElement = document.querySelector(`#${figureId} .fig-medium`);
-            const dimensionsElement = document.querySelector(`#${figureId} .fig-dimensions`);
+            const titleElement = document.querySelector(`main.active #${figureId} .fig-title`);
+            const mediumElement = document.querySelector(`main.active #${figureId} .fig-medium`);
+            const dimensionsElement = document.querySelector(`main.active #${figureId} .fig-dimensions`);
 
             // Populate each element with data from the captions JSON
             if (titleElement) {
@@ -478,26 +520,9 @@ function populateCaptions() {
     });
 }
 
-// Decides if images need to be sourced and if desktop gallery needs to be built
-
-function galleryOnVisit() {
-    const gallery = document.querySelector('main.active .gallery');
-
-    // switching to mobile removes the desktop gallery (without removal, duplicate IDs cause issues)
-
-    if (document.body.classList.contains('page') && gallery.classList.contains('first')) {
-        if (window.innerWidth > 699) {
-            buildGallery();
-            sourceImages();
-        } else {
-            sourceImages();
-        }
-    }
-}
-
 // build desktop gallery
 
-function buildGallery() {
+function desktopGallery() {
 
     const figs = document.querySelectorAll('.' + pageName + ' .figure-wrapper');
     const col1 = document.querySelector('.' + pageName + ' .gal-col-1'); // Container for odd ID divs
@@ -518,33 +543,13 @@ function buildGallery() {
             }
         }
     });
-    document.querySelector('main.active .gallery').classList.remove('first');
 }
-
-// function galleryOnResize() {
-
-//     if (document.body.classList.contains('mobile-switch')) {
-//         closeCaption();
-//         galleryOnVisit();
-//         refreshPopupListener();
-//     }
-//     if (document.body.classList.contains('desktop-switch')) {
-//         closeCaption();
-//         const galleries = document.querySelectorAll('.page');
-
-//         galleries.forEach(gallery => {
-//             gallery.classList.add('first');
-//         });
-//         galleryOnVisit();
-//         refreshPopupListener();
-//     }
-// }
 
 // ---------------------------------------
 // ANIMATIONS
 // ---------------------------------------
 
-function blockAnimations() {
+function enableAnimations() {
     addEventListener('click', (event) => {
         document.body.classList.remove('load');
     }, { once: true });

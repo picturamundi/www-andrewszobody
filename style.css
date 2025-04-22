@@ -920,14 +920,14 @@ div.gallery .figure-wrapper img:hover,
     stroke-width: calc(var(--icon-weight) * 2);
 }
 
-#popup.first #previous-img svg:hover,
-#popup.last #next-img svg:hover {
+#popup.first-img #previous-img svg:hover,
+#popup.last-img #next-img svg:hover {
     cursor: default;
     scale: 1;
 }
 
-#popup.first #previous-img svg:hover path,
-#popup.last #next-img svg:hover path {
+#popup.first-img #previous-img svg:hover path,
+#popup.last-img #next-img svg:hover path {
     cursor: default;
     scale: 1;
     stroke-width: var(--icon-weight);
@@ -1194,8 +1194,8 @@ body.desktop #popup .arrow-btn {
     transform: scaleX(-1);
 }
 
-#popup.first #previous-img,
-#popup.last #next-img {
+#popup.first-img #previous-img,
+#popup.last-img #next-img {
     opacity: 0.3;
 }
 
