@@ -61,7 +61,7 @@ function backButton() {
 }
 ```
 
-While you’ll need to edit the html file to add captions to new works in a gallery, and while you’ll need to edit the css file to customize your colors and such, I don’t think you should ever need to edit the javascript.
+While you’ll need to edit the html file if ever you want to rename pages, and while you’ll need to edit the css file to customize your colors and such, I don’t think you should ever need to edit the javascript.
 
 There are other files in the repository, like images and fonts, and but they’re all there to be grabbed and used by those three core documents.
 
@@ -116,19 +116,21 @@ Dropping `.jpeg` files into these subfolders with the following naming conventio
 
 By default, galleries are set up for 15 images, but more could be added.
 
-In order to add a caption to a new image — or to modify a caption — open the html document and search (`Cmd-f`) for the image path (e.g. `artwork/less/04.jpeg`) in order to locate the correct work. Just under the image path, fill out `fig-title`, `fig-medium`, and `fig-dimensions`:
+In order to add a caption to a new image — or to modify a caption — find the `captions.js` file in the repository, scroll until you see the name of the gallery your image is in, and then look for an ID whose last two digits match the relevant image number:
 
-```html
-<div class="img-container">
-    <img data-src="artwork/less/04.jpeg" src="">
-</div>
-<figcaption class="">
-    <div class="fig-title">Put title here</div>
-    <div class="fig-details">
-        <div class="fig-medium">Put medium here</div>
-        <div class="fig-dimensions">Put dimensions here</div>
-    </div>
-</figcaption>
+```json
+"less": {
+    "a201": {
+        "title": "Still-life copies #3, 2018",
+        "medium": "Ink on paper",
+        "dimensions": "30 x 22 in"
+    },
+    "a202": {
+        "title": "Still-life copies #2, 2018",
+        "medium": "Ink on paper",
+        "dimensions": "30 x 22 in"
+    }
+}
 ```
 
 That should be it!

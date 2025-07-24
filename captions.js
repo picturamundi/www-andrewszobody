@@ -324,6 +324,3 @@ const captions = {
         }
     }
 }
-
-
-
