@@ -15,14 +15,14 @@ const captions = {
             "dimensions": "8 x 9.5 in"
         },
         "a103": {
-            "title": "Untitled (Winter Landscape), 2025",
-            "medium": "Ink, colored pencil, and graphite on gessoed paper laid to canvas",
-            "dimensions": "12 x 11 in"
-        },
-        "a104": {
             "title": "Untitled Landscape, 2025",
             "medium": "Silverpoint, ink, and milkpaint on gessoed paper",
             "dimensions": "13.5 x 11 in"
+        },
+        "a104": {
+            "title": "Untitled (Winter Landscape), 2025",
+            "medium": "Ink, colored pencil, and graphite on gessoed paper laid to canvas",
+            "dimensions": "12 x 11 in"
         },
         "a105": {
             "title": "Untitled, 2025",
