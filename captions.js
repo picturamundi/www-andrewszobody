@@ -25,14 +25,14 @@ const captions = {
             "dimensions": "12 x 11 in"
         },
         "a105": {
-            "title": "Untitled, 2025",
-            "medium": "Ink on paper mounted to linen",
-            "dimensions": "8 x 11 in"
-        },
-        "a106": {
             "title": "Untitled (Panorama), 2025",
             "medium": "Ink, pastel, and colored pencil on paper",
             "dimensions": "6 x 12 in"
+        },
+        "a106": {
+            "title": "Untitled, 2025",
+            "medium": "Ink on paper mounted to linen",
+            "dimensions": "8 x 11 in"
         },
         "a107": {
             "title": "Untitled (on the grass), 2024",
