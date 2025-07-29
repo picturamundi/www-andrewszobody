@@ -25,59 +25,59 @@ const captions = {
             "dimensions": "13.5 x 11 in"
         },
         "a105": {
+            "title": "Untitled, 2025",
+            "medium": "Ink on paper mounted to linen",
+            "dimensions": "8 x 11 in"
+        },
+        "a106": {
             "title": "Untitled (Panorama), 2025",
             "medium": "Ink, pastel, and colored pencil on paper",
             "dimensions": "6 x 12 in"
         },
-        "a106": {
+        "a107": {
             "title": "Untitled (on the grass), 2024",
             "medium": "Ink and graphite on paper laid to canvas",
             "dimensions": "11 x 15 in"
         },
-        "a107": {
+        "a108": {
+            "title": "Untitled (tell, don't show), 2024",
+            "medium": "Egg tempera and ink on paper",
+            "dimensions": "19 x 10.5 in"
+        },
+        "a109": {
             "title": "Untitled (red and blue), 2024",
             "medium": "Watercolor, ink, colored pencil and pastel on paper laid to linen",
             "dimensions": "9 x 11 in"
         },
-        "a108": {
+        "a110": {
             "title": "Untitled, 2024",
             "medium": "Ink and watercolor on paper laid to canvas",
             "dimensions": "10 x 14 in"
         },
-        "a109": {
+        "a111": {
             "title": "Untitled (travel advertisement), 2024",
             "medium": "Ink, graphite, and colored pencil on paper laid to canvas",
             "dimensions": "11 x 9 in"
         },
-        "a110": {
+        "a112": {
             "title": "Untitled (travel advertisement 2), 2024",
             "medium": "Ink graphite, and colored pencil on paper laid to canvas",
             "dimensions": "11 x 9 in"
         },
-        "a111": {
+        "a113": {
             "title": "Untitled (a wind), 2024",
             "medium": "Ink, graphite, egg tempera, and colored pencil on paper mounted to board",
             "dimensions": "12 x 12 in"
         },
-        "a112": {
+        "a114": {
             "title": "Untitled (yellow and gray), 2024",
             "medium": "Ink and watercolor on paper laid to canvas",
             "dimensions": "12 x 14 in"
         },
-        "a113": {
+        "a115": {
             "title": "Untitled, 2024",
             "medium": "Ink, pastel, and graphite on paper",
             "dimensions": "6 x 9 in"
-        },
-        "a114": {
-            "title": "Untitled, 2023",
-            "medium": "Graphite, ink, and egg tempera on paper",
-            "dimensions": "12 x 14 in"
-        },
-        "a115": {
-            "title": "Untitled, 2023",
-            "medium": "Ink, charcoal, and pastel on paper",
-            "dimensions": "12 x 14 in"
         }
     },
     // 
