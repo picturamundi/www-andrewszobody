@@ -370,7 +370,7 @@ function collapseMenu() {
     body.classList.add('menu-collapsed');
 }
 
-// TOGGLE FOCUS (mobile)
+// TOGGLE FOCUS
 
 function toggleFocus() {
     if (document.body.classList.contains('focus-work')) {
