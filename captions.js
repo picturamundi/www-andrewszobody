@@ -6,7 +6,7 @@ const captions = {
     "recent": {
         "a101": {
             "title": "Three Actors on a Stage, 2026",
-            "medium": "Milk paint, pastel, colored pencil on paper",
+            "medium": "Milk paint, pastel, colored pencil on paper laid to linen",
             "dimensions": "9 x 10 in"
         },
         "a102": {
