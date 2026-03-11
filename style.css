@@ -173,7 +173,7 @@ body {
 
 #content {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     /* overflow hidden for non-active (transparent) pages */
 }
 
@@ -399,7 +399,7 @@ body.desktop #glass {
     position: fixed;
 }
 
-body.mobile.focus-work #glass {
+body.focus-work #glass {
     opacity: 0;
 }
 
