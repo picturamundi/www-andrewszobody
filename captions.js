@@ -5,24 +5,24 @@ const captions = {
     // 
     "recent": {
         "a101": {
-            "title": "Untitled (Two Shrubs), 2025",
-            "medium": "Mixed media on paper laid to canvas",
-            "dimensions": "10.5 x 11.5 in"
+            "title": "Three Actors on a Stage, 2026",
+            "medium": "Milk paint, pastel, colored pencil on paper",
+            "dimensions": "9 x 10 in"
         },
         "a102": {
-            "title": "3 Actors on a Stage, 2025",
-            "medium": "Milk Paint, pastel, and colored pencil on paper",
-            "dimensions": "8 x 9.5 in"
+            "title": "Untitled, 2026",
+            "medium": "Watercolor and ink on gessoed paper",
+            "dimensions": "9 x 9 in"
         },
         "a103": {
-            "title": "Untitled Landscape, 2025",
-            "medium": "Silverpoint, ink, and milkpaint on gessoed paper",
-            "dimensions": "13.5 x 11 in"
+            "title": "Untitled Landscape, 2026",
+            "medium": "Ink, pastel, and colored pencil on paper",
+            "dimensions": "9 x 11 in"
         },
         "a104": {
-            "title": "Untitled (Winter Landscape), 2025",
-            "medium": "Ink, colored pencil, and graphite on gessoed paper laid to canvas",
-            "dimensions": "12 x 11 in"
+            "title": "Untitled, 2025",
+            "medium": "Ink, silverpoint, and milk paint on gessoed paper",
+            "dimensions": "14 x 11 in"
         },
         "a105": {
             "title": "Untitled (Panorama), 2025",
@@ -30,9 +30,9 @@ const captions = {
             "dimensions": "6 x 12 in"
         },
         "a106": {
-            "title": "Untitled, 2025",
-            "medium": "Ink on paper mounted to linen",
-            "dimensions": "8 x 11 in"
+            "title": "Untitled (Two Shrubs), 2025",
+            "medium": "Mixed media on paper laid to canvas",
+            "dimensions": "10 x 11 in"
         },
         "a107": {
             "title": "Untitled (on the grass), 2024",
@@ -40,44 +40,44 @@ const captions = {
             "dimensions": "11 x 15 in"
         },
         "a108": {
-            "title": "Untitled (tell, don't show), 2024",
-            "medium": "Egg tempera and ink on paper",
-            "dimensions": "19 x 10.5 in"
-        },
-        "a109": {
             "title": "Untitled (red and blue), 2024",
             "medium": "Watercolor, ink, colored pencil and pastel on paper laid to linen",
             "dimensions": "9 x 11 in"
         },
-        "a110": {
+        "a109": {
             "title": "Untitled, 2024",
             "medium": "Ink and watercolor on paper laid to canvas",
             "dimensions": "10 x 14 in"
         },
-        "a111": {
+        "a110": {
             "title": "Untitled (travel advertisement), 2024",
             "medium": "Ink, graphite, and colored pencil on paper laid to canvas",
             "dimensions": "11 x 9 in"
         },
-        "a112": {
+        "a111": {
             "title": "Untitled (travel advertisement 2), 2024",
             "medium": "Ink graphite, and colored pencil on paper laid to canvas",
             "dimensions": "11 x 9 in"
         },
-        "a113": {
+        "a112": {
             "title": "Untitled (a wind), 2024",
             "medium": "Ink, graphite, egg tempera, and colored pencil on paper mounted to board",
             "dimensions": "12 x 12 in"
         },
-        "a114": {
+        "a113": {
             "title": "Untitled (yellow and gray), 2024",
             "medium": "Ink and watercolor on paper laid to canvas",
             "dimensions": "12 x 14 in"
         },
-        "a115": {
+        "a114": {
             "title": "Untitled, 2024",
             "medium": "Ink, pastel, and graphite on paper",
             "dimensions": "6 x 9 in"
+        },
+        "a115": {
+            "title": "",
+            "medium": "",
+            "dimensions": ""
         }
     },
     // 
